@@ -1,0 +1,5 @@
+telegram:
+  token: <token>
+
+mongodb:
+  uri: <uri>

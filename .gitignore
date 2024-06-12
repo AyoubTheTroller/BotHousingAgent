@@ -22,4 +22,4 @@ resources/venvs/bot-housing-agent-venv
 bot_housing_agent.egg-info
 
 # Config properties
-properties/yaml/config.yml
+properties/yaml/config-dev.yml
