@@ -1,0 +1,18 @@
+{
+  "paths": {
+      "properties":"properties/",
+      "templates":"templates/"     
+  },
+  "files":{
+    "properties_config": {
+      "base_config" : "config.yml",
+      "dev"  : "config-dev.yml",
+      "prod" : "config-prod.yml"
+    },
+    "templates_config":{
+      "templates": [],
+      "dev": "managed-dev.json",
+      "prod": "managed-prod.json"
+    }
+  }
+}

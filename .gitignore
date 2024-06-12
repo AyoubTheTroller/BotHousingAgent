@@ -1,0 +1,25 @@
+# Python / Backend specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+
+# IDE specific
+.vscode/
+.pylintrc
+
+# Venv
+resources/venvs/bot-housing-agent-venv
+.venv
+
+
+# Environment properties
+.env
+
+# setuptools metadata
+bot_housing_agent.egg-info
+
+# Config properties
+properties/yaml/config.yml
