@@ -1,10 +1,11 @@
 from dependency_injector import containers, providers
 from pymongo import MongoClient as MongoLibrary
+from app.mongodb.mongo_client import MongoClient
 
 class DbContainer(containers.DeclarativeContainer):
 
     config = providers.Configuration()
     
-    database_client = providers.Singleton(MongoLibrary, config.database.mongodb_uri)
+    mongo_instance = providers.Singleton(MongoLibrary, config.db_client.mongodb_uri)
 
-    db_mongo = providers.Factory(MongoLibrary, client=database_client, dbName='ScrapedProperties', collectionName='urls_collection')
+    mongo_client = providers.Factory(MongoClient, client=mongo_instance, databases_config=config.db_client.databases)

@@ -4,3 +4,6 @@
 ## 0.1.0
 - Added backbone for dependencies containerization
 
+## 0.2.0
+- Added MongoDbClient and TelegramApplication linked to IoC containers
+

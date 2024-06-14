@@ -1,5 +1,4 @@
-from app.context.app_context import ApplicationContext
+from app.context.app_context import SpawnApplicationContext
 
-if __name__ == '__main__':
-    app = ApplicationContext()
-    app.run_bot()
+def run_bot():
+    SpawnApplicationContext()
