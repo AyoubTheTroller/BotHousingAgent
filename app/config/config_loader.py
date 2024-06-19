@@ -1,3 +1,4 @@
+from dependency_injector import providers
 from app.utils.data_loader import DataLoader
 
 class ConfigLoader:
@@ -21,6 +22,11 @@ class ConfigLoader:
 
         # Merge base and environment-specific structures
         self._config = {**base_config, **env_config}
+
+    def load_config_provider(self):
+        config = providers.Configuration()
+        config.from_dict(self._config)
+        return config
 
     def get_config_dict(self):
         """Return config dictionary"""

@@ -10,7 +10,7 @@
       "prod" : "config-prod.yml"
     },
     "templates_config":{
-      "templates": [],
+      "templates": ["telegram"],
       "dev": "managed-dev.json",
       "prod": "managed-prod.json"
     }
