@@ -8,11 +8,9 @@
       "base_config" : "config.yml",
       "dev"  : "config-dev.yml",
       "prod" : "config-prod.yml"
-    },
-    "templates_config":{
-      "templates": ["telegram"],
-      "dev": "managed-dev.json",
-      "prod": "managed-prod.json"
     }
+  },
+  "language":{
+    "templates":"it"
   }
 }

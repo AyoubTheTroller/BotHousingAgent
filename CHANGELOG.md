@@ -10,3 +10,6 @@
 ## 0.3.0
 - Added service container and modified TelegramApplication startup
 
+## 0.4.0
+- Added template container, loading of templates done now via json files configuration
+

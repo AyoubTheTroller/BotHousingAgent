@@ -1,0 +1,26 @@
+{
+    "start":{
+        "it":"Benvenuto! Ti aiuterò a trovare una casa.",
+        "en":"Welcome! Let's find you a house."
+    },
+    "city":{
+        "it":"Inserisci una città:",
+        "en":"Please enter the city:"
+    },
+    "max_price":{
+        "it":"Inserisci un prezzo massimo",
+        "en":"Great! What's your maximum price (in euros)?"
+    },
+    "room_number":{
+        "it":"Di quante stanze hai bisogno?",
+        "en":"How many rooms do you need?"
+    },
+    "furnished":{
+        "it":"La proprietà deve essere arredata? (si/no)",
+        "en":"Is the property furnished? (yes/no)"
+    },
+    "url":{
+        "it":"Ecco il link per la ricerca: {{url}}",
+        "en":"Here's your search URL: {{url}}"
+    }
+}

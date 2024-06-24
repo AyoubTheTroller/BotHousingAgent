@@ -21,7 +21,7 @@ class UserDAO(BaseDAO):
             {"$set": {"data": data}},
             upsert=True
         )
-        
+
     async def get_all_user_data(self) -> Dict[int, Dict]:
         """Retrieves all user data from MongoDB."""
         user_data = {}
