@@ -19,7 +19,12 @@ class ApplicationContainer(containers.DeclarativeContainer):
         config=app_config.core
     )
 
-    mongodb_package = providers.Container(
+    templates = providers.Container(
+        TemplateContainer,
+        config=global_config
+    )
+
+    mongodb = providers.Container(
         DbContainer,
         config=app_config,
     )
@@ -27,16 +32,13 @@ class ApplicationContainer(containers.DeclarativeContainer):
     services = providers.Container(
         ServiceContainer,
         config=app_config,
-        mongo_client=mongodb_package.mongo_client,
+        mongo_client=mongodb.mongo_client,
+        templates=templates
     )
 
-    tg_package = providers.Container(
+    telegram = providers.Container(
         TelegramContainer,
         config=app_config,
-        mongo_service=services.mongo_service
-    )
-
-    templates_package = providers.Container(
-        TemplateContainer,
-        config=global_config
+        mongo_service=services.mongo_service,
+        template_service=services.template_service
     )

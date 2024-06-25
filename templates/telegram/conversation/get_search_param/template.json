@@ -4,7 +4,7 @@
         "en":"Welcome! Let's find you a house."
     },
     "city":{
-        "it":"Inserisci una città:",
+        "it":"Inserisci di seguito il nome della città",
         "en":"Please enter the city:"
     },
     "max_price":{

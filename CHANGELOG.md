@@ -13,3 +13,6 @@
 ## 0.4.0
 - Added template container, loading of templates done now via json files configuration
 
+## 0.5.0
+- Created template service, now its injected in the telegram handlers to get conversation templates
+
