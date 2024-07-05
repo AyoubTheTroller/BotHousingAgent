@@ -1,26 +1,33 @@
+import asyncio
 import logging
-from telegram import Update
-from telegram.ext import Application, ContextTypes
+from aiogram import Bot
+from app.telegram.bot_dispatcher import BotDispatcher
 
 class TelegramApplication:
 
-    def __init__(self, command_handlers):
+    def __init__(self, bot_dispatcher: BotDispatcher):
         self.logger = logging.getLogger(
             f"{__name__}.{self.__class__.__name__}",
         )
-        self.logger.debug("Telegram Application Started!")
-        self.application = {}
-        self.command_handlers = command_handlers
+        self.logger.info("Telegram Application Started!")
+        self.application : None
+        self.bot_dispatcher = bot_dispatcher
+        self.dispatcher = bot_dispatcher.dispatcher
 
-    async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+    async def start_polling(self):
+        await self.dispatcher.start_polling(self.application)
 
-    def register_handlers(self):
-        handlers = self.command_handlers.get_handlers()
-        for handler in handlers:
-            self.application.add_handler(handler)
-
-    def run_app(self, application: Application):
+    def run_app(self, application: Bot):
         self.application = application
-        self.register_handlers()
-        self.application.run_polling()
+        self.dispatcher.shutdown.register(self.on_shutdown)
+        try:
+            asyncio.run(self.start_polling())
+        except KeyboardInterrupt:
+            self.logger.info("KeyboardInterrupt detected. Shutting down...")
+            asyncio.run(self.on_shutdown())
+        finally:
+            self.logger.info("Application has been terminated.")
+
+    async def on_shutdown(self):
+        await self.dispatcher.storage.close()
+        await self.application.session.close()

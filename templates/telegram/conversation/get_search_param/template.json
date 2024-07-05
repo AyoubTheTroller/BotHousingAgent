@@ -1,26 +1,74 @@
 {
-    "start":{
-        "it":"Benvenuto! Ti aiuterò a trovare una casa.",
-        "en":"Welcome! Let's find you a house."
+    "message":{
+        "start":{
+            "it":"Benvenuto! Ti aiuterò a trovare una casa.",
+            "en":"Welcome! Let's find you a house."
+        },
+        "get_city":{
+            "it":"Inserisci di seguito il nome della città",
+            "en":"Please enter the city:"
+        },
+        "get_max_price": {
+            "it": "Perfetto! Qual è il tuo budget massimo (in euro)? (Esempio: 500)",
+            "en": "Great! What's your maximum budget (in euros)? (Example: 500)"
+        },
+        "get_appartment_type":{
+            "it":"Che tipo di appartamento hai bisogno?",
+            "en":"What type of appartment u need?"
+        },
+        "get_furnished":{
+            "it":"La proprietà deve essere arredata? (si/no)",
+            "en":"Is the property furnished? (yes/no)"
+        },
+        "url":{
+            "it":"Ecco il link per la ricerca: {{url}}",
+            "en":"Here's your search URL: {{url}}"
+        },
+        "invalid_price": {
+            "it": "Il prezzo deve essere un numero intero positivo. (Esempio: 500)",
+            "en": "Price must be a positive integer. (Example: 500)"
+        },
+        "yes":{
+            "it":"Si",
+            "en":"Yes"
+        },
+        "no":{
+            "it":"No",
+            "en":"No"
+        },
+        "same":{
+            "it":"Non mi fa differenza",
+            "en":"No difference"
+        },
+        "ask_confirmation":{
+            "it":"I dati per la ricerca di seguito riportati sono corretti?\ncittà: {{city}}\nprezzo massimo: {{max_price}}\nTipologia appartamento: {{appartment_type}}\narredato: {{furnished}}",
+            "en":"Is the data below for the search correct?\ncity: {{city}}\nmax_price: {{max_price}}\nappartment_type: {{appartment_type}}\nfurnished: {{furnished}}"
+        },
+        "city":{
+            "it":"città",
+            "en":"city"
+        },
+        "max_price":{
+            "it":"prezzo massimo",
+            "en":"max price"
+        },
+        "appartment_type":{
+            "it":"Tipologia appartamento",
+            "en":"Appartment type"
+        },
+        "furnished":{
+            "it":"Arredato",
+            "en":"Furnished"
+        }
     },
-    "city":{
-        "it":"Inserisci di seguito il nome della città",
-        "en":"Please enter the city:"
-    },
-    "max_price":{
-        "it":"Inserisci un prezzo massimo",
-        "en":"Great! What's your maximum price (in euros)?"
-    },
-    "room_number":{
-        "it":"Di quante stanze hai bisogno?",
-        "en":"How many rooms do you need?"
-    },
-    "furnished":{
-        "it":"La proprietà deve essere arredata? (si/no)",
-        "en":"Is the property furnished? (yes/no)"
-    },
-    "url":{
-        "it":"Ecco il link per la ricerca: {{url}}",
-        "en":"Here's your search URL: {{url}}"
+    "inlike_keyboard_button":{
+        "appartment_types":{
+            "it":["monolocale","bilocale","trilocale","quadrilocale"],
+            "en":["one-room","two-rooms","three-rooms","four-rooms"]
+        },
+        "furnished":{
+            "it":["si","no","indifferente"],
+            "en":["yes","no","nodiff"]
+        }
     }
 }

@@ -20,10 +20,10 @@ class TelegramTemplates:
                 templates[key][active_template]=template
         return templates
 
-    def get_template(self, template_type, template_name) -> dict:
+    def get_template(self, template_type, template_category, template_name) -> dict:
         """
         Extracts a dictionary with the specified language from a nested dictionary structure.
         """
-        template = self._templates[template_type][template_name]
+        template = self._templates[template_type][template_category][template_name]
         # Filter the final dictionary based on the language
         return {key: value.get(self._language) for key, value in template.items() if self._language in value}

@@ -16,3 +16,6 @@
 ## 0.5.0
 - Created template service, now its injected in the telegram handlers to get conversation templates
 
+## 0.6.0
+- Changed telegram library, now using aiogram instead of pyhon-telegran-bot
+

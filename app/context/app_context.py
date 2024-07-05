@@ -1,9 +1,10 @@
 from dependency_injector.wiring import Provide, inject
 from app.container.app_container import ApplicationContainer
 from app.telegram.tg_app import TelegramApplication
-from app.telegram.tg_app_builder import TelegramApplicationBuilder
+from app.telegram.bot_builder import BotBuilder
 
 class SpawnApplicationContext:
+
     def __init__(self):
         self._setup_containers()
 
@@ -13,9 +14,9 @@ class SpawnApplicationContext:
         container.core.init_resources()
         container.mongodb.init_resources()
         container.telegram.init_resources()
-        self.start_application()
+        self.start()
 
     @inject
-    def start_application(self, builder: TelegramApplicationBuilder = Provide[ApplicationContainer.telegram.telegram_application_builder],
-                            tg_app: TelegramApplication = Provide[ApplicationContainer.telegram.telegram_application]) -> None:
-        tg_app.run_app(builder.build())
+    def start(self, bot_builder: BotBuilder = Provide[ApplicationContainer.telegram.bot_builder],
+                    tg_app: TelegramApplication = Provide[ApplicationContainer.telegram.telegram_application]) -> None:
+        tg_app.run_app(bot_builder.build())
