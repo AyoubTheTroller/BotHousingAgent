@@ -1,7 +1,7 @@
 {
     "message":{
         "start":{
-            "it":"Benvenuto! Ti aiuterò a trovare una casa.",
+            "it":"Benvenuto! Ti aiuterò a trovare una casa.\nQuando sei pronto premi il pulsante di seguito e ti chiederò le informazioni necessarie per la ricerca.",
             "en":"Welcome! Let's find you a house."
         },
         "get_city":{
@@ -41,7 +41,7 @@
             "en":"No difference"
         },
         "ask_confirmation":{
-            "it":"I dati per la ricerca di seguito riportati sono corretti?\ncittà: {{city}}\nprezzo massimo: {{max_price}}\nTipologia appartamento: {{appartment_type}}\narredato: {{furnished}}",
+            "it":"I dati per la ricerca di seguito riportati sono corretti?\ncittà: {{city_name}}\nprezzo massimo: {{max_price}}\nTipologia appartamento: {{appartment_type}}\narredato: {{furnished}}",
             "en":"Is the data below for the search correct?\ncity: {{city}}\nmax_price: {{max_price}}\nappartment_type: {{appartment_type}}\nfurnished: {{furnished}}"
         },
         "city":{
@@ -61,7 +61,7 @@
             "en":"Furnished"
         }
     },
-    "inlike_keyboard_button":{
+    "button":{
         "appartment_types":{
             "it":["monolocale","bilocale","trilocale","quadrilocale"],
             "en":["one-room","two-rooms","three-rooms","four-rooms"]

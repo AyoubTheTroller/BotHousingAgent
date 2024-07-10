@@ -1,6 +1,6 @@
 from aiogram import Dispatcher
 from dependency_injector import providers
-from app.telegram.handler.prepare_url import PrepareUrl
+from app.telegram.handler.get_search_params.register import SearchParamsRegister
 
 class BotDispatcher:
 
@@ -9,20 +9,12 @@ class BotDispatcher:
                  template_service,
                  dispatcher: Dispatcher,
                  router_factory: providers.Provider):
-        
-        self.mongo_service = mongo_service
-        self.template_service = template_service
+
         self.router_factory = router_factory
         self.dispatcher = dispatcher
-        self.initialize_handlers()
-        self.set_routers_dispatching()
-
-    def initialize_handlers(self):
-        """Initiliazes all handlers from given routers"""
-        self.prepare_url = PrepareUrl(self.router_factory(), self.mongo_service,self.template_service)
-
-    def set_routers_dispatching(self):
-        """Registers all routers in the bot dispatcher"""
-        self.dispatcher.include_routers(
-            self.prepare_url.router
-        )
+        self.dispatcher["mongo_service"] = mongo_service
+        self.dispatcher["template_service"] = template_service
+        self.initialize_registers()
+        
+    def initialize_registers(self):
+        SearchParamsRegister(self.dispatcher, self.router_factory)

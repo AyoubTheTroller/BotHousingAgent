@@ -19,3 +19,6 @@
 ## 0.6.0
 - Changed telegram library, now using aiogram instead of pyhon-telegran-bot
 
+## 0.7.0
+- Added handlers for getting query params
+

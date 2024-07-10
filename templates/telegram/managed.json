@@ -1,5 +1,5 @@
 {
     "conversation":{
-        "active":["get_search_param"]
+        "active":["get_search_params"]
     }
 }
