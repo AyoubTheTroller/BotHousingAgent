@@ -2,6 +2,7 @@ from typing import List, Tuple
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from app.service.mongodb.mongo_service import MongoService
 from app.service.template.template_service import TemplateService
+from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup
 
 class Loader():
     def __init__(self,
@@ -52,3 +53,12 @@ class Loader():
             ]
         )
         return keyboard
+    
+    def create_keyboard_buttons_markup(self, buttons: List) -> ReplyKeyboardMarkup:
+        """
+        Creates a reply keyboard markup from a list of buttons
+        """
+        markup = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text = button) for button in buttons]],
+                                     resize_keyboard=True,
+                                     one_time_keyboard=False)
+        return markup

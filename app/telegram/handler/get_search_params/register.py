@@ -1,7 +1,7 @@
 from aiogram import Dispatcher, F
 from aiogram.filters import Command
-from app.telegram.handler.get_search_params.loader import Loader
-from app.telegram.handler.get_search_params.handlers import Handlers
+from app.telegram.handler.loader import Loader
+from app.telegram.handler.get_search_params.handlers import SearchParamsHandlers
 from app.telegram.handler.get_search_params.handlers import Form
 
 class SearchParamsRegister():
@@ -23,13 +23,13 @@ class SearchParamsRegister():
 
     def register_handlers(self):
         """Register scenes that are needed to get search paramans from the user"""
-        self.handlers = Handlers(self.loader)
-        self.handlers_router = self.router_factory()
-        self.handlers_router.message.register(self.handlers.search_house, Command(commands=["search_house"]))
-        self.handlers_router.callback_query.register(self.handlers.handle_start, F.data == "start")
-        self.handlers_router.message.register(self.handlers.handle_city_name, Form.city_name)
-        self.handlers_router.message.register(self.handlers.handle_max_price, Form.max_price)
-        self.handlers_router.callback_query.register(self.handlers.handle_appartment_type, Form.appartment_type)
-        self.handlers_router.callback_query.register(self.handlers.handle_furnished, Form.furnished)
-        self.handlers_router.callback_query.register(self.handlers.handle_confirmation, Form.confirmation)
-        self.dispatcher.include_router(self.handlers_router)
+        handlers = SearchParamsHandlers(self.loader)
+        handlers_router = self.router_factory()
+        handlers_router.message.register(handlers.search_house, Command(commands=["search_house"]))
+        handlers_router.callback_query.register(handlers.handle_start, F.data == "start")
+        handlers_router.message.register(handlers.handle_city_name, Form.city_name)
+        handlers_router.message.register(handlers.handle_max_price, Form.max_price)
+        handlers_router.callback_query.register(handlers.handle_appartment_type, Form.appartment_type)
+        handlers_router.callback_query.register(handlers.handle_furnished, Form.furnished)
+        handlers_router.callback_query.register(handlers.handle_confirmation, Form.confirmation)
+        self.dispatcher.include_router(handlers_router)

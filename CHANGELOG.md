@@ -25,3 +25,6 @@
 ### 0.7.1
 - Added script for testing and removing keyboardbuttons
 
+### 0.7.2
+- Added start handler to give a description and added keyboard buttons to be used along side commands for starting handler
+

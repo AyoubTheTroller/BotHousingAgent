@@ -1,0 +1,16 @@
+{
+    "message": {
+        "welcome": {
+            "it": "Benvenuto! Sono qui per aiutarti a trovare la casa perfetta per te.",
+            "en": "Welcome! I'm here to help you find the perfect home."
+        },
+        "instructions": {
+            "it": "Utilizza i pulsanti qui sotto per navigare tra le varie opzioni o digita un comando.",
+            "en": "Use the buttons below to navigate through the options or type a command."
+        },
+        "commands": {
+            "it": "Comandi disponibili:\n/start - Avvia la conversazione\n/help - Ottieni aiuto sull'uso del bot\n/search_house - Inizia una nuova ricerca di casa",
+            "en": "Available commands:\n/start - Start the conversation\n/help - Get help on using the bot\n/search_house - Start a new home search"
+        }
+    }
+}

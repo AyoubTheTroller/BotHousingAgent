@@ -1,5 +1,8 @@
 {
     "conversation":{
         "active":["get_search_params"]
+    },
+    "presentation":{
+        "active":["start"]
     }
 }
