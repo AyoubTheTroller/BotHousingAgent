@@ -22,3 +22,6 @@
 ## 0.7.0
 - Added handlers for getting query params
 
+### 0.7.1
+- Added script for testing and removing keyboardbuttons
+

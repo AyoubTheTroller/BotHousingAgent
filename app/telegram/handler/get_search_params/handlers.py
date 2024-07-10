@@ -53,7 +53,6 @@ class Handlers():
 
     async def handle_appartment_type(self, callback_query: CallbackQuery, state: FSMContext):
         appartment_type = callback_query.data
-        print(appartment_type)
         await state.update_data(appartment_type=appartment_type)
         await state.set_state(Form.furnished)
         await self.furnished(callback_query.message)
@@ -84,10 +83,8 @@ class Handlers():
     async def handle_confirmation(self, callback_query: CallbackQuery, state: FSMContext):
         confirmation = callback_query.data
         if confirmation == "yes":
-            # Process the final action (search, save data, etc.)
             await callback_query.message.answer("Starting search...")
-            await state.finish()  # Optionally reset the state
+            await state.finish()
         elif confirmation == "no":
             await callback_query.message.answer("Restarting the process. Please start over.")
-            await state.finish()  # Optionally reset the state to start over or adjust according to needs
-
+            await state.finish()
