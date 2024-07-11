@@ -28,3 +28,6 @@
 ### 0.7.2
 - Added start handler to give a description and added keyboard buttons to be used along side commands for starting handler
 
+### 0.7.3
+- Added folder and scripts for debian server management
+
