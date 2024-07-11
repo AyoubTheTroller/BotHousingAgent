@@ -4,5 +4,8 @@
     },
     "presentation":{
         "active":["start"]
+    },
+    "menu":{
+        "active":["home"]
     }
 }

@@ -2,6 +2,7 @@ from aiogram import Dispatcher
 from dependency_injector import providers
 from app.telegram.handler.get_search_params.register import SearchParamsRegister
 from app.telegram.handler.start.register import StartRegister
+from app.telegram.handler.menu.register import MenuRegister
 
 class BotDispatcher:
 
@@ -20,3 +21,4 @@ class BotDispatcher:
     def initialize_registers(self):
         StartRegister(self.dispatcher, self.router_factory)
         SearchParamsRegister(self.dispatcher, self.router_factory)
+        MenuRegister(self.dispatcher, self.router_factory)

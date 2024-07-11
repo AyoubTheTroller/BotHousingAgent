@@ -1,0 +1,26 @@
+{
+    "button":{
+        "start":{
+            "it":"Inizia",
+            "en":"Start"
+        },
+        "help":{
+            "it":"Aiuto",
+            "en":"Help"
+        },
+        "search_house":{
+            "it":"Trova casa",
+            "en":"Search House"
+        }
+    },
+    "message":{
+        "show_menu":{
+            "it": "menu visualizzato",
+            "en": "showing menu"
+        },
+        "hide_menu":{
+            "it": "menu nascosto",
+            "en": "hiding menu"
+        }
+    }
+}

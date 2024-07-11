@@ -1,4 +1,5 @@
 from aiogram.types import Message
+from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from app.telegram.handler.loader import Loader
 
 class StartHandler:
@@ -10,8 +11,13 @@ class StartHandler:
         instructions = self.loader.get_message_template("instructions")
         commands = self.loader.get_message_template("commands")
         await message.answer(f"{welcome}\n\n{instructions}\n\n{commands}")
-        await self.load_keyboard_buttons(message)
 
-    async def load_keyboard_buttons(self, message: Message):
+    async def show_menu(self, message: Message):
         markup = self.loader.create_keyboard_buttons_markup(["Start","Help","Search House"])
-        await message.answer(text="Buttons added",reply_markup=markup)
+        if message.reply_markup and isinstance(message.reply_markup, ReplyKeyboardMarkup):
+            await message.edit_reply_markup(reply_markup=markup)
+        else:
+            await message.answer(self.loader.get_message_template("show_menu"), reply_markup=markup)
+
+    async def hide_menu(self, message: Message) -> None:
+        await message.answer(self.loader.get_message_template("hide_menu"), reply_markup=ReplyKeyboardRemove())

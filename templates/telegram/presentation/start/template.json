@@ -9,8 +9,8 @@
             "en": "Use the buttons below to navigate through the options or type a command."
         },
         "commands": {
-            "it": "Comandi disponibili:\n/start - Avvia la conversazione\n/help - Ottieni aiuto sull'uso del bot\n/search_house - Inizia una nuova ricerca di casa",
-            "en": "Available commands:\n/start - Start the conversation\n/help - Get help on using the bot\n/search_house - Start a new home search"
+            "it": "Comandi disponibili:\n/start - Avvia la conversazione\n/help - Ottieni aiuto sull'uso del bot\n/search_house - Inizia una nuova ricerca di casa\n/show_menu - Mostra menu con bottoni interattivi\n/hide_menu - Nasconde menu con bottoni interattivi",
+            "en": "Available commands:\n/start - Start the conversation\n/help - Get help on using the bot\n/search_house - Start a new home search\n/show_menu - Shows a menu with interactive buttons\n/hide_menu - Hides interactive buttons menu"
         }
     }
 }

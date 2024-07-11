@@ -1,17 +1,14 @@
 from typing import List, Tuple
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from app.service.mongodb.mongo_service import MongoService
+from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 from app.service.template.template_service import TemplateService
-from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup
 
 class Loader():
     def __init__(self,
-                 mongo_service: MongoService,
                  template_service: TemplateService,
                  interaction_type: str,
                  handler_type: str):
-        
-        self.mongo_service = mongo_service
+
         self.template_service = template_service
         self.interaction_type = interaction_type
         self.handler_type = handler_type

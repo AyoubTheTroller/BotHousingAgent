@@ -31,3 +31,6 @@
 ### 0.7.3
 - Added folder and scripts for debian server management
 
+## 0.8.0
+- Added menu handler
+
