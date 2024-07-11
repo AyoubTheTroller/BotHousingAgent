@@ -34,3 +34,6 @@
 ## 0.8.0
 - Added menu handler
 
+## 0.9.0
+- Added documentation for debian server deployment
+
