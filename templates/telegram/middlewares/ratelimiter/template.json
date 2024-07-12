@@ -1,0 +1,12 @@
+{
+    "message":{
+        "max_messages":{
+            "it":"Hai superato il numero massimo di comandi permessi. Ti invitiamo a riprovare piu tardi #Chillatela",
+            "en":"You exceeded the number of commands permitted. Please wait before trying again. #Chilldown"
+        },
+        "max_seconds":{
+            "it":"Stai inviando messaggi troppo velociemente. Rallenta! #Chillatela",
+            "en":"You are sending messages too quickly. Please slow down! #Chilldown"
+        }
+    }
+}

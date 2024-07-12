@@ -37,3 +37,6 @@
 ## 0.9.0
 - Added documentation for debian server deployment
 
+## 0.10.0
+- Added middleware laters for  messages rate limiting
+
