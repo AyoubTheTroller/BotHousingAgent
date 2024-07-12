@@ -1,7 +1,7 @@
 from aiogram import Dispatcher, F
 from aiogram.filters import Command
 from app.telegram.handler.loader import Loader
-from app.telegram.handler.start.handler import StartHandler
+from app.telegram.handler.start.handlers import StartHandler
 
 class StartRegister:
     def __init__(self, dispatcher: Dispatcher, router_factory):
@@ -21,5 +21,6 @@ class StartRegister:
         handler = StartHandler(self.loader)
         handler_router = self.router_factory()
         handler_router.message.register(handler.start_command, Command(commands=["start"]))
-        handler_router.message.register(handler.start_command, F.text==self.menu_loader.get_keyboard_button_template("start"))
+        handler_router.message.register(handler.start_command,
+                                        F.text==self.menu_loader.get_keyboard_button_template("start"))
         self.dispatcher.include_router(handler_router)

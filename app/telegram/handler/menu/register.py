@@ -16,7 +16,7 @@ class MenuRegister:
         return Loader(self.template_service,interaction_type,handler_type)
 
     def register_handlers(self):
-        """Register scenes that are needed to interact with the user at the start."""
+        """Register handlers for interactive menu buttons."""
         handler = MenuHandler(self.loader)
         handler_router = self.router_factory()
         handler_router.message.register(handler.show_menu, Command(commands=["show_menu"]))

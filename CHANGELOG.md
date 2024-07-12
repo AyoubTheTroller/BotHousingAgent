@@ -38,5 +38,8 @@
 - Added documentation for debian server deployment
 
 ## 0.10.0
-- Added middleware laters for  messages rate limiting
+- Added middleware layer for  messages rate limiting
+
+## 0.11.0
+- Added user account subscription handlers, now the telegram user is saved in a mongodb collection
 

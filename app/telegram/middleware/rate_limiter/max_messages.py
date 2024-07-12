@@ -9,7 +9,6 @@ class RateLimitMiddleware(BaseMiddleware):
         self.message_limit = message_limit  # Max number of messages allowed
         self.window_size = window_size  # Time window in seconds
         self.user_messages = defaultdict(lambda: deque())
-        print("IN the middl")
         self.loader = loader
 
     async def __call__(self, handler, event: Message, data: dict):

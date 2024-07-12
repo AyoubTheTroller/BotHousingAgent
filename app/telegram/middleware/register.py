@@ -7,10 +7,10 @@ class MiddlewareRegister:
         self.dispatcher = dispatcher
         self.mongo_service = dispatcher["mongo_service"]
         self.template_service = dispatcher["template_service"]
-        self.rate_limit_loader = self.set_rate_limit_loader("ratelimiter")
+        self.rate_limit_loader = self.set_loader("ratelimiter")
         self.register_message_middlewares()
 
-    def set_rate_limit_loader(self, handler_type):
+    def set_loader(self, handler_type):
         return Loader(self.template_service,"middlewares",handler_type)
 
     def register_message_middlewares(self):

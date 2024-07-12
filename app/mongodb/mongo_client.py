@@ -25,3 +25,6 @@ class MongoClient():
     def get_collection(self, db_alias: str, collection_name: str):
         """Retrieves a specific collection from the specified database."""
         return self._databases[db_alias]["collections"][collection_name]
+
+    def get_database(self, db_alias: str):
+        return self._databases[db_alias]["collections"]

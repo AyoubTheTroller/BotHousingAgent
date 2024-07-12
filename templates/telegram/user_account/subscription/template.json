@@ -1,0 +1,8 @@
+{
+    "message":{
+        "welcome":{
+            "it":"Benvenuto {{username}}!",
+            "en":"Welcome {{username}}!"
+        }
+    }
+}

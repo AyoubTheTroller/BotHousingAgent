@@ -4,5 +4,8 @@ class MongoService():
     def __init__(self, mongo_client: MongoClient):
         self._mongo_client = mongo_client
 
-    def get_collection(self, collection_name):
-        return self._mongo_client.get_collection("scraped",collection_name)
+    def get_scraped_database(self):
+        return self._mongo_client.get_database("scraped")
+    
+    def get_telegram_database(self):
+        return self._mongo_client.get_database("telegram")

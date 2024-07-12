@@ -10,5 +10,8 @@
     },
     "middlewares":{
         "active":["ratelimiter"]
+    },
+    "user_account":{
+        "active":["subscription"]
     }
 }
