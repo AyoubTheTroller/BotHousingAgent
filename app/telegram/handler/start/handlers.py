@@ -1,9 +1,9 @@
 from aiogram.types import Message
 from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove
-from app.telegram.handler.loader import Loader
+from app.telegram.handler.loader.components_loader import ComponentsLoader
 
 class StartHandler:
-    def __init__(self, loader: Loader):
+    def __init__(self, loader: ComponentsLoader):
         self.loader = loader
 
     async def start_command(self, message: Message):

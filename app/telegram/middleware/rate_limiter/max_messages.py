@@ -2,10 +2,10 @@ import time
 from collections import defaultdict, deque
 from aiogram import BaseMiddleware
 from aiogram.types import Message
-from app.telegram.middleware.loader import Loader
+from app.telegram.handler.loader.base_loader import BaseLoader
 
 class RateLimitMiddleware(BaseMiddleware):
-    def __init__(self, loader: Loader, message_limit: int = 5, window_size: int = 60):
+    def __init__(self, loader: BaseLoader, message_limit: int = 5, window_size: int = 60):
         self.message_limit = message_limit  # Max number of messages allowed
         self.window_size = window_size  # Time window in seconds
         self.user_messages = defaultdict(lambda: deque())

@@ -1,9 +1,9 @@
 from aiogram.types import Message
 from aiogram.types import ReplyKeyboardRemove
-from app.telegram.handler.loader import Loader
+from app.telegram.handler.loader.components_loader import ComponentsLoader
 
 class MenuHandler:
-    def __init__(self, loader: Loader):
+    def __init__(self, loader: ComponentsLoader):
         self.loader = loader
 
     async def show_menu(self, message: Message):

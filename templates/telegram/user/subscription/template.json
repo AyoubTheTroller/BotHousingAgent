@@ -1,0 +1,16 @@
+{
+    "message":{
+        "welcome":{
+            "it":"Benvenuto, {{username}}! L'iscrizione è stata completata con successo.",
+            "en":"Welcome, {{username}}! You have been successfully subscribed."
+        },
+        "already_subscribed":{
+            "it":"Ciao, {{username}}! Sei già iscritto.",
+            "en":"Hello, {{username}}! You are already subscribed."
+        },
+        "awaiting_approval":{
+            "it":"Ciao, {{username}}! La tua richiesta di iscrizione è stata ricevuta. Ti preghiamo di attendere l'approvazione.",
+            "en":"Hello, {{username}}! Your subscription request has been received. Please wait for admin approval."
+        }
+    }
+}

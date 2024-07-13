@@ -5,6 +5,7 @@ from app.telegram.handler.get_search_params.register import SearchParamsRegister
 from app.telegram.handler.start.register import StartRegister
 from app.telegram.handler.menu.register import MenuRegister
 from app.telegram.handler.subscription.register import SubscriptionRegister
+from app.telegram.handler.admin.register import AdminRegister
 
 class BotDispatcher:
 
@@ -25,6 +26,7 @@ class BotDispatcher:
         MiddlewareRegister(self.dispatcher)
         
     def initialize_handlers_register(self):
+        AdminRegister(self.dispatcher, self.router_factory)
         StartRegister(self.dispatcher, self.router_factory)
         SearchParamsRegister(self.dispatcher, self.router_factory)
         MenuRegister(self.dispatcher, self.router_factory)

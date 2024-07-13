@@ -9,9 +9,9 @@
         "active":["home"]
     },
     "middlewares":{
-        "active":["ratelimiter"]
+        "active":["ratelimiter","authorization"]
     },
-    "user_account":{
-        "active":["subscription"]
+    "user":{
+        "active":["admin","subscription"]
     }
 }

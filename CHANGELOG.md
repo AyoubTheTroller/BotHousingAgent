@@ -43,3 +43,6 @@
 ## 0.11.0
 - Added user account subscription handlers, now the telegram user is saved in a mongodb collection
 
+## 0.12.0
+- Added authorization middleware and added admin handler for approving new users
+

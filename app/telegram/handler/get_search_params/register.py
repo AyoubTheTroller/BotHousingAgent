@@ -1,6 +1,6 @@
 from aiogram import Dispatcher, F
 from aiogram.filters import Command
-from app.telegram.handler.loader import Loader
+from app.telegram.handler.loader.components_loader import ComponentsLoader
 from app.telegram.handler.get_search_params.handlers import SearchParamsHandlers
 from app.telegram.handler.get_search_params.handlers import Form
 
@@ -17,7 +17,7 @@ class SearchParamsRegister():
         self.register_handlers()
 
     def set_loader(self, interaction_type, handler_type):
-        return Loader(self.template_service,interaction_type,handler_type)
+        return ComponentsLoader(self.template_service,interaction_type,handler_type)
 
     def register_handlers(self):
         """Register scenes that are needed to get search paramans from the user"""

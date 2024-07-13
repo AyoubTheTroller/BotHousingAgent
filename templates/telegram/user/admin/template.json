@@ -1,0 +1,24 @@
+{
+    "message":{
+        "user_approved":{
+            "it":"L'utente {{username}} è stato approvato",
+            "en":"User {{username}} has been approved."
+        },
+        "user_already_approved":{
+            "it":"L'utente {{username}} è già stato approvato",
+            "en":"User {{username}} has already been approved."
+        },
+        "user_not_found":{
+            "it":"Utente {{username}} non trovato",
+            "en":"User {{username}} not found."
+        },
+        "approve_user_usage":{
+            "it":"Utilizzo: /approve_user <username>",
+            "en":"Usage: /approve_user <username>"
+        },
+        "not_authorized":{
+            "it":"Non sei autorizzato ad usare questo comando",
+            "en":"You are not authorized to use this command."
+        }
+    }
+}

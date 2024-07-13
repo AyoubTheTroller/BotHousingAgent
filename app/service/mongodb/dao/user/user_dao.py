@@ -12,15 +12,27 @@ class UserDAO:
             return User(**user_data)
         return None
 
+    async def get_user_by_username(self, username: str) -> User:
+        user_data = await self._collection.find_one({"username": username})
+        if user_data:
+            return User(**user_data)
+        return None
+
     async def add_user(self, user: User) -> None:
-        self._collection.update_one(
+        await self._collection.update_one(
             {"user_id": user.user_id},
             {"$set": user.model_dump()},
             upsert=True
         )
 
     async def update_user_activity(self, user_id: int) -> None:
-        self._collection.update_one(
+        await self._collection.update_one(
             {"user_id": user_id},
-            {"$set": {"last_active": datetime.utcnow().isoformat()}}
+            {"$set": {"last_active": datetime.now().isoformat()}}
+        )
+
+    async def update_user_authorization(self, user_id: int, authorized: bool) -> None:
+        await self._collection.update_one(
+            {"user_id": user_id},
+            {"$set": {"authorized": authorized}}
         )

@@ -1,6 +1,6 @@
 from app.service.template.template_service import TemplateService
 
-class Loader():
+class BaseLoader():
     def __init__(self,
                  template_service: TemplateService,
                  interaction_type: str,

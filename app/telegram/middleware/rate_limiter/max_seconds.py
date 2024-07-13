@@ -2,10 +2,10 @@ import time
 from collections import defaultdict
 from aiogram import BaseMiddleware
 from aiogram.types import Message
-from app.telegram.middleware.loader import Loader
+from app.telegram.handler.loader.base_loader import BaseLoader
 
 class RateLimitMiddleware(BaseMiddleware):
-    def __init__(self, loader: Loader, rate_limit: int = 5):
+    def __init__(self, loader: BaseLoader, rate_limit: int = 5):
         self.rate_limit = rate_limit
         self.users_last_message_time = defaultdict(lambda: 0)
         self.loader = loader

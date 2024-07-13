@@ -19,6 +19,6 @@ class DbContainer(containers.DeclarativeContainer):
     # Use the AsyncIOMotorClient in your MongoClient instance
     mongo_client = providers.Singleton(
         MongoClient,
-        client=mongo_instance,
+        client=async_mongo_client,
         databases_config=config.db_client.databases
     )

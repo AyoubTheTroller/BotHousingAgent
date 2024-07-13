@@ -3,7 +3,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 from app.service.template.template_service import TemplateService
 
-class Loader():
+class ComponentsLoader():
     def __init__(self,
                  template_service: TemplateService,
                  interaction_type: str,

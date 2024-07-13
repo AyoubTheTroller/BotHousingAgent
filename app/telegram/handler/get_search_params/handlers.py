@@ -1,7 +1,7 @@
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
-from app.telegram.handler.loader import Loader
+from app.telegram.handler.loader.components_loader import ComponentsLoader
 
 class Form(StatesGroup):
     city_name = State()
@@ -12,7 +12,7 @@ class Form(StatesGroup):
 
 class SearchParamsHandlers():
 
-    def __init__(self, loader: Loader):
+    def __init__(self, loader: ComponentsLoader):
         self.loader = loader
 
     async def search_house(self, message: Message):
