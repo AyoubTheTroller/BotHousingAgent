@@ -12,7 +12,6 @@ class AuthorizationMiddleware(BaseMiddleware):
     async def __call__(self, handler, event: Message, data: dict):
         user_id = event.from_user.id
         user = await self.user_dao.get_user_by_id(user_id)
-
         if user and user.authorized:
             return await handler(event, data)
         else:

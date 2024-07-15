@@ -7,7 +7,6 @@ from app.telegram.handler.get_search_params.handlers import Form
 class SearchParamsRegister():
 
     def __init__(self, dispatcher: Dispatcher, router_factory) -> None:
-
         self.dispatcher = dispatcher
         self.router_factory = router_factory
         self.mongo_service = dispatcher["mongo_service"]

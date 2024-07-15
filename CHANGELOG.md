@@ -46,3 +46,6 @@
 ## 0.12.0
 - Added authorization middleware and added admin handler for approving new users
 
+## 0.13.0
+- Added EventEmitting system for notifications
+

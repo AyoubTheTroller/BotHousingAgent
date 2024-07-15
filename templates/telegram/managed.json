@@ -13,5 +13,8 @@
     },
     "user":{
         "active":["admin","subscription"]
+    },
+    "notification":{
+        "active":["base"]
     }
 }

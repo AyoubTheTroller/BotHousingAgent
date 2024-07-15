@@ -9,16 +9,18 @@ class TelegramApplication:
         self.logger = logging.getLogger(
             f"{__name__}.{self.__class__.__name__}",
         )
-        self.logger.info("Telegram Application Started!")
         self.application : None
         self.bot_dispatcher = bot_dispatcher
         self.dispatcher = bot_dispatcher.dispatcher
 
     async def start_polling(self):
+        self.logger.info("Telegram Application Started!")
         await self.dispatcher.start_polling(self.application)
 
     def run_app(self, application: Bot):
         self.application = application
+        self.bot_dispatcher.set_bot_instance(application)
+        self.bot_dispatcher.register_event_emitters()
         self.dispatcher.shutdown.register(self.on_shutdown)
         try:
             asyncio.run(self.start_polling())

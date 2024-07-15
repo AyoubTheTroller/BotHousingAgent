@@ -3,6 +3,7 @@ from aiogram import Router, Dispatcher
 from app.telegram.tg_app import TelegramApplication
 from app.telegram.bot_builder import BotBuilder
 from app.telegram.bot_dispatcher import BotDispatcher
+from app.telegram.notification.event_emitter import EventEmitter
 
 class TelegramContainer(containers.DeclarativeContainer):
 
@@ -17,6 +18,10 @@ class TelegramContainer(containers.DeclarativeContainer):
         token=config.telegram.token,
     )
 
+    event_emitter = providers.Singleton(
+        EventEmitter
+    )
+
     router_dispatcher = providers.Singleton(
         Dispatcher
     )
@@ -29,6 +34,7 @@ class TelegramContainer(containers.DeclarativeContainer):
         BotDispatcher,
         mongo_service=mongo_service,
         template_service=template_service,
+        event_emitter=event_emitter,
         dispatcher=router_dispatcher,
         router_factory=router_factory.provider,
     )

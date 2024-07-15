@@ -1,12 +1,18 @@
 from aiogram.types import Message
 from app.service.mongodb.dao.user.user_dao import UserDAO
 from app.telegram.handler.loader.base_loader import BaseLoader
+from app.telegram.notification.event_emitter import EventEmitter
 
 class AdminHandler:
-    def __init__(self, loader:BaseLoader, regular_user_dao: UserDAO, admin_user_dao: UserDAO):
+    def __init__(self,
+                 loader:BaseLoader,
+                 regular_user_dao: UserDAO,
+                 admin_user_dao: UserDAO,
+                 event_emitter: EventEmitter):
         self.loader = loader
         self.regular_user_dao = regular_user_dao
         self.admin_user_dao = admin_user_dao
+        self.event_emitter = event_emitter
 
     async def approve_user(self, message: Message):
         user_id = message.from_user.id
@@ -18,6 +24,13 @@ class AdminHandler:
                 if not user.authorized:
                     await self.regular_user_dao.update_user_authorization(user.user_id, True)
                     await message.answer(self.loader.get_message_template("user_approved",username=username))
+                    await self.event_emitter.emit(
+                        event_type="user_approved",
+                        event_data={
+                            "user_id": user.user_id,
+                            "admin_username": existing_admin_user.username
+                        }
+                    )
                 elif user.authorized:
                     await message.answer(self.loader.get_message_template("user_already_approved",username=username))
             else:
