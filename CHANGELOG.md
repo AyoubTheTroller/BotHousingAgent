@@ -49,3 +49,6 @@
 ## 0.13.0
 - Added EventEmitting system for notifications
 
+## 0.14.0
+- Changed application boot up, Code Refactor, Added basic loggin to bot controller
+

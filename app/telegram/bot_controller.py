@@ -1,3 +1,4 @@
+import logging
 from aiogram import Dispatcher, Bot
 from dependency_injector import providers
 from app.telegram.notification.event_emitter import EventEmitter
@@ -9,35 +10,44 @@ from app.telegram.handler.menu.register import MenuRegister
 from app.telegram.handler.subscription.register import SubscriptionRegister
 from app.telegram.handler.admin.register import AdminRegister
 
-class BotDispatcher:
+class BotController:
+
+    logger: None
 
     def __init__(self,
+                 bot:Bot,
                  mongo_service,
                  template_service,
                  event_emitter: EventEmitter,
                  dispatcher: Dispatcher,
                  router_factory: providers.Provider):
-        self.bot: Bot = None
-        self.router_factory = router_factory
+        self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}",)
+        self.logger.info("Initialization Started")
+        self.bot: Bot = bot
         self.dispatcher = dispatcher
+        self.set_dispatcher_dependencies(event_emitter, mongo_service, template_service)
+        self.register_event_emitters()
+        self.register_middlewares()
+        self.register_handlers(router_factory)
+        self.logger.info("Initialization Completed")
+
+    def set_dispatcher_dependencies(self, event_emitter, mongo_service, template_service):
         self.dispatcher["event_emitter"] = event_emitter
         self.dispatcher["mongo_service"] = mongo_service
         self.dispatcher["template_service"] = template_service
-        self.initialize_middlewares()
-        self.initialize_handlers_register()
 
-    def set_bot_instance(self, bot: Bot):
-        self.bot = bot
-
-    def initialize_middlewares(self):
+    def register_middlewares(self):
         MiddlewareRegister(self.dispatcher)
-
-    def initialize_handlers_register(self):
-        AdminRegister(self.dispatcher, self.router_factory)
-        StartRegister(self.dispatcher, self.router_factory)
-        SearchParamsRegister(self.dispatcher, self.router_factory)
-        MenuRegister(self.dispatcher, self.router_factory)
-        SubscriptionRegister(self.dispatcher, self.router_factory)
+        self.logger.info("Middlewares Registration Completed")
 
     def register_event_emitters(self):
         EventEmitterRegister(self.dispatcher, self.bot)
+        self.logger.info("EventEmitter Registration Completed")
+
+    def register_handlers(self, router_factory):
+        AdminRegister(self.dispatcher, router_factory)
+        StartRegister(self.dispatcher, router_factory)
+        SearchParamsRegister(self.dispatcher, router_factory)
+        MenuRegister(self.dispatcher, router_factory)
+        SubscriptionRegister(self.dispatcher, router_factory)
+        self.logger.info("Handlers Registration Completed")

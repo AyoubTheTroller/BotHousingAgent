@@ -6,19 +6,19 @@ from app.telegram.middleware.rate_limiter.max_messages import RateLimitMiddlewar
 from app.telegram.middleware.authorization.auth import AuthorizationMiddleware
 
 class MiddlewareRegister:
-    def __init__(self, dispatcher: Dispatcher):
-        self.dispatcher = dispatcher
-        self.mongo_service: MongoService = dispatcher["mongo_service"]
-        self.template_service = dispatcher["template_service"]
-        self.user_dao = UserDAO(self.mongo_service.get_telegram_database()["users"])
-        self.rate_limit_loader = self.set_loader("ratelimiter")
-        self.authorization_loader = self.set_loader("authorization")
-        self.register_message_middlewares()
+    def __init__(self, dispatcher):
+        self.user_dao = self.set_user_dao(dispatcher["mongo_service"], "users")
+        self.rate_limit_loader = self.set_loader("ratelimiter", dispatcher["template_service"])
+        self.authorization_loader = self.set_loader("authorization", dispatcher["template_service"])
+        self.register_message_middlewares(dispatcher)
 
-    def set_loader(self, handler_type):
-        return BaseLoader(self.template_service,"middlewares",handler_type)
+    def set_user_dao(self, mongo_service: MongoService, collection) -> UserDAO:
+        return UserDAO(mongo_service.get_telegram_database()[collection])
 
-    def register_message_middlewares(self):
+    def set_loader(self, handler_type, template_service):
+        return BaseLoader(template_service,"middlewares",handler_type)
+
+    def register_message_middlewares(self, dispatcher: Dispatcher):
         """Register scenes that are needed to interact with the user at the start."""
-        self.dispatcher.message.middleware(RateLimitMiddleware(self.rate_limit_loader))
-        self.dispatcher.message.middleware(AuthorizationMiddleware(self.authorization_loader, self.user_dao))
+        dispatcher.message.middleware(RateLimitMiddleware(self.rate_limit_loader))
+        dispatcher.message.middleware(AuthorizationMiddleware(self.authorization_loader, self.user_dao))
