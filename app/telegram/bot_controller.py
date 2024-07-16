@@ -12,8 +12,6 @@ from app.telegram.handler.admin.register import AdminRegister
 
 class BotController:
 
-    logger: None
-
     def __init__(self,
                  bot:Bot,
                  mongo_service,

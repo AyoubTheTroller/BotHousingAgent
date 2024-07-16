@@ -1,8 +1,8 @@
-from app.service.template.template_service import TemplateService
+from app.service.template.telegram.template_service import TelegramTemplateService
 
 class BaseLoader():
     def __init__(self,
-                 template_service: TemplateService,
+                 template_service: TelegramTemplateService,
                  interaction_type: str,
                  handler_type: str):
 
@@ -12,4 +12,4 @@ class BaseLoader():
 
     def get_message_template(self, key, **kwargs):
         """Helper function to return the message from a template."""
-        return self.template_service.render_telegram_template(self.interaction_type, self.handler_type, "message", key, **kwargs)
+        return self.template_service.render_template(self.interaction_type, self.handler_type, "message", key, **kwargs)

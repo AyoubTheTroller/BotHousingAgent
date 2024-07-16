@@ -1,6 +1,7 @@
 from dependency_injector import containers, providers
 from app.service.mongodb.mongo_service import MongoService
-from app.service.template.template_service import TemplateService
+from app.service.template.telegram.template_service import TelegramTemplateService
+from app.service.template.scraping.template_service import ScrapingTemplateService
 
 class ServiceContainer(containers.DeclarativeContainer):
 
@@ -15,7 +16,12 @@ class ServiceContainer(containers.DeclarativeContainer):
         mongo_client,
     )
 
-    template_service = providers.Factory(
-        TemplateService,
+    telegram_template_service = providers.Factory(
+        TelegramTemplateService,
         telegram_templates=templates.telegram_templates
+    )
+
+    scraping_template_service = providers.Factory(
+        ScrapingTemplateService,
+        scraping_templates=templates.scraping_templates
     )

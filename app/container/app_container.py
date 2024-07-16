@@ -40,5 +40,5 @@ class ApplicationContainer(containers.DeclarativeContainer):
         TelegramContainer,
         config=app_config,
         mongo_service=services.mongo_service,
-        template_service=services.template_service
+        template_service=services.telegram_template_service
     )

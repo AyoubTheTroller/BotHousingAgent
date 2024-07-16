@@ -52,3 +52,6 @@
 ## 0.14.0
 - Changed application boot up, Code Refactor, Added basic loggin to bot controller
 
+## 0.15.0
+- Added Scraping templates and its service, code refactoring
+

@@ -1,5 +1,6 @@
 from dependency_injector import containers, providers
 from app.template.telegram.telegram_templates import TelegramTemplates
+from app.template.scraping.scraping_templates import ScrapingTemplates
 
 class TemplateContainer(containers.DeclarativeContainer):
 
@@ -9,4 +10,9 @@ class TemplateContainer(containers.DeclarativeContainer):
         TelegramTemplates,
         templates_path=config.paths.templates,
         language=config.language.templates
+    )
+
+    scraping_templates = providers.Singleton(
+        ScrapingTemplates,
+        templates_path=config.paths.templates
     )

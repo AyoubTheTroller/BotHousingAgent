@@ -1,0 +1,30 @@
+{
+    "scheme":"https",
+    "host":"www.immobiliare.it",
+    "paths": {
+        "city_rent":"/affitto-case/{{city}}",
+        "elevator":"/con-ascensore",
+        "ground_floor":"/con-piano-terra",
+        "intermediate_floors":"/con-piani-intermedi",
+        "last_floor":"/con-ultimo-piano",
+        "cellar":"/con-cantina"
+    },
+    "query_params": {
+        "criteria": "criterio={{criteria}}",
+        "order": "ordine={{order}}",
+        "min_price": "prezzoMinimo={{min_price}}",
+        "max_price": "prezzoMassimo={{max_price}}",
+        "min_area": "superficieMinima={{min_area}}",
+        "max_area": "superficieMassima={{max_area}}",
+        "min_rooms": "localiMinimo={{min_rooms}}",
+        "max_rooms": "localiMassimo={{max_rooms}}",
+        "bathrooms": "bagni={{bathrooms}}",
+        "balcony_or_terrace": "balconeOterrazzo=1",
+        "balcony":"balcone=1",
+        "terrace":"terrace=1",
+        "furnished": "arredato=on",
+        "piscina": "piscina=1",
+        "cellar": "cantina=1",
+        "floor_range": "fasciaPiano[{range}]"
+    }
+}
