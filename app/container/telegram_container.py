@@ -14,6 +14,8 @@ class TelegramContainer(containers.DeclarativeContainer):
 
     template_service = providers.Dependency()
 
+    scraping_service = providers.Dependency()
+
     bot_default_properties = providers.Singleton(
         DefaultBotProperties,
         parse_mode=ParseMode.HTML
@@ -42,6 +44,7 @@ class TelegramContainer(containers.DeclarativeContainer):
         bot=bot,
         mongo_service=mongo_service,
         template_service=template_service,
+        scraping_service=scraping_service,
         event_emitter=event_emitter,
         dispatcher=router_dispatcher,
         router_factory=router_factory.provider,

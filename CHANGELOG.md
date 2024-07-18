@@ -55,3 +55,6 @@
 ## 0.15.0
 - Added Scraping templates and its service, code refactoring
 
+## 0.16.0
+- Added scraping container, created scraping service, added website register for url building
+

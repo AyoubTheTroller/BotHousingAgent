@@ -5,10 +5,13 @@ class ScrapingTemplateService:
 
     def __init__(self, scraping_templates):
         self._scraping_templates: ScrapingTemplates = scraping_templates
+
+    def get_managed_websites(self):
+        return self._scraping_templates.get_managed_websites()
     
     def render_template(self, template_type, template_name: str, *keys, **kwargs) -> str:
         """Renders a Telegram template."""
-        template = self._scraping_templates.get_template(template_type, template_name, keys)
+        template = self._scraping_templates.get_template(template_type, template_name, *keys)
         if isinstance(template, str):
             return self.render(template, **kwargs)
         return template

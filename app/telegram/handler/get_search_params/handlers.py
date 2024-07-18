@@ -2,6 +2,8 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 from app.telegram.handler.loader.components_loader import ComponentsLoader
+from app.service.scraping.scraping_service import ScrapingService
+from app.scraping.model.query_params import QueryParams
 
 class Form(StatesGroup):
     city_name = State()
@@ -12,8 +14,9 @@ class Form(StatesGroup):
 
 class SearchParamsHandlers():
 
-    def __init__(self, loader: ComponentsLoader):
+    def __init__(self, loader: ComponentsLoader, scraping_service: ScrapingService):
         self.loader = loader
+        self.scraping_service = scraping_service
 
     async def search_house(self, message: Message):
         await message.answer(
@@ -83,8 +86,26 @@ class SearchParamsHandlers():
     async def handle_confirmation(self, callback_query: CallbackQuery, state: FSMContext):
         confirmation = callback_query.data
         if confirmation == "yes":
-            await callback_query.message.answer("Starting search...")
-            await state.finish()
+            user_data = await state.get_data()
+            processed_user_data = self.preprocess_input_data(user_data)
+            query_params = QueryParams(**processed_user_data)
+            url_builder = self.scraping_service.scraping_controller.website_scraping_register.get_url_builder("immobiliare")
+            url = url_builder.build_url(query_params)
+            await callback_query.message.answer(url)
+            await state.clear()
         elif confirmation == "no":
             await callback_query.message.answer("Restarting the process. Please start over.")
             await state.finish()
+
+    def preprocess_input_data(self,data: dict) -> dict:
+        # Map 'si'/'no' to True/False
+        boolean_fields = ['furnished', 'balcony_or_terrace', 'balcony', 'terrace', 'piscina', 'cellar']
+        for field in boolean_fields:
+            if field in data:
+                if data[field].lower() in ['si', 'yes', 'true']:
+                    data[field] = True
+                elif data[field].lower() in ['no', 'false']:
+                    data[field] = False
+                else:
+                    data[field] = None  # or raise an error if you want strict validation
+        return data

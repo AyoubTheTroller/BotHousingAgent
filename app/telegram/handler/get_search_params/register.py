@@ -16,7 +16,7 @@ class SearchParamsRegister():
 
     def register_handlers(self, dispatcher: Dispatcher, router_factory):
         """Register scenes that are needed to get search paramans from the user"""
-        handlers = SearchParamsHandlers(self.conversation_loader)
+        handlers = SearchParamsHandlers(self.conversation_loader, dispatcher["scraping_service"])
         handlers_router: Router = router_factory()
         handlers_router.message.register(handlers.search_house, Command(commands=["search_house"]))
         handlers_router.message.register(handlers.search_house, F.text == self.menu_loader.get_keyboard_button_template("search_house"))

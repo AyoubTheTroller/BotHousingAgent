@@ -1,8 +1,8 @@
 {
-    "scheme":"https",
+    "scheme":"https://",
     "host":"www.immobiliare.it",
     "paths": {
-        "city_rent":"/affitto-case/{{city}}",
+        "city_rent":"/affitto-case/{{city_name}}",
         "elevator":"/con-ascensore",
         "ground_floor":"/con-piano-terra",
         "intermediate_floors":"/con-piani-intermedi",
