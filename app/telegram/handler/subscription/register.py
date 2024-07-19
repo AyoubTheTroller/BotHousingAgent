@@ -1,3 +1,4 @@
+import logging
 from aiogram import Dispatcher, Router
 from aiogram.filters import Command
 from app.telegram.handler.loader.base_loader import BaseLoader
@@ -7,9 +8,11 @@ from app.service.mongodb.dao.user.user_dao import UserDAO
 
 class SubscriptionRegister:
     def __init__(self, dispatcher: Dispatcher, router_factory):
+        self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}",)
         self.loader = self.set_loader(dispatcher["template_service"],"user","subscription")
         self.user_dao = self.set_user_dao(dispatcher["mongo_service"],"users")
         self.register_handlers(dispatcher,router_factory)
+        self.logger.info("Registration Completed")
         
     def set_user_dao(self, mongo_service: MongoService, collection) -> UserDAO:
         return UserDAO(mongo_service.get_telegram_database()[collection])

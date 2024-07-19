@@ -1,3 +1,4 @@
+import logging
 from aiogram import Bot, Dispatcher
 from app.telegram.handler.loader.base_loader import BaseLoader
 from app.telegram.notification.event_emitter import EventEmitter
@@ -5,8 +6,10 @@ from app.telegram.notification.triggered.base_events import TriggeredNotificatio
 
 class EventEmitterRegister:
     def __init__(self, dispatcher: Dispatcher, bot: Bot):
+        self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}",)
         self.base_loader = self.set_loader(dispatcher["template_service"], "base")
         self.register_triggered_events(dispatcher["event_emitter"], bot)
+        self.logger.info("Registration Completed")
 
     def set_loader(self, template_service, handler_type):
         return BaseLoader(template_service,"notification",handler_type)

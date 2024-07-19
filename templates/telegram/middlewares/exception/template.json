@@ -1,0 +1,12 @@
+{
+    "message":{
+        "telegram_error":{
+            "it":"Si è verificato un errore durante l'elaborazione della richiesta. Per favore riprova più tardi.",
+            "en":"An error occurred while processing your request. Please try again later."
+        },
+        "generic_error":{
+            "it":"Si è verificato un errore imprevisto. Per favore riprova più tardi.",
+            "en":"An unexpected error occurred. Please try again later."
+        }
+    }
+}

@@ -39,11 +39,9 @@ class BotController:
 
     def register_middlewares(self):
         MiddlewareRegister(self.dispatcher)
-        self.logger.info("Middlewares Registration Completed")
 
     def register_event_emitters(self):
         EventEmitterRegister(self.dispatcher, self.bot)
-        self.logger.info("EventEmitter Registration Completed")
 
     def register_handlers(self, router_factory):
         AdminRegister(self.dispatcher, router_factory)
@@ -51,4 +49,3 @@ class BotController:
         SearchParamsRegister(self.dispatcher, router_factory)
         MenuRegister(self.dispatcher, router_factory)
         SubscriptionRegister(self.dispatcher, router_factory)
-        self.logger.info("Handlers Registration Completed")

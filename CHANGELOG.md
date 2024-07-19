@@ -58,3 +58,6 @@
 ## 0.16.0
 - Added scraping container, created scraping service, added website register for url building
 
+## 0.17.0
+- Added exception middleware, added some logging
+

@@ -1,3 +1,4 @@
+import logging
 from aiogram import Dispatcher, Router, F
 from aiogram.filters import Command
 from app.telegram.handler.loader.components_loader import ComponentsLoader
@@ -7,9 +8,11 @@ from app.telegram.handler.get_search_params.handlers import Form
 class SearchParamsRegister():
 
     def __init__(self, dispatcher: Dispatcher, router_factory) -> None:
+        self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}",)
         self.conversation_loader = self.set_loader(dispatcher["template_service"], "conversation", "get_search_params")
         self.menu_loader = self.set_loader(dispatcher["template_service"], "menu", "home")
         self.register_handlers(dispatcher, router_factory)
+        self.logger.info("Registration Completed")
 
     def set_loader(self, template_service, interaction_type, handler_type):
         return ComponentsLoader(template_service,interaction_type,handler_type)

@@ -9,7 +9,7 @@
         "active":["home"]
     },
     "middlewares":{
-        "active":["ratelimiter","authorization"]
+        "active":["ratelimiter","authorization","exception"]
     },
     "user":{
         "active":["admin","subscription"]
