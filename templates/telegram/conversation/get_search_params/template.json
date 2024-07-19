@@ -12,6 +12,18 @@
             "it": "Perfetto! Qual è il tuo budget massimo (in euro)? (Esempio: 500)",
             "en": "Great! What's your maximum budget (in euros)? (Example: 500)"
         },
+        "get_min_rooms":{
+            "it":"Numero minimo di stanze?",
+            "en":"Minum rooms number?"
+        },
+        "get_max_rooms":{
+            "it":"Numero massimo di stanze?",
+            "en":"Maximum rooms number?"
+        },
+        "get_n_bathrooms":{
+            "it":"Numero di bagni?",
+            "en":"Bathroom number?"
+        },
         "get_appartment_type":{
             "it":"Che tipo di appartamento hai bisogno?",
             "en":"What type of appartment u need?"
@@ -19,6 +31,22 @@
         "get_furnished":{
             "it":"La proprietà deve essere arredata? (si/no)",
             "en":"Is the property furnished? (yes/no)"
+        },
+        "get_balcony":{
+            "it":"Hai bisogno di un balcone?",
+            "en":"Do you need a balcony?"
+        },
+        "get_terrace":{
+            "it":"Hai bisogno di un terrazzo?",
+            "en":"Do you need a terrace?"
+        },
+        "get_pool":{
+            "it":"Hai bisogno di una piscina?",
+            "en":"Do you need a pool?"
+        },
+        "get_cellar":{
+            "it":"Hai bisogno di una cantina?",
+            "en":"Do you need a cellar?"
         },
         "url":{
             "it":"Ecco il link per la ricerca: {{url}}",
@@ -67,8 +95,16 @@
             "en":["one-room","two-rooms","three-rooms","four-rooms"]
         },
         "furnished":{
-            "it":["si","no","indifferente"],
-            "en":["yes","no","nodiff"]
+            "it":["si","no"],
+            "en":["yes","no"]
+        },
+        "skip_step":{
+            "it":"Salta questo passaggio",
+            "en":"Skip this step"
+        },
+        "go_to_search":{
+            "it":"Vai direttamente alla ricerca",
+            "en":"Go directly to the search"
         }
     }
 }

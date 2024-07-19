@@ -61,3 +61,6 @@
 ## 0.17.0
 - Added exception middleware, added some logging
 
+## 0.18.0
+- Updated SearchParamsHandlers to complete url building for immobiliare.
+

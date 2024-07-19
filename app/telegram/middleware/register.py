@@ -14,7 +14,7 @@ class MiddlewareRegister:
         self.rate_limit_loader = self.set_loader("ratelimiter", dispatcher["template_service"])
         self.authorization_loader = self.set_loader("authorization", dispatcher["template_service"])
         self.exception_loader = self.set_loader("exception", dispatcher["template_service"])
-        self.register_message_middlewares(dispatcher)
+        self.register_middlewares(dispatcher)
         self.logger.info("Registration Completed")
 
     def set_user_dao(self, mongo_service: MongoService, collection) -> UserDAO:
@@ -23,10 +23,16 @@ class MiddlewareRegister:
     def set_loader(self, handler_type, template_service):
         return BaseLoader(template_service,"middlewares",handler_type)
 
-    def register_message_middlewares(self, dispatcher: Dispatcher):
-        """Register scenes that are needed to interact with the user at the start."""
+    def register_middlewares(self, dispatcher: Dispatcher):
+        """Register middlewares for messages and callback queries"""
         exception_middleware = ExceptionMiddleware(self.exception_loader)
         dispatcher.message.middleware(exception_middleware)
         dispatcher.callback_query.middleware(exception_middleware)
-        dispatcher.message.middleware(RateLimitMiddleware(self.rate_limit_loader))
-        dispatcher.message.middleware(AuthorizationMiddleware(self.authorization_loader, self.user_dao))
+
+        rate_limit_middleware = RateLimitMiddleware(self.rate_limit_loader)
+        dispatcher.message.middleware(rate_limit_middleware)
+        dispatcher.callback_query.middleware(rate_limit_middleware)
+
+        authorization_middleware = AuthorizationMiddleware(self.authorization_loader, self.user_dao)
+        dispatcher.message.middleware(authorization_middleware)
+        dispatcher.callback_query.middleware(authorization_middleware)

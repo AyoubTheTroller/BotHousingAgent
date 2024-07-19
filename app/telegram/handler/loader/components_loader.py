@@ -59,3 +59,16 @@ class ComponentsLoader():
                                      resize_keyboard=True,
                                      one_time_keyboard=False)
         return markup
+    
+    def append_button_to_markup(self, keyboard_markup: InlineKeyboardMarkup, text, callback_data) -> InlineKeyboardMarkup:
+        keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=text, callback_data=callback_data)])
+        return keyboard_markup
+    
+    def add_skip_buttons(self, keyboard_markup = None) -> InlineKeyboardMarkup:
+        skip_step = self.get_keyboard_button_template("skip_step")
+        go_to_search = self.get_keyboard_button_template("go_to_search")
+        if keyboard_markup is None:
+            keyboard_markup = InlineKeyboardMarkup(inline_keyboard=[])
+        keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=skip_step, callback_data="skip_step")])
+        keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=go_to_search, callback_data="go_to_search")])
+        return keyboard_markup
