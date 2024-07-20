@@ -67,3 +67,6 @@
 ## 0.19.0
 - Added handler for setting preferred language, added preferred language to state, now the user has a session state of 5 mins
 
+### 0.19.1
+- patched bug default language not set
+

@@ -12,7 +12,7 @@ class MenuHandler:
                    await self.loader.get_keyboard_button_template("help", state),
                    await self.loader.get_keyboard_button_template("search_house", state)]
         markup = self.loader.create_keyboard_buttons_markup(buttons)
-        await message.answer(self.loader.get_message_template("show_menu", state), reply_markup=markup)
+        await message.answer(await self.loader.get_message_template("show_menu", state), reply_markup=markup)
 
     async def hide_menu(self, message: Message, state: FSMContext) -> None:
-        await message.answer(self.loader.get_message_template("hide_menu", state), reply_markup=ReplyKeyboardRemove())
+        await message.answer(await self.loader.get_message_template("hide_menu", state), reply_markup=ReplyKeyboardRemove())
