@@ -33,6 +33,6 @@ class MiddlewareRegister:
         dispatcher.message.middleware(rate_limit_middleware)
         dispatcher.callback_query.middleware(rate_limit_middleware)
 
-        #authorization_middleware = AuthorizationMiddleware(self.authorization_loader, self.user_dao)
-        #dispatcher.message.middleware(authorization_middleware)
-        #dispatcher.callback_query.middleware(authorization_middleware)
+        authorization_middleware = AuthorizationMiddleware(self.authorization_loader, self.user_dao)
+        dispatcher.message.middleware(authorization_middleware)
+        dispatcher.callback_query.middleware(authorization_middleware)

@@ -70,3 +70,6 @@
 ### 0.19.1
 - patched bug default language not set
 
+### 0.19.2
+- Fixed user authentication in order to whitelist /subscribe command
+

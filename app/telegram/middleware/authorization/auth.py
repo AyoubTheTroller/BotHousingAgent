@@ -12,6 +12,9 @@ class AuthorizationMiddleware(BaseMiddleware):
         self.session_time = session_time
 
     async def __call__(self, handler, event: Message, data: dict):
+        if isinstance(event, Message):
+            if event.text and event.text.startswith("/subscribe"):
+                return await handler(event, data)
         user_id = event.from_user.id
         state: FSMContext = data.get('state')
         user_data = await state.get_data()
@@ -28,4 +31,4 @@ class AuthorizationMiddleware(BaseMiddleware):
             await state.update_data(language=user.language, logged=current_time.isoformat())
             return await handler(event, data)
         else:
-            await event.answer(await self.loader.get_message_template("not_authorized"), state)
+            await event.answer(await self.loader.get_message_template("not_authorized", state))
