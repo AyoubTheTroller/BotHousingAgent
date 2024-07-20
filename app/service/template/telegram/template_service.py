@@ -6,9 +6,9 @@ class TelegramTemplateService:
     def __init__(self, telegram_templates):
         self._telegram_templates: TelegramTemplates = telegram_templates
 
-    def render_template(self, template_type, template_name: str, category: str, key: str, **kwargs) -> str:
+    async def render_template(self, template_type, template_name: str, category: str, key: str, language: str, **kwargs) -> str:
         """Renders a Telegram template."""
-        template = self._telegram_templates.get_template(template_type, template_name, category)
+        template = self._telegram_templates.get_template(template_type, template_name, category, language)
         value = template.get(key)
         if isinstance(value, str):
             return self.render(value, **kwargs)

@@ -11,6 +11,20 @@
         "awaiting_approval":{
             "it":"Ciao, {{username}}! La tua richiesta di iscrizione è stata ricevuta. Ti preghiamo di attendere l'approvazione.",
             "en":"Hello, {{username}}! Your subscription request has been received. Please wait for admin approval."
+        },
+        "set_language":{
+            "it":"Scegli una lingua preferita",
+            "en":"Choose a preferred language"
+        },
+        "language_updated":{
+            "it":"Lingua preferita impostata",
+            "en":"Preferred language set"
+        }
+    },
+    "button":{
+        "languages":{
+            "it":["Italiano-it","Inglese-en"],
+            "en":["Italian-it","English-en"]
         }
     }
 }

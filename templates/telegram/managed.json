@@ -12,7 +12,7 @@
         "active":["ratelimiter","authorization","exception"]
     },
     "user":{
-        "active":["admin","subscription"]
+        "active":["admin","account"]
     },
     "notification":{
         "active":["base"]

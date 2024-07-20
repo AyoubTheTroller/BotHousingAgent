@@ -2,14 +2,15 @@ import logging
 from aiogram import Dispatcher, Router
 from aiogram.filters import Command
 from app.telegram.handler.loader.base_loader import BaseLoader
-from app.telegram.handler.subscription.handlers import SubscriptionHandler
+from app.telegram.handler.account.handlers import AccountHandler
 from app.service.mongodb.mongo_service import MongoService
 from app.service.mongodb.dao.user.user_dao import UserDAO
+from app.telegram.handler.account.handlers import Form
 
-class SubscriptionRegister:
+class AccountRegister:
     def __init__(self, dispatcher: Dispatcher, router_factory):
         self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}",)
-        self.loader = self.set_loader(dispatcher["template_service"],"user","subscription")
+        self.loader = self.set_loader(dispatcher["template_service"],"user","account")
         self.user_dao = self.set_user_dao(dispatcher["mongo_service"],"users")
         self.register_handlers(dispatcher,router_factory)
         self.logger.info("Registration Completed")
@@ -22,7 +23,9 @@ class SubscriptionRegister:
 
     def register_handlers(self, dispatcher: Dispatcher, router_factory):
         """Register scenes that are needed to interact with the user at the start."""
-        handler = SubscriptionHandler(self.loader, self.user_dao)
+        handler = AccountHandler(self.loader, self.user_dao)
         handler_router: Router = router_factory()
         handler_router.message.register(handler.subscribe, Command(commands=["subscribe"]))
+        handler_router.message.register(handler.set_language, Command(commands=["set_language"]))
+        handler_router.callback_query.register(handler.handle_language, Form.language)
         dispatcher.include_router(handler_router)

@@ -8,7 +8,7 @@ from app.telegram.middleware.register import MiddlewareRegister
 from app.telegram.handler.get_search_params.register import SearchParamsRegister
 from app.telegram.handler.start.register import StartRegister
 from app.telegram.handler.menu.register import MenuRegister
-from app.telegram.handler.subscription.register import SubscriptionRegister
+from app.telegram.handler.account.register import AccountRegister
 from app.telegram.handler.admin.register import AdminRegister
 
 class BotController:
@@ -48,4 +48,4 @@ class BotController:
         StartRegister(self.dispatcher, router_factory)
         SearchParamsRegister(self.dispatcher, router_factory)
         MenuRegister(self.dispatcher, router_factory)
-        SubscriptionRegister(self.dispatcher, router_factory)
+        AccountRegister(self.dispatcher, router_factory)

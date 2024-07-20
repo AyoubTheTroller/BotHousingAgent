@@ -2,6 +2,7 @@ import time
 from collections import defaultdict, deque
 from aiogram import BaseMiddleware
 from aiogram.types import Message
+from aiogram.fsm.context import FSMContext
 from app.telegram.handler.loader.base_loader import BaseLoader
 
 class RateLimitMiddleware(BaseMiddleware):
@@ -16,6 +17,7 @@ class RateLimitMiddleware(BaseMiddleware):
     async def __call__(self, handler, event: Message, data: dict):
         user_id = event.from_user.id
         current_time = time.time()
+        state: FSMContext = data.get('state')
 
         # Check if the user is in cooldown
         if current_time < self.user_cooldowns[user_id]:
@@ -31,7 +33,7 @@ class RateLimitMiddleware(BaseMiddleware):
         # Check if the user has exceeded the message limit
         if len(message_times) >= self.message_limit:
             self.user_cooldowns[user_id] = current_time + self.cooldown  # Set cooldown period
-            await event.answer(self.loader.get_message_template("max_messages"))
+            await event.answer(await self.loader.get_message_template("max_messages", state))
         else:
             # Add the current message time to the deque
             message_times.append(current_time)

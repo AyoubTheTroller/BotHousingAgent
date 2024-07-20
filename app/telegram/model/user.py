@@ -10,3 +10,4 @@ class User(BaseModel):
     authorized: bool
     created_at: datetime
     last_active: datetime
+    language: str

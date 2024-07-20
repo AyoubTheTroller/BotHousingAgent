@@ -17,6 +17,12 @@ class UserDAO:
         if user_data:
             return User(**user_data)
         return None
+    
+    async def get_user_language_by_id(self, user_id: int) -> str:
+        user_data = await self._collection.find_one({"user_id": user_id})
+        if user_data:
+            return User(**user_data).language
+        return None
 
     async def add_user(self, user: User) -> None:
         await self._collection.update_one(
@@ -24,6 +30,13 @@ class UserDAO:
             {"$set": user.model_dump()},
             upsert=True
         )
+
+    async def update_user_language(self, user_id: int, language) -> None:
+        await self._collection.update_one(
+            {"user_id": user_id},
+            {"$set": {"language": language}}
+        )
+
 
     async def update_user_activity(self, user_id: int) -> None:
         await self._collection.update_one(
