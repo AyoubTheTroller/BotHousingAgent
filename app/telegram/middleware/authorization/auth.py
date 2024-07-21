@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta
 from aiogram import BaseMiddleware
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
@@ -17,18 +16,9 @@ class AuthorizationMiddleware(BaseMiddleware):
                 return await handler(event, data)
         user_id = event.from_user.id
         state: FSMContext = data.get('state')
-        user_data = await state.get_data()
-        last_logged = user_data.get('logged')
-        current_time = datetime.now()
-        if last_logged:
-            last_logged_time = datetime.fromisoformat(last_logged)
-            if current_time - last_logged_time < timedelta(self.session_time):
-                return await handler(event, data)
 
         user = await self.user_dao.get_user_by_id(user_id)
         if user and user.authorized:
-            data['language'] = user.language
-            await state.update_data(language=user.language, logged=current_time.isoformat())
             return await handler(event, data)
         else:
             await event.answer(await self.loader.get_message_template("not_authorized", state))

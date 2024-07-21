@@ -12,5 +12,10 @@ sudo systemctl status servicename -n 1000
 
 ```bash
 sudo journalctl -u bothousingagent.service --no-pager
+```
 
+## Follow logs with journalctl
+
+```bash
+sudo journalctl -u servicename -f
 ```

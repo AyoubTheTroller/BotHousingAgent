@@ -73,3 +73,6 @@
 ### 0.19.2
 - Fixed user authentication in order to whitelist /subscribe command
 
+## 0.20.0
+- Fixed State problems bugs 2024/07/21.1 and 2024/07/21.2
+

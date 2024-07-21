@@ -6,6 +6,8 @@ from app.service.mongodb.dao.user.user_dao import UserDAO
 from app.telegram.middleware.exception.exception_handler import ExceptionMiddleware
 from app.telegram.middleware.rate_limiter.max_messages import RateLimitMiddleware
 from app.telegram.middleware.authorization.auth import AuthorizationMiddleware
+from app.telegram.middleware.state.session_state import SessionStateMiddleware
+from app.telegram.middleware.state.conversation_state import ConversationStateMiddleware
 
 class MiddlewareRegister:
     def __init__(self, dispatcher):
@@ -14,6 +16,7 @@ class MiddlewareRegister:
         self.rate_limit_loader = self.set_loader("ratelimiter", dispatcher["template_service"])
         self.authorization_loader = self.set_loader("authorization", dispatcher["template_service"])
         self.exception_loader = self.set_loader("exception", dispatcher["template_service"])
+        self.state_loader = self.set_loader("state", dispatcher["template_service"])
         self.register_middlewares(dispatcher)
         self.logger.info("Registration Completed")
 
@@ -36,3 +39,12 @@ class MiddlewareRegister:
         authorization_middleware = AuthorizationMiddleware(self.authorization_loader, self.user_dao)
         dispatcher.message.middleware(authorization_middleware)
         dispatcher.callback_query.middleware(authorization_middleware)
+
+        conversation_state_middleware = ConversationStateMiddleware(self.state_loader)
+        dispatcher.message.middleware(conversation_state_middleware)
+        dispatcher.callback_query.middleware(conversation_state_middleware)
+
+        session_state_middleware = SessionStateMiddleware(self.user_dao)
+        dispatcher.message.middleware(session_state_middleware)
+        dispatcher.callback_query.middleware(session_state_middleware)
+

@@ -9,6 +9,7 @@ from app.service.mongodb.dao.user.user_dao import UserDAO
 
 class Form(StatesGroup):
     language = State()
+    end = State()
 
 class AccountHandler:
     def __init__(self, loader: BaseLoader, user_dao: UserDAO):
@@ -51,3 +52,4 @@ class AccountHandler:
         await self.user_dao.update_user_language(user_id, callback_query.data)
         await state.update_data(language=callback_query.data)
         await callback_query.message.answer(await self.loader.get_message_template("language_updated",state))
+        await state.set_state(Form.end)

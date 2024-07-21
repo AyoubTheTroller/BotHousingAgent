@@ -20,6 +20,7 @@ class Form(StatesGroup):
     confirmation = State()
     prepare_url = State()
     scraping = State()
+    end = State()
 
 class SearchParamsHandlers():
 
@@ -191,4 +192,4 @@ class SearchParamsHandlers():
         url_builder = self.scraping_service.scraping_controller.website_scraping_register.get_url_builder("immobiliare")
         url = url_builder.build_url(query_params)
         await callback_query.message.answer(url)
-        await state.clear()
+        await state.set_state(Form.end)

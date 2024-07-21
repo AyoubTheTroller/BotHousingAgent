@@ -8,7 +8,11 @@ class UrlBuilder:
     def build_url(self, query_params: QueryParams) -> str:
         scheme = self.loader.get_template("scheme")
         host = self.loader.get_template("host")
-        path = self.loader.get_template("paths", "city_rent", city_name=query_params.city_name)
+
+        # Replace spaces with dashes and convert to lowercase
+        formatted_city_name = query_params.city_name.replace(" ", "-").lower()
+
+        path = self.loader.get_template("paths", "city_rent", city_name=formatted_city_name)
         
         query_params_dict = query_params.model_dump(exclude_unset=True)
         query_string_parts = []
