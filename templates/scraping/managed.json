@@ -1,5 +1,5 @@
 {
     "immobiliare":{
-        "active":["url"]
+        "active":["url", "search_result"]
     }
 }

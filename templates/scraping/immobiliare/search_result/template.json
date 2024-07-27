@@ -1,0 +1,21 @@
+{
+    "json_object":{
+        "listings":"props.pageProps.dehydratedState.queries.0.state.data.results",
+        "agency_name":"realEstate.advertiser.agency.displayName",
+        "agency_phones":"realEstate.advertiser.agency.phones.index.value",
+        "agent_name":"realEstate.advertiser.supervisor.displayName",
+        "agent_phones":"realEstate.advertiser.supervisor.phones.index.value",
+        "private_phone":"realEstate.advertiser.supervisor.phoneUrl",
+        "price":"realEstate.price.value",
+        "price_formatted":"realEstate.price.formattedValue",
+        "photos_url":"realEstate.properties.0.multimedia.photos.index.urls.small",
+        "bathrooms":"realEstate.properties.0.bathrooms",
+        "rooms":"realEstate.properties.0.rooms",
+        "bedrooms":"realEstate.properties.0.bedRoomsNumber",
+        "surface":"realEstate.properties.0.surface",
+        "city_name":"realEstate.properties.0.location.city",
+        "city_zone":"realEstate.properties.0.location.macrozone",
+        "title":"seo.title",
+        "url":"seo.url"
+    }
+}

@@ -1,3 +1,4 @@
+import asyncio
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
@@ -31,8 +32,8 @@ class SearchParamsHandlers():
     async def search_house(self, message: Message, state: FSMContext):
         await message.answer(
             await self.loader.get_message_template("start", state),
-            reply_markup=self.loader.create_inline_keyboard_button_markup("Go to form", "start")
-        )
+            reply_markup=self.loader.create_inline_keyboard_button_markup(
+                await self.loader.get_keyboard_button_template("go_to_form",state), "start"))
 
     async def handle_start(self, callback_query: CallbackQuery, state: FSMContext):
         await state.set_state(Form.city_name)
@@ -188,8 +189,25 @@ class SearchParamsHandlers():
     async def prepare_url(self, callback_query: CallbackQuery, state: FSMContext):
         user_data = await state.get_data()
         processed_user_data = self.preprocess_input_data(user_data)
+        language = user_data.get('language')
         query_params = QueryParams(**processed_user_data)
-        url_builder = self.scraping_service.scraping_controller.website_scraping_register.get_url_builder("immobiliare")
-        url = url_builder.build_url(query_params)
+        url = await self.scraping_service.build_url(query_params)
         await callback_query.message.answer(url)
+        await callback_query.message.answer(await self.loader.get_message_template("searching", state))
+        await self.post_house_listings(url, language, callback_query, state)
+    
+    async def post_house_listings(self, url, language, callback_query: CallbackQuery, state: FSMContext):
+        listings = await self.scraping_service.scrape_listings(url)
+        if not listings:
+            await callback_query.message.answer(
+                text=await self.loader.get_message_template_with_lang("no_listings_found", language), parse_mode="HTML")
+        else:
+            for listing in listings:
+                media_group = await self.loader.load_listing_photos(listing)
+                keyboard = await self.loader.load_listing_with_keyboard(listing, language)
+                message_text = await self.loader.load_listing_message(listing, language)
+                await callback_query.message.answer_media_group(media_group)
+                await callback_query.message.answer(message_text, reply_markup=keyboard, parse_mode="HTML")
+                await asyncio.sleep(3) # to handle flood control
+            await callback_query.message.answer(await self.loader.get_message_template_with_lang("search_completed",language))
         await state.set_state(Form.end)

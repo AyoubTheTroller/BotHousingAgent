@@ -1,8 +1,9 @@
 from typing import List, Tuple
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton,InputMediaPhoto
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 from aiogram.fsm.context import FSMContext
 from app.service.template.telegram.template_service import TelegramTemplateService
+from app.scraping.model.listing import Listing
 
 class ComponentsLoader():
     def __init__(self,
@@ -19,11 +20,19 @@ class ComponentsLoader():
         user_data = await state.get_data()
         language = user_data.get('language')
         return await self.template_service.render_template(self.interaction_type, self.handler_type, "message", key, language, **kwargs)
+    
+    async def get_message_template_with_lang(self, key, language, **kwargs):
+        """Helper function to return the message from a template."""
+        return await self.template_service.render_template(self.interaction_type, self.handler_type, "message", key, language, **kwargs)
 
     async def get_keyboard_button_template(self, key, state: FSMContext):
         """Helper function to return the array of keyboard templates"""
         user_data = await state.get_data()
         language = user_data.get('language')
+        return await self.template_service.render_template(self.interaction_type, self.handler_type, "button", key, language)
+    
+    async def get_keyboard_button_template_with_lang(self, key, language):
+        """Helper function to return the array of keyboard templates"""
         return await self.template_service.render_template(self.interaction_type, self.handler_type, "button", key, language)
 
     def create_inline_keyboard_button_markup(self, button_text: str, callback_data) -> InlineKeyboardMarkup:
@@ -77,3 +86,61 @@ class ComponentsLoader():
         keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=skip_step, callback_data="skip_step")])
         keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=go_to_search, callback_data="go_to_search")])
         return keyboard_markup
+
+    async def load_listing_photos(self, listing: Listing) -> List[InputMediaPhoto]:
+        max_photos = 8  # Maximum set in order to manage telegram flood control with mediagroups
+        if listing.photos_url:
+            truncated_photos = listing.photos_url[:max_photos]
+            return [InputMediaPhoto(media=url) for url in truncated_photos]
+        else:
+            return None
+
+    async def load_listing_with_keyboard(self, listing: Listing, lang: str) -> InlineKeyboardMarkup:
+        keyboard_markup = InlineKeyboardMarkup(inline_keyboard=[])
+        keyboard_markup.inline_keyboard.append([InlineKeyboardButton(
+            text=await self.get_keyboard_button_template_with_lang("view_details",lang), url=listing.url)])
+        if listing.agency_phones:
+            for phone in listing.agency_phones:
+                if phone is not None:
+                    keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=f"+39 {phone}", callback_data=f"contact_{phone}")])
+        elif listing.agency_phones:
+            for phone in listing.agency_phones:
+                if phone is not None:
+                    keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=f"+39 {phone}", callback_data=f"contact_{phone}")])
+        elif listing.private_phone:
+            keyboard_markup.inline_keyboard.append([InlineKeyboardButton(
+                          text=await self.get_keyboard_button_template_with_lang("view_private_phone",lang), url=listing.private_phone)])
+        return keyboard_markup
+    
+    async def load_listing_message(self, listing: Listing, lang: str) -> str:
+        fields = {
+            "title": listing.title if listing.title else None,
+            "price_formatted": listing.price_formatted if listing.price_formatted else None,
+            "city_name": listing.city_name if listing.city_name else None,
+            "city_zone": listing.city_zone if listing.city_zone else None,
+            "bathrooms": listing.bathrooms if listing.bathrooms is not None else None,
+            "rooms": listing.rooms if listing.rooms is not None else None,
+            "bedrooms": listing.bedrooms if listing.bedrooms is not None else None,
+            "surface": listing.surface if listing.surface is not None else None,
+            "agency_name": listing.agency_name if listing.agency_name else None,
+            "agent_name": listing.agent_name if listing.agent_name else None,
+        }
+        message_parts = []
+        # Populate the message with non-empty fields
+        for key, value in fields.items():
+            if value is not None:
+                template_key = f"listing_{key}"
+                message_part = await self.get_message_template_with_lang(template_key, lang, **{key: value})
+                message_parts.append(message_part)
+
+        # Handling phone numbers
+        if listing.agency_phones:
+            for phone in listing.agency_phones:
+                if phone is not None:
+                    message_parts.append(await self.get_message_template_with_lang("listing_agency_phone", lang, agency_phone=phone))
+        elif listing.agency_phones:
+            for phone in listing.agency_phones:
+                if phone is not None:
+                    message_parts.append(await self.get_message_template_with_lang("listing_agent_phone", lang, private_phone=phone))
+
+        return ''.join(filter(None, message_parts))

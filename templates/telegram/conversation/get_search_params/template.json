@@ -5,8 +5,8 @@
             "en":"Welcome! Let's find you a house."
         },
         "get_city":{
-            "it":"Inserisci di seguito il nome della città",
-            "en":"Please enter the city:"
+            "it":"Inserisci il nome della città",
+            "en":"Please enter the city name"
         },
         "get_max_price": {
             "it": "Perfetto! Qual è il tuo budget massimo (in euro)? (Esempio: 500)",
@@ -87,16 +87,77 @@
         "furnished":{
             "it":"Arredato",
             "en":"Furnished"
+        },
+        "searching":{
+            "it":"Ricerca iniziata",
+            "en":"Search started"  
+        },
+        "listing_title": {
+            "it": "<b>Titolo:</b> {{title}}\n",
+            "en": "<b>Title:</b> {{title}}\n"
+        },
+        "listing_price_formatted": {
+            "it": "<b>Prezzo:</b> {{price_formatted}}\n",
+            "en": "<b>Price:</b> {{price_formatted}}\n"
+        },
+        "listing_url": {
+            "it": "<b>Link:</b> <a href=\"{{url}}\">Dettagli</a>\n",
+            "en": "<b>Link:</b> <a href=\"{{url}}\">Details</a>\n"
+        },
+        "listing_city_name": {
+            "it": "<b>Città:</b> {{city_name}}\n",
+            "en": "<b>City:</b> {{city_name}}\n"
+        },
+        "listing_city_zone": {
+            "it": "<b>Zona:</b> {{city_zone}}\n",
+            "en": "<b>Zone:</b> {{city_zone}}\n"
+        },
+        "listing_bathrooms": {
+            "it": "<b>Bagni:</b> {{bathrooms}}\n",
+            "en": "<b>Bathrooms:</b> {{bathrooms}}\n"
+        },
+        "listing_rooms": {
+            "it": "<b>Camere:</b> {{rooms}}\n",
+            "en": "<b>Rooms:</b> {{rooms}}\n"
+        },
+        "listing_bedrooms": {
+            "it": "<b>Camere da letto:</b> {{bedrooms}}\n",
+            "en": "<b>Bedrooms:</b> {{bedrooms}}\n"
+        },
+        "listing_surface": {
+            "it": "<b>Superficie:</b> {{surface}}\n",
+            "en": "<b>Surface:</b> {{surface}}\n"
+        },
+        "listing_agency_name": {
+            "it": "<b>Agenzia:</b> {{agency_name}}\n",
+            "en": "<b>Agency:</b> {{agency_name}}\n"
+        },
+        "listing_agency_phone": {
+            "it": "<b>Telefono Agenzia:</b> <strong><i>+39 {{agency_phone}}</i></strong>\n",
+            "en": "<b>Agency Phone:</b> <strong><i>+39 {{agency_phone}}</i></strong>\n"
+        },
+        "listing_agent_name": {
+            "it": "<b>Agente immobiliare:</b> {{agent_name}}\n",
+            "en": "<b>Agent:</b> {{agent_name}}\n"
+        },
+        "listing_agent_phone": {
+            "it": "<b>Telefono agente:</b> <strong><i>+39 {{agent_phone}}</i></strong>\n",
+            "en": "<b>Agent Phone:</b> <strong><i>+39 {{agent_phone}}</i></strong>\n"
+        },
+        "no_listings_found": {
+            "it": "Spiacenti, non sono stati trovati annunci che corrispondono alle tue preferenze. Ti invitiamo a riprovare con altri criteri di ricerca.",
+            "en": "Sorry, no listings were found that match your preferences. Please try again with different search criteria or contact."
+        },
+        "search_completed":{
+            "it":"Ricerca completata",
+            "en":"Search completed"
         }
+
     },
     "button":{
-        "appartment_types":{
-            "it":["monolocale","bilocale","trilocale","quadrilocale"],
-            "en":["one-room","two-rooms","three-rooms","four-rooms"]
-        },
-        "furnished":{
-            "it":["si","no"],
-            "en":["yes","no"]
+        "go_to_form":{
+            "it":"Vai al modulo",
+            "en":"Go to form"
         },
         "skip_step":{
             "it":"Salta questo passaggio",
@@ -105,6 +166,14 @@
         "go_to_search":{
             "it":"Vai direttamente alla ricerca",
             "en":"Go directly to the search"
+        },
+        "view_details":{
+            "it":"Maggiori informazioni",
+            "en":"View Details"
+        },
+        "view_private_phone":{
+            "it":"Mostra numero privato",
+            "en":"View private number"
         }
     }
 }

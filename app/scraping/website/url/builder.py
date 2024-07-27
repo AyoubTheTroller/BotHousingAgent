@@ -23,5 +23,8 @@ class UrlBuilder:
             template = self.loader.get_template("query_params", param_name, **{param_name: param_value})
             query_string_parts.append(template)
         
+        template = self.loader.get_template("query_params", "order_by_date")
+        query_string_parts.append(template)
+        
         query_string = "&".join(query_string_parts)
         return f"{scheme}{host}{path}?{query_string}"

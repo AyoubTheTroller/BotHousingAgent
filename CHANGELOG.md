@@ -76,3 +76,6 @@
 ## 0.20.0
 - Fixed State problems bugs 2024/07/21.1 and 2024/07/21.2
 
+## 0.21.0
+- Added scraping logic for immobiliare, completed tasks 2024/07/23 1,2
+

@@ -15,6 +15,6 @@
         "active":["admin","account"]
     },
     "notification":{
-        "active":["base"]
+        "active":["base","search_result"]
     }
 }

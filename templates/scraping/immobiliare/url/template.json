@@ -11,6 +11,7 @@
     },
     "query_params": {
         "criteria": "criterio={{criteria}}",
+        "order_by_date": "criterio=data",
         "order": "ordine={{order}}",
         "min_price": "prezzoMinimo={{min_price}}",
         "max_price": "prezzoMassimo={{max_price}}",
