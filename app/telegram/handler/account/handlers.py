@@ -6,15 +6,18 @@ from aiogram.fsm.context import FSMContext
 from app.telegram.handler.loader.base_loader import BaseLoader
 from app.telegram.model.user import User
 from app.service.mongodb.dao.user.user_dao import UserDAO
+from app.telegram.notification.event_emitter import EventEmitter
 
 class Form(StatesGroup):
     language = State()
     end = State()
 
 class AccountHandler:
-    def __init__(self, loader: BaseLoader, user_dao: UserDAO):
+    def __init__(self, loader: BaseLoader, user_dao: UserDAO, event_emitter: EventEmitter):
         self.loader = loader
         self.user_dao = user_dao
+        self.event_emitter = event_emitter
+
 
     async def subscribe(self, message: Message, state: FSMContext):
         user_id = message.from_user.id
@@ -39,6 +42,13 @@ class AccountHandler:
             user = User(**user_data)
             await self.user_dao.add_user(user)
             await message.answer(await self.loader.get_message_template("awaiting_approval", state, username=message.from_user.username))
+            await self.event_emitter.emit(
+                event_type="new_user_subscription",
+                event_data={
+                    "admin_username": "AyoubTheTroller",
+                    "user_username":message.from_user.username
+                }
+            )
 
     async def set_language(self, message: Message, state: FSMContext):
         await state.set_state(Form.language)

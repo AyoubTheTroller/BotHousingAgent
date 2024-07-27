@@ -29,8 +29,7 @@ class AdminHandler:
                         event_type="user_approved",
                         event_data={
                             "user_id": user.user_id,
-                            "admin_username": existing_admin_user.username,
-                            "state":state
+                            "admin_username": existing_admin_user.username
                         }
                     )
                 elif user.authorized:

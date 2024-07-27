@@ -14,3 +14,7 @@
    2) [x] Create scraping function to get html body 
    3) [x] From html body using the template access all listings containers and extract relevant informations
 2) [x] Using the scraped listings informations create and show listings to user
+
+## 2024/07/27
+
+1) [x] Add notification for admins when a new user subscribes

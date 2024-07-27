@@ -8,11 +8,6 @@ class TriggeredNotificationEvent:
         self.user_dao = user_dao
         self.bot = bot
 
-    async def base_notification(self, event_data: dict, bot: Bot) -> None:
-        user_id = event_data['user_id']
-        message = event_data['message']
-        await bot.send_message(chat_id=user_id, text=message)
-
     async def user_approved(self, event_data: dict) -> None:
         user_language = await self.user_dao.get_user_language_by_id(event_data['user_id'])
         message = await self.loader.get_message_template("user_approved", user_language, admin_username=event_data['admin_username'])

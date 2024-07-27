@@ -79,3 +79,6 @@
 ## 0.21.0
 - Added scraping logic for immobiliare, completed tasks 2024/07/23 1,2
 
+## 0.22.0
+- Added notification for new subscription, completed task 2024/07/27.1
+
