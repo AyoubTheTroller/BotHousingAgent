@@ -1,12 +1,34 @@
 {
     "message":{
         "telegram_error":{
-            "it":"Si è verificato un errore durante l'elaborazione della richiesta. Per favore riprova più tardi.",
-            "en":"An error occurred while processing your request. Please try again later."
+            "generic":{
+                "it":"Si è verificato un errore durante l'elaborazione della richiesta. Per favore riprova più tardi.",
+                "en":"An error occurred while processing your request. Please try again later."
+            }
         },
         "generic_error":{
-            "it":"Si è verificato un errore imprevisto. Per favore riprova più tardi.",
-            "en":"An unexpected error occurred. Please try again later."
+            "generic":{
+                "it":"Si è verificato un errore imprevisto. Per favore riprova più tardi.",
+                "en":"An unexpected error occurred. Please try again later."
+            }
+        },
+        "http_client_error":{
+            "client_response":{
+                "telegram":{
+                    "not_found_error": {
+                        "it": "Non siamo riusciti a trovare quello che stai cercando. La pagina o l'elemento richiesto potrebbe non esistere. Prova una ricerca diversa o riprova più tardi.",
+                        "en": "We couldn't find what you're looking for. The requested page or item might not exist. Please try a different search or check back later."
+                    },
+                    "server_error": {
+                        "it": "Ops! Qualcosa è andato storto dal nostro lato. Il nostro team sta lavorando per risolvere il problema. Per favore, riprova più tardi.",
+                        "en": "Oops! Something went wrong on our end. Our team is working on fixing this issue. Please try again later."
+                    },
+                    "http_error": {
+                        "it": "Si è verificato un errore inaspettato. Controlla la tua connessione o riprova più tardi. Se il problema persiste, contatta il supporto.",
+                        "en": "An unexpected error occurred. Please check your connection or try again later. If the issue persists, contact support."
+                    }
+                }
+            }
         }
     }
 }

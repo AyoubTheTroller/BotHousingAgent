@@ -7,7 +7,7 @@
 
 ## 2024/07/30
 
-1) [ ] Manage 404 response in http client request
+1) [x] Manage 404 response in http client request
    Problem arised when searching with an unexistent location
 2) [ ] Manage Users with no username
    Problem when user has no telegram username we need another way to approve him

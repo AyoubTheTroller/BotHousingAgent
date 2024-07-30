@@ -25,9 +25,9 @@ class AccountHandler:
 
         if existing_user:
             if existing_user.authorized:
-                await message.answer(await self.loader.get_message_template("already_subscribed", state, username=message.from_user.username))
+                await message.answer(await self.loader.get_message_template(state, "already_subscribed", username=message.from_user.username))
             else:
-                await message.answer(await self.loader.get_message_template("awaiting_approval", state, username=message.from_user.username))
+                await message.answer(await self.loader.get_message_template(state, "awaiting_approval", username=message.from_user.username))
         else:
             user_data = {
                 "user_id": user_id,
@@ -41,7 +41,7 @@ class AccountHandler:
             }
             user = User(**user_data)
             await self.user_dao.add_user(user)
-            await message.answer(await self.loader.get_message_template("awaiting_approval", state, username=message.from_user.username))
+            await message.answer(await self.loader.get_message_template(state, "awaiting_approval", username=message.from_user.username))
             await self.event_emitter.emit(
                 event_type="new_user_subscription",
                 event_data={
@@ -52,14 +52,14 @@ class AccountHandler:
 
     async def set_language(self, message: Message, state: FSMContext):
         await state.set_state(Form.language)
-        buttons = await self.loader.get_keyboard_button_template("languages", state)
+        buttons = await self.loader.get_keyboard_button_template(state, "languages")
         buttons_tuples = [(text.split('-')[0], text.split('-')[1]) for text in buttons]
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup(buttons_tuples)
-        await message.answer(await self.loader.get_message_template("set_language", state),reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "set_language"),reply_markup=keyboard_markup)
 
     async def handle_language(self, callback_query: CallbackQuery, state: FSMContext):
         user_id = callback_query.from_user.id
         await self.user_dao.update_user_language(user_id, callback_query.data)
         await state.update_data(language=callback_query.data)
-        await callback_query.message.answer(await self.loader.get_message_template("language_updated",state))
+        await callback_query.message.answer(await self.loader.get_message_template(state, "language_updated"))
         await state.set_state(Form.end)

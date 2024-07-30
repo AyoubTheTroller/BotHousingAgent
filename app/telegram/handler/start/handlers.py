@@ -7,7 +7,7 @@ class StartHandler:
         self.loader = loader
 
     async def start_command(self, message: Message, state: FSMContext):
-        welcome = await self.loader.get_message_template("welcome", state)
-        instructions = await self.loader.get_message_template("instructions", state)
-        commands = await self.loader.get_message_template("commands",state)
+        welcome = await self.loader.get_message_template(state, "welcome")
+        instructions = await self.loader.get_message_template(state, "instructions")
+        commands = await self.loader.get_message_template(state, "commands")
         await message.answer(f"{welcome}\n\n{instructions}\n\n{commands}")

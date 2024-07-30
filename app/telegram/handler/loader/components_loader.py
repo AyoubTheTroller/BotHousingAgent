@@ -15,25 +15,41 @@ class ComponentsLoader():
         self.interaction_type = interaction_type
         self.handler_type = handler_type
 
-    async def get_message_template(self, key, state: FSMContext, **kwargs):
+    async def get_message_old_template(self, key, state: FSMContext, **kwargs):
         """Helper function to return the message from a template."""
         user_data = await state.get_data()
         language = user_data.get('language')
         return await self.template_service.render_template(self.interaction_type, self.handler_type, "message", key, language, **kwargs)
     
-    async def get_message_template_with_lang(self, key, language, **kwargs):
+    async def get_old_message_template_with_lang(self, key, language, **kwargs):
         """Helper function to return the message from a template."""
         return await self.template_service.render_template(self.interaction_type, self.handler_type, "message", key, language, **kwargs)
 
-    async def get_keyboard_button_template(self, key, state: FSMContext):
+    async def get_old_keyboard_button_template(self, key, state: FSMContext):
         """Helper function to return the array of keyboard templates"""
         user_data = await state.get_data()
         language = user_data.get('language')
         return await self.template_service.render_template(self.interaction_type, self.handler_type, "button", key, language)
     
-    async def get_keyboard_button_template_with_lang(self, key, language):
+    async def get_message_template(self, state: FSMContext, *keys,  **kwargs):
+        """Helper function to return the message from a template."""
+        user_data = await state.get_data()
+        language = user_data.get('language')
+        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "message", *keys, **kwargs)
+    
+    async def get_message_template_with_lang(self, language, *keys, **kwargs):
+        """Helper function to return the message from a template."""
+        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "message", *keys, **kwargs)
+    
+    async def get_keyboard_button_template(self, state: FSMContext, *keys, **kwargs):
         """Helper function to return the array of keyboard templates"""
-        return await self.template_service.render_template(self.interaction_type, self.handler_type, "button", key, language)
+        user_data = await state.get_data()
+        language = user_data.get('language')
+        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
+    
+    async def get_keyboard_button_template_with_lang(self, language, *keys, **kwargs):
+        """Helper function to return the array of keyboard templates"""
+        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
 
     def create_inline_keyboard_button_markup(self, button_text: str, callback_data) -> InlineKeyboardMarkup:
         """
@@ -96,8 +112,8 @@ class ComponentsLoader():
         return keyboard_markup
 
     async def add_skip_buttons(self, state: FSMContext, keyboard_markup = None) -> InlineKeyboardMarkup:
-        skip_step = await self.get_keyboard_button_template("skip_step", state)
-        go_to_search = await self.get_keyboard_button_template("go_to_search", state)
+        skip_step = await self.get_keyboard_button_template(state, "skip_step")
+        go_to_search = await self.get_keyboard_button_template(state, "go_to_search")
         if keyboard_markup is None:
             keyboard_markup = InlineKeyboardMarkup(inline_keyboard=[])
         keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=skip_step, callback_data="skip_step")])
@@ -112,10 +128,10 @@ class ComponentsLoader():
         else:
             return None
 
-    async def load_listing_with_keyboard(self, listing: Listing, lang: str) -> InlineKeyboardMarkup:
+    async def load_listing_with_keyboard(self, listing: Listing, language: str) -> InlineKeyboardMarkup:
         keyboard_markup = InlineKeyboardMarkup(inline_keyboard=[])
         keyboard_markup.inline_keyboard.append([InlineKeyboardButton(
-            text=await self.get_keyboard_button_template_with_lang("view_details",lang), url=listing.url)])
+            text=await self.get_keyboard_button_template_with_lang(language, "view_details"), url=listing.url)])
         if listing.agency_phones:
             for phone in listing.agency_phones:
                 if phone is not None:
@@ -126,10 +142,10 @@ class ComponentsLoader():
                     keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=f"+39 {phone}", callback_data=f"contact_{phone}")])
         elif listing.private_phone:
             keyboard_markup.inline_keyboard.append([InlineKeyboardButton(
-                          text=await self.get_keyboard_button_template_with_lang("view_private_phone",lang), url=listing.private_phone)])
+                          text=await self.get_keyboard_button_template_with_lang(language, "view_private_phone"), url=listing.private_phone)])
         return keyboard_markup
     
-    async def load_listing_message(self, listing: Listing, lang: str) -> str:
+    async def load_listing_message(self, listing: Listing, language: str) -> str:
         fields = {
             "title": listing.title if listing.title else None,
             "price_formatted": listing.price_formatted if listing.price_formatted else None,
@@ -147,17 +163,17 @@ class ComponentsLoader():
         for key, value in fields.items():
             if value is not None:
                 template_key = f"listing_{key}"
-                message_part = await self.get_message_template_with_lang(template_key, lang, **{key: value})
+                message_part = await self.get_message_template_with_lang(language, template_key, **{key: value})
                 message_parts.append(message_part)
 
         # Handling phone numbers
         if listing.agency_phones:
             for phone in listing.agency_phones:
                 if phone is not None:
-                    message_parts.append(await self.get_message_template_with_lang("listing_agency_phone", lang, agency_phone=phone))
+                    message_parts.append(await self.get_message_template_with_lang(language, "listing_agency_phone", agency_phone=phone))
         elif listing.agency_phones:
             for phone in listing.agency_phones:
                 if phone is not None:
-                    message_parts.append(await self.get_message_template_with_lang("listing_agent_phone", lang, private_phone=phone))
+                    message_parts.append(await self.get_message_template_with_lang(language, "listing_agent_phone", private_phone=phone))
 
         return ''.join(filter(None, message_parts))

@@ -25,9 +25,9 @@ class ConversationStateMiddleware(BaseMiddleware):
             current_state = await state.get_state()
             if current_state == Form.end:
                 if isinstance(event, Message):
-                    await event.answer(await self.loader.get_message_template("start_over", state))
+                    await event.answer(await self.loader.get_message_template(state, "start_over"))
                 elif isinstance(event, CallbackQuery):
-                    await event.answer(await self.loader.get_message_template("start_over", state))
+                    await event.answer(await self.loader.get_message_template(state, "start_over"))
                 return
         
         return await handler(event, data)

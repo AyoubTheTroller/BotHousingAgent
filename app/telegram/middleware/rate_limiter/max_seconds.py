@@ -18,7 +18,7 @@ class RateLimitMiddleware(BaseMiddleware):
 
         if current_time - self.users_last_message_time[user_id] < self.rate_limit:
             self.users_last_message_time[user_id] = current_time
-            await event.answer(await self.loader.get_message_template("max_seconds", state))
+            await event.answer(await self.loader.get_message_template(state, "max_seconds"))
         else:
             self.users_last_message_time[user_id] = current_time
             return await handler(event, data)

@@ -32,9 +32,9 @@ class SearchParamsHandlers():
 
     async def search_house(self, message: Message, state: FSMContext):
         await message.answer(
-            await self.loader.get_message_template("start", state),
+            await self.loader.get_message_template(state, "start"),
             reply_markup=self.loader.create_inline_keyboard_button_markup(
-                await self.loader.get_keyboard_button_template("go_to_form",state), "start"))
+                await self.loader.get_keyboard_button_template(state, "go_to_form"), "start"))
 
     async def handle_start(self, callback_query: CallbackQuery, state: FSMContext):
         await state.set_state(Form.search_type)
@@ -42,8 +42,8 @@ class SearchParamsHandlers():
 
     async def search_type(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_with_callback(
-            await self.loader.get_keyboard_button_template("search_type",state))
-        await message.answer(await self.loader.get_message_template("search_type", state), reply_markup=keyboard_markup)
+            await self.loader.get_keyboard_button_template(state, "search_type"))
+        await message.answer(await self.loader.get_message_template(state, "search_type"), reply_markup=keyboard_markup)
 
     async def handle_search_type(self, callback_query: CallbackQuery, state: FSMContext):
         await state.update_data(search_type=callback_query.data)
@@ -51,7 +51,7 @@ class SearchParamsHandlers():
         await self.location(callback_query.message, state)
 
     async def location(self, message: Message, state: FSMContext):
-        await message.answer(await self.loader.get_message_template("get_city", state))
+        await message.answer(await self.loader.get_message_template(state, "get_city"))
 
     async def handle_location(self, message: Message, state: FSMContext):
         await state.update_data(location=message.text)
@@ -60,12 +60,12 @@ class SearchParamsHandlers():
 
     async def max_price(self, message: Message, state: FSMContext):
         keyboard_markup = await self.loader.add_skip_buttons(state)
-        await message.answer(await self.loader.get_message_template("get_max_price", state), reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "get_max_price"), reply_markup=keyboard_markup)
 
     async def handle_max_price(self, message: Message, state: FSMContext):
         max_price = message.text
         if not max_price.isdigit() or int(max_price) <= 0:
-            await message.answer(await self.loader.get_message_template("invalid_price", state))
+            await message.answer(await self.loader.get_message_template(state, "invalid_price"))
             return
         await state.update_data(max_price=max_price)
         await state.set_state(Form.min_rooms)
@@ -74,7 +74,7 @@ class SearchParamsHandlers():
     async def min_rooms(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["1","2","3","4","5"])
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
-        await message.answer(await self.loader.get_message_template("get_min_rooms", state), reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "get_min_rooms"), reply_markup=keyboard_markup)
 
     async def handle_min_rooms(self, callback_query: CallbackQuery, state: FSMContext):
         await state.update_data(min_rooms=callback_query.data)
@@ -84,7 +84,7 @@ class SearchParamsHandlers():
     async def max_rooms(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["1","2","3","4","5"])
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
-        await message.answer(await self.loader.get_message_template("get_max_rooms", state), reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "get_max_rooms"), reply_markup=keyboard_markup)
 
     async def handle_max_rooms(self, callback_query: CallbackQuery, state: FSMContext):
         await state.update_data(max_rooms=callback_query.data)
@@ -94,7 +94,7 @@ class SearchParamsHandlers():
     async def n_bathrooms(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["1","2","3","4"])
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
-        await message.answer(await self.loader.get_message_template("get_n_bathrooms", state), reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "get_n_bathrooms"), reply_markup=keyboard_markup)
 
     async def handle_n_bathrooms(self, callback_query: CallbackQuery, state: FSMContext):
         await state.update_data(bathrooms=callback_query.data)
@@ -104,7 +104,7 @@ class SearchParamsHandlers():
     async def furnished(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
-        await message.answer(await self.loader.get_message_template("get_furnished", state), reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "get_furnished"), reply_markup=keyboard_markup)
 
     async def handle_furnished(self, callback_query: CallbackQuery, state: FSMContext):
         await state.update_data(furnished=callback_query.data)
@@ -114,7 +114,7 @@ class SearchParamsHandlers():
     async def balcony(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
-        await message.answer(await self.loader.get_message_template("get_balcony", state), reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "get_balcony"), reply_markup=keyboard_markup)
 
     async def handle_balcony(self, callback_query: CallbackQuery, state: FSMContext):
         await state.update_data(balcony=callback_query.data)
@@ -124,7 +124,7 @@ class SearchParamsHandlers():
     async def terrace(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
-        await message.answer(await self.loader.get_message_template("get_terrace", state), reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "get_terrace"), reply_markup=keyboard_markup)
 
     async def handle_terrace(self, callback_query: CallbackQuery, state: FSMContext):
         await state.update_data(terrace=callback_query.data)
@@ -134,7 +134,7 @@ class SearchParamsHandlers():
     async def pool(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
-        await message.answer(await self.loader.get_message_template("get_pool", state), reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "get_pool"), reply_markup=keyboard_markup)
 
     async def handle_pool(self, callback_query: CallbackQuery, state: FSMContext):
         await state.update_data(pool=callback_query.data)
@@ -144,7 +144,7 @@ class SearchParamsHandlers():
     async def cellar(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
-        await message.answer(await self.loader.get_message_template("get_cellar", state), reply_markup=keyboard_markup)
+        await message.answer(await self.loader.get_message_template(state, "get_cellar"), reply_markup=keyboard_markup)
 
     async def handle_cellar(self, callback_query: CallbackQuery, state: FSMContext):
         await state.update_data(cellar=callback_query.data)
@@ -204,14 +204,14 @@ class SearchParamsHandlers():
         search_params = SearchParams(**processed_user_data)
         url = await self.scraping_service.build_url(search_params)
         await callback_query.message.answer(url)
-        await callback_query.message.answer(await self.loader.get_message_template("searching", state))
+        await callback_query.message.answer(await self.loader.get_message_template(state, "searching"))
         await self.post_house_listings(url, language, callback_query, state)
     
     async def post_house_listings(self, url, language, callback_query: CallbackQuery, state: FSMContext):
         listings = await self.scraping_service.scrape_listings(url)
         if not listings:
             await callback_query.message.answer(
-                text=await self.loader.get_message_template_with_lang("no_listings_found", language), parse_mode="HTML")
+                text=await self.loader.get_message_template_with_lang(language, "no_listings_found"), parse_mode="HTML")
         else:
             for listing in listings:
                 media_group = await self.loader.load_listing_photos(listing)
@@ -221,5 +221,5 @@ class SearchParamsHandlers():
                     await callback_query.message.answer_media_group(media_group)
                 await callback_query.message.answer(message_text, reply_markup=keyboard, parse_mode="HTML")
                 await asyncio.sleep(3) # to handle flood control
-            await callback_query.message.answer(await self.loader.get_message_template_with_lang("search_completed",language))
+            await callback_query.message.answer(await self.loader.get_message_template_with_lang(language, "search_completed"))
         await state.set_state(Form.end)

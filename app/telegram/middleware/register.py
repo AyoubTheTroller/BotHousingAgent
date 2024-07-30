@@ -3,7 +3,7 @@ from aiogram import Dispatcher
 from app.service.mongodb.mongo_service import MongoService
 from app.telegram.handler.loader.base_loader import BaseLoader
 from app.service.mongodb.dao.user.user_dao import UserDAO
-from app.telegram.middleware.exception.exception_handler import ExceptionMiddleware
+from app.telegram.middleware.exception.exception import ExceptionMiddleware
 from app.telegram.middleware.rate_limiter.max_messages import RateLimitMiddleware
 from app.telegram.middleware.authorization.auth import AuthorizationMiddleware
 from app.telegram.middleware.state.session_state import SessionStateMiddleware

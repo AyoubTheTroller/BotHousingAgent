@@ -21,4 +21,4 @@ class AuthorizationMiddleware(BaseMiddleware):
         if user and user.authorized:
             return await handler(event, data)
         else:
-            await event.answer(await self.loader.get_message_template("not_authorized", state))
+            await event.answer(await self.loader.get_message_template(state, "not_authorized"))

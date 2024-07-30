@@ -33,7 +33,7 @@ class RateLimitMiddleware(BaseMiddleware):
         # Check if the user has exceeded the message limit
         if len(message_times) >= self.message_limit:
             self.user_cooldowns[user_id] = current_time + self.cooldown  # Set cooldown period
-            await event.answer(await self.loader.get_message_template("max_messages", state))
+            await event.answer(await self.loader.get_message_template(state, "max_messages"))
         else:
             # Add the current message time to the deque
             message_times.append(current_time)

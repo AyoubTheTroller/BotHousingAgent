@@ -10,5 +10,5 @@ class TriggeredNotificationEvent:
 
     async def user_approved(self, event_data: dict) -> None:
         user_language = await self.user_dao.get_user_language_by_id(event_data['user_id'])
-        message = await self.loader.get_message_template("user_approved", user_language, admin_username=event_data['admin_username'])
+        message = await self.loader.get_message_template(user_language, "user_approved", admin_username=event_data['admin_username'])
         await self.bot.send_message(chat_id=event_data['user_id'], text=message)

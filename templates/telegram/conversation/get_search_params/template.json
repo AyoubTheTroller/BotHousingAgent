@@ -13,8 +13,8 @@
             "en":"Please enter the city name"
         },
         "get_max_price": {
-            "it": "Perfetto! Qual è il tuo budget massimo (in euro)? (Esempio: 500)",
-            "en": "Great! What's your maximum budget (in euros)? (Example: 500)"
+            "it": "Perfetto! Qual è il tuo budget massimo (in euro)?",
+            "en": "Great! What's your maximum budget (in euros)?"
         },
         "get_min_rooms":{
             "it":"Numero minimo di stanze?",

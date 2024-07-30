@@ -88,3 +88,6 @@
 ## 0.24.0
 - Created event_loop in the core container and now passed when needed so that http client and telegram share the same event loop. Tasks_NewBugsIntroducing_2024/07/30_1
 
+## 0.25.0
+- Added specific error handlers, Tasks_BugsFixing_2024/07/30_1
+

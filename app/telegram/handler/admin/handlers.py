@@ -24,7 +24,7 @@ class AdminHandler:
             if user:
                 if not user.authorized:
                     await self.regular_user_dao.update_user_authorization(user.user_id, True)
-                    await message.answer(await self.loader.get_message_template("user_approved", state, username=username))
+                    await message.answer(await self.loader.get_message_template(state, "user_approved", username=username))
                     await self.event_emitter.emit(
                         event_type="user_approved",
                         event_data={
@@ -33,8 +33,8 @@ class AdminHandler:
                         }
                     )
                 elif user.authorized:
-                    await message.answer(await self.loader.get_message_template("user_already_approved", state, username=username))
+                    await message.answer(await self.loader.get_message_template(state, "user_already_approved", username=username))
             else:
-                await message.answer(await self.loader.get_message_template("user_not_found", state, username=username))
+                await message.answer(await self.loader.get_message_template(state, "user_not_found", username=username))
         else:
-            await message.answer(await self.loader.get_message_template("not_authorized", state))
+            await message.answer(await self.loader.get_message_template(state, "not_authorized"))
