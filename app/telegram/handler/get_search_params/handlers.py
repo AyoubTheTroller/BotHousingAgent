@@ -4,10 +4,11 @@ from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 from app.telegram.handler.loader.components_loader import ComponentsLoader
 from app.service.scraping.scraping_service import ScrapingService
-from app.scraping.model.query_params import QueryParams
+from app.scraping.model.search_params import SearchParams
 
 class Form(StatesGroup):
-    city_name = State()
+    search_type = State()
+    location = State()
     max_price = State()
     min_rooms = State()
     max_rooms = State()
@@ -36,14 +37,24 @@ class SearchParamsHandlers():
                 await self.loader.get_keyboard_button_template("go_to_form",state), "start"))
 
     async def handle_start(self, callback_query: CallbackQuery, state: FSMContext):
-        await state.set_state(Form.city_name)
-        await self.city_name(callback_query.message, state)
+        await state.set_state(Form.search_type)
+        await self.search_type(callback_query.message, state)
 
-    async def city_name(self, message: Message, state: FSMContext):
+    async def search_type(self, message: Message, state: FSMContext):
+        keyboard_markup = self.loader.create_inline_keyboard_buttons_with_callback(
+            await self.loader.get_keyboard_button_template("search_type",state))
+        await message.answer(await self.loader.get_message_template("search_type", state), reply_markup=keyboard_markup)
+
+    async def handle_search_type(self, callback_query: CallbackQuery, state: FSMContext):
+        await state.update_data(search_type=callback_query.data)
+        await state.set_state(Form.location)
+        await self.location(callback_query.message, state)
+
+    async def location(self, message: Message, state: FSMContext):
         await message.answer(await self.loader.get_message_template("get_city", state))
 
-    async def handle_city_name(self, message: Message, state: FSMContext):
-        await state.update_data(city_name=message.text)
+    async def handle_location(self, message: Message, state: FSMContext):
+        await state.update_data(location=message.text)
         await state.set_state(Form.max_price)
         await self.max_price(message, state)
 
@@ -190,8 +201,8 @@ class SearchParamsHandlers():
         user_data = await state.get_data()
         processed_user_data = self.preprocess_input_data(user_data)
         language = user_data.get('language')
-        query_params = QueryParams(**processed_user_data)
-        url = await self.scraping_service.build_url(query_params)
+        search_params = SearchParams(**processed_user_data)
+        url = await self.scraping_service.build_url(search_params)
         await callback_query.message.answer(url)
         await callback_query.message.answer(await self.loader.get_message_template("searching", state))
         await self.post_house_listings(url, language, callback_query, state)
@@ -206,7 +217,8 @@ class SearchParamsHandlers():
                 media_group = await self.loader.load_listing_photos(listing)
                 keyboard = await self.loader.load_listing_with_keyboard(listing, language)
                 message_text = await self.loader.load_listing_message(listing, language)
-                await callback_query.message.answer_media_group(media_group)
+                if media_group is not None:
+                    await callback_query.message.answer_media_group(media_group)
                 await callback_query.message.answer(message_text, reply_markup=keyboard, parse_mode="HTML")
                 await asyncio.sleep(3) # to handle flood control
             await callback_query.message.answer(await self.loader.get_message_template_with_lang("search_completed",language))

@@ -2,12 +2,16 @@
     "scheme":"https://",
     "host":"www.immobiliare.it",
     "paths": {
-        "city_rent":"/affitto-case/{{city_name}}",
-        "elevator":"/con-ascensore",
-        "ground_floor":"/con-piano-terra",
-        "intermediate_floors":"/con-piani-intermedi",
-        "last_floor":"/con-ultimo-piano",
-        "cellar":"/con-cantina"
+        "search_type":{
+            "home_for_rent":"affitto-case/{{location}}",
+            "room_for_rent":"affitto-stanze/{{location}}",
+            "home_for_sale":"vendita-case/{{location}}"
+        },
+        "elevator":"con-ascensore",
+        "ground_floor":"con-piano-terra",
+        "intermediate_floors":"con-piani-intermedi",
+        "last_floor":"con-ultimo-piano",
+        "cellar":"con-cantina"
     },
     "query_params": {
         "criteria": "criterio={{criteria}}",

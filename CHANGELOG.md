@@ -82,3 +82,6 @@
 ## 0.22.0
 - Added notification for new subscription, completed task 2024/07/27.1
 
+## 0.23.0
+- Added choices for only rooms rental and houses for sales, Tasks 2024/07/27.2,3
+

@@ -1,3 +1,4 @@
+from typing import List
 from app.service.template.scraping.template_service import ScrapingTemplateService
 
 class BaseLoader():
@@ -20,6 +21,13 @@ class BaseLoader():
         for key, value in json_object.items():
             parsing_keys[key] = self.split_keys(value)
         return parsing_keys
+    
+    def load_url_template_keys(self, key_type) -> List:
+        json_object: dict = self.get_template(key_type)
+        url_keys: List = []
+        for key in json_object.keys():
+            url_keys.append(key)
+        return url_keys
 
     def split_keys(self, path: str) -> list:
         """Splits a dot-separated string into a list of keys."""

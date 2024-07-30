@@ -52,7 +52,24 @@ class ComponentsLoader():
             inline_keyboard=[[InlineKeyboardButton(text=text, callback_data=text)] for text in buttons]
         )
         return keyboard
+    
+    def create_inline_keyboard_buttons_with_callback(self, buttons: List) -> InlineKeyboardMarkup:
+        """
+        Create an inline keyboard markup from a list of button data.
+        """
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[])
+        for button in buttons:
+            text, callback_data = self.split_button_data(button)
+            keyboard.inline_keyboard.append([InlineKeyboardButton(text=text, callback_data=callback_data)])
 
+        return keyboard
+    
+    def split_button_data(self, button: str) -> Tuple[str,str]:
+        """returns button data as tuple, one part is the text shown the other is the callback data """
+        parts = button.split('.')
+        if len(parts) == 2:
+            return parts[0], parts[1]
+        
     def create_inline_keyboard_buttons_markup(self, buttons: List[Tuple[str, str]]) -> InlineKeyboardMarkup:
         """
         Create an inline keyboard markup from a list of button data represented as tuples.

@@ -4,6 +4,10 @@
             "it":"Benvenuto! Ti aiuterò a trovare una casa.\nQuando sei pronto premi il pulsante di seguito e ti chiederò le informazioni necessarie per la ricerca.",
             "en":"Welcome! Let's find you a house."
         },
+        "search_type":{
+            "it":"Seleziona il tipo di ricerca",
+            "en":"Select the type of search"
+        },
         "get_city":{
             "it":"Inserisci il nome della città",
             "en":"Please enter the city name"
@@ -174,6 +178,10 @@
         "view_private_phone":{
             "it":"Mostra numero privato",
             "en":"View private number"
+        },
+        "search_type": {
+            "it": ["Affitta Case/Appartamenti.home_for_rent", "Affitta Stanze/Posti Letto.room_for_rent", "Compra Case/Appartamenti.home_for_sale"],
+            "en": ["Rent Houses/Apartments.home_for_rent", "Rent Rooms/Beds.room_for_rent", "Buy Houses/Apartments.home_for_sale"]
         }
     }
 }

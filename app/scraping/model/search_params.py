@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 
-class QueryParams(BaseModel):
-    city_name: str
+class SearchParams(BaseModel):
+    location: str
+    search_type: str
     criteria: str = None
     order: str = None
     min_price: int = None

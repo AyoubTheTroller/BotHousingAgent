@@ -13,9 +13,9 @@ class ScrapingService:
     def initialize_scraping_resources(self):
         self.scraping_controller.initialize_resources(self.scraping_template_service)
 
-    async def build_url(self, query_params):
+    async def build_url(self, search_params):
         url_builder = self.scraping_controller.website_scraping_register.get_url_builder("immobiliare")
-        return url_builder.build_url(query_params)
+        return url_builder.build_url(search_params)
 
     async def scrape_listings(self, url):
         soup = await self.scraping_controller.get_scraped_data(url)
