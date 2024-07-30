@@ -1,4 +1,4 @@
-# Bugs Fixing
+# BugsFixing
 
 ## 2024/07/21
 
@@ -13,7 +13,7 @@
    Problem when user has no telegram username we need another way to approve him
 
 
-# New Bugs Introducing
+# NewBugsIntroducing
 
 ## 2024/07/23 
 
@@ -28,3 +28,9 @@
 1) [x] Add notification for admins when a new user subscribes
 2) [x] In the house search add choice for buying houses too and adapt scraping
 3) [x] Adapth for renting only rooms too
+
+## 2024/07/30
+1) [x] Change how the event loop is cretead, wanted behavior is to create only one instance and share it across the app where needed.
+2) [ ] Add panic button handlers
+   1) [ ] stop handler when searching listings to prevent user from spam if needed.
+   2) [ ] handler for admins to stop application execution.

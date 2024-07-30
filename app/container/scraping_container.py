@@ -9,7 +9,12 @@ class ScrapingContainer(containers.DeclarativeContainer):
 
     config = providers.Configuration()
 
-    http_client_factory = providers.Factory(HttpClient)
+    event_loop = providers.Dependency()
+
+    http_client= providers.Singleton(
+        HttpClient,
+        event_loop=event_loop
+    )
 
     bs4_factory = providers.Factory(BeautifulSoup)
 
@@ -19,7 +24,7 @@ class ScrapingContainer(containers.DeclarativeContainer):
 
     scraping_controller = providers.Singleton(
         ScrapingController,
-        http_client_factory=http_client_factory.provider,
+        http_client=http_client,
         bs4_factory=bs4_factory.provider,
         website_scraping_register=website_scraping_register
     )

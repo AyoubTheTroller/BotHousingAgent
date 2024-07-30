@@ -33,6 +33,7 @@ class ApplicationContainer(containers.DeclarativeContainer):
     scraping = providers.Container(
         ScrapingContainer,
         config=app_config,
+        event_loop=core.event_loop
     )
 
     services = providers.Container(
@@ -48,5 +49,6 @@ class ApplicationContainer(containers.DeclarativeContainer):
         config=app_config,
         mongo_service=services.mongo_service,
         template_service=services.telegram_template_service,
-        scraping_service = services.scraping_service
+        scraping_service = services.scraping_service,
+        event_loop=core.event_loop
     )

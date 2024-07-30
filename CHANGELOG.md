@@ -85,3 +85,6 @@
 ## 0.23.0
 - Added choices for only rooms rental and houses for sales, Tasks 2024/07/27.2,3
 
+## 0.24.0
+- Created event_loop in the core container and now passed when needed so that http client and telegram share the same event loop. Tasks_NewBugsIntroducing_2024/07/30_1
+
