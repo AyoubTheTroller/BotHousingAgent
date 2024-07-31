@@ -35,7 +35,7 @@ class ComponentsLoader():
         """Helper function to return the array of keyboard templates"""
         return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
 
-    def create_inline_keyboard_button_markup(self, button_text: str, callback_data) -> InlineKeyboardMarkup:
+    async def create_inline_keyboard_button_markup(self, button_text: str, callback_data) -> InlineKeyboardMarkup:
         """
         Create an inline keyboard markup from one button data.
         """

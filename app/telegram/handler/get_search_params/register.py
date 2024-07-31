@@ -33,6 +33,8 @@ class SearchParamsRegister():
         handlers_router.callback_query.register(handlers.handle_go_to_search, F.data == "go_to_search")
         handlers_router.callback_query.register(handlers.handle_skip_step, F.data == "skip_step")
         handlers_router.callback_query.register(handlers.handle_go_prev_step, F.data == "go_prev_step")
+        handlers_router.callback_query.register(handlers.start_searching, F.data == "start_searching")
+        handlers_router.callback_query.register(handlers.stop_searching, F.data == "stop_searching")
         handlers_router.callback_query.register(handlers.handle_search_type, Form.search_type)
         handlers_router.message.register(handlers.handle_location, Form.location)
         handlers_router.message.register(handlers.handle_max_price, Form.max_price)

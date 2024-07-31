@@ -94,3 +94,6 @@
 ## 0.26.0
 - Added go to previous step button to search params handler, Tasks_NewBugsIntroducing_2024/07/31_1, CodeRefactor
 
+## 0.27.0
+- Added button for stopping listings posting, Tasks_NewBugsIntroducing_2024/07/30_2.1
+

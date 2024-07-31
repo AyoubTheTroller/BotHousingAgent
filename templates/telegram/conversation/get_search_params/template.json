@@ -91,6 +91,9 @@
         "furnished":{
             "it":"Arredato",
             "en":"Furnished"
+        },"url_link": {
+            "it": "Se vuoi consultare gli annunci in autonomia puoi utilizzare il link di seguito per la ricerca\n\n{{url}}\n\nAltrimenti, usa i pulsanti di seguito per iniziare o fermare la ricercare automatica",
+            "en": "If you'd like to browse listings on your own, use the link below:\n\n{{url}}\n\nAlternatively, use the buttons below to start or stop automated search"
         },
         "searching":{
             "it":"Ricerca iniziata",
@@ -155,8 +158,11 @@
         "search_completed":{
             "it":"Ricerca completata",
             "en":"Search completed"
+        },
+        "search_stopped":{
+            "it":"Ricerca fermata",
+            "en":"Search stopped"
         }
-
     },
     "button":{
         "yes_no":{
@@ -178,6 +184,14 @@
         "go_prev_step":{
             "it":"Torna alla domanda precedente",
             "en":"Go back to previous question"
+        },
+        "start_searching":{
+            "it":"Inizia ricerca automatica",
+            "en":"Start automated search"
+        },
+        "stop_searching":{
+            "it":"Ferma ricerca automatica",
+            "en":"Stop automated search"
         },
         "view_details":{
             "it":"Maggiori informazioni",

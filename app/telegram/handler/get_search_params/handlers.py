@@ -33,7 +33,7 @@ class SearchParamsHandlers():
     async def search_house(self, message: Message, state: FSMContext):
         await message.answer(
             await self.loader.get_message_template(state, "start"),
-            reply_markup=self.loader.create_inline_keyboard_button_markup(
+            reply_markup=await self.loader.create_inline_keyboard_button_markup(
                 await self.loader.get_keyboard_button_template(state, "go_to_form"), "start"))
 
     async def handle_start(self, callback_query: CallbackQuery, state: FSMContext):
@@ -248,20 +248,32 @@ class SearchParamsHandlers():
     async def prepare_url(self, callback_query: CallbackQuery, state: FSMContext):
         user_data = await state.get_data()
         processed_user_data = self.preprocess_input_data(user_data)
-        language = user_data.get('language')
         search_params = SearchParams(**processed_user_data)
         url = await self.scraping_service.build_url(search_params)
-        await callback_query.message.answer(url)
+        await state.update_data(url=url)
+        keyboard_markup = await self.loader.create_inline_keyboard_button_markup(
+            await self.loader.get_keyboard_button_template(state,"start_searching"),"start_searching")
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"stop_searching"),"stop_searching", keyboard_markup)
+        await callback_query.message.answer(await self.loader.get_message_template(state,"url_link",url=url), reply_markup=keyboard_markup)
+
+    async def start_searching(self, callback_query: CallbackQuery, state: FSMContext):
+        await state.set_state(Form.scraping)
+        await state.update_data(stop_searching=False)
+        user_data = await state.get_data()
+        language = user_data.get('language')
+        url = user_data.get('url')
         await callback_query.message.answer(await self.loader.get_message_template(state, "searching"))
-        await self.post_house_listings(url, language, callback_query, state)
-    
-    async def post_house_listings(self, url, language, callback_query: CallbackQuery, state: FSMContext):
         listings = await self.scraping_service.scrape_listings(url)
         if not listings:
             await callback_query.message.answer(
                 text=await self.loader.get_message_template_with_lang(language, "no_listings_found"), parse_mode="HTML")
         else:
             for listing in listings:
+                stop_searching = (await state.get_data()).get('stop_searching')
+                if stop_searching:
+                    await callback_query.message.answer(await self.loader.get_message_template(state, "search_stopped"))
+                    return
                 media_group = await self.loader.load_listing_photos(listing)
                 keyboard = await self.loader.load_listing_with_keyboard(listing, language)
                 message_text = await self.loader.load_listing_message(listing, language)
@@ -270,4 +282,8 @@ class SearchParamsHandlers():
                 await callback_query.message.answer(message_text, reply_markup=keyboard, parse_mode="HTML")
                 await asyncio.sleep(3) # to handle flood control
             await callback_query.message.answer(await self.loader.get_message_template_with_lang(language, "search_completed"))
+        await state.set_state(Form.end)
+
+    async def stop_searching(self, callback_query: CallbackQuery, state: FSMContext):
+        await state.update_data(stop_searching=True)
         await state.set_state(Form.end)

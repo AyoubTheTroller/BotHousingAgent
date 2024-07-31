@@ -32,7 +32,7 @@
 ## 2024/07/30
 1) [x] Change how the event loop is cretead, wanted behavior is to create only one instance and share it across the app where needed.
 2) [ ] Add panic button handlers
-   1) [ ] stop handler when searching listings to prevent user from spam if needed.
+   1) [x] stop handler when searching listings to prevent user from spam if needed.
    2) [ ] handler for admins to stop application execution.
 
 ## 2024/07/31
