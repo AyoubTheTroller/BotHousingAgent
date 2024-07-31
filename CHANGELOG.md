@@ -91,3 +91,6 @@
 ## 0.25.0
 - Added specific error handlers, Tasks_BugsFixing_2024/07/30_1
 
+## 0.26.0
+- Added go to previous step button to search params handler, Tasks_NewBugsIntroducing_2024/07/31_1, CodeRefactor
+

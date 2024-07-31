@@ -14,22 +14,6 @@ class ComponentsLoader():
         self.template_service = template_service
         self.interaction_type = interaction_type
         self.handler_type = handler_type
-
-    async def get_message_old_template(self, key, state: FSMContext, **kwargs):
-        """Helper function to return the message from a template."""
-        user_data = await state.get_data()
-        language = user_data.get('language')
-        return await self.template_service.render_template(self.interaction_type, self.handler_type, "message", key, language, **kwargs)
-    
-    async def get_old_message_template_with_lang(self, key, language, **kwargs):
-        """Helper function to return the message from a template."""
-        return await self.template_service.render_template(self.interaction_type, self.handler_type, "message", key, language, **kwargs)
-
-    async def get_old_keyboard_button_template(self, key, state: FSMContext):
-        """Helper function to return the array of keyboard templates"""
-        user_data = await state.get_data()
-        language = user_data.get('language')
-        return await self.template_service.render_template(self.interaction_type, self.handler_type, "button", key, language)
     
     async def get_message_template(self, state: FSMContext, *keys,  **kwargs):
         """Helper function to return the message from a template."""
@@ -107,7 +91,9 @@ class ComponentsLoader():
                                      one_time_keyboard=False)
         return markup
 
-    def append_button_to_markup(self, keyboard_markup: InlineKeyboardMarkup, text, callback_data) -> InlineKeyboardMarkup:
+    async def append_button_to_markup(self, text, callback_data, keyboard_markup = None) -> InlineKeyboardMarkup:
+        if keyboard_markup is None:
+            keyboard_markup = InlineKeyboardMarkup(inline_keyboard=[])
         keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=text, callback_data=callback_data)])
         return keyboard_markup
 

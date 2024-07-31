@@ -1,8 +1,8 @@
 {
     "message":{
-        "start":{
-            "it":"Benvenuto! Ti aiuterò a trovare una casa.\nQuando sei pronto premi il pulsante di seguito e ti chiederò le informazioni necessarie per la ricerca.",
-            "en":"Welcome! Let's find you a house."
+        "start": {
+            "it": "Benvenuto! Ti aiuterò a trovare una casa.\nQuando sei pronto premi il pulsante di seguito e ti chiederò alcune informazioni necessarie per la ricerca, ad esempio località, prezzo, numero stanze ecc.",
+            "en": "Welcome! I'm here to help you find a home.\nClick the button below when you're ready, and I'll ask for details like location, price, and rooms."
         },
         "search_type":{
             "it":"Seleziona il tipo di ricerca",
@@ -13,8 +13,8 @@
             "en":"Please enter the city name"
         },
         "get_max_price": {
-            "it": "Perfetto! Qual è il tuo budget massimo (in euro)?",
-            "en": "Great! What's your maximum budget (in euros)?"
+            "it": "Perfetto! Qual è il tuo budget massimo (in euro)? (Esempio: 600)",
+            "en": "Great! What's your maximum budget (in euros)? (Example: 600"
         },
         "get_min_rooms":{
             "it":"Numero minimo di stanze?",
@@ -25,8 +25,8 @@
             "en":"Maximum rooms number?"
         },
         "get_n_bathrooms":{
-            "it":"Numero di bagni?",
-            "en":"Bathroom number?"
+            "it":"Numero minimo di bagni?",
+            "en":"Minimum bathroom number?"
         },
         "get_appartment_type":{
             "it":"Che tipo di appartamento hai bisogno?",
@@ -159,6 +159,10 @@
 
     },
     "button":{
+        "yes_no":{
+            "it":["si.true","no.false","indifferente.false"],
+            "en":["yes.true","no.false","same.false"]
+        },
         "go_to_form":{
             "it":"Vai al modulo",
             "en":"Go to form"
@@ -171,6 +175,10 @@
             "it":"Vai direttamente alla ricerca",
             "en":"Go directly to the search"
         },
+        "go_prev_step":{
+            "it":"Torna alla domanda precedente",
+            "en":"Go back to previous question"
+        },
         "view_details":{
             "it":"Maggiori informazioni",
             "en":"View Details"
@@ -180,8 +188,8 @@
             "en":"View private number"
         },
         "search_type": {
-            "it": ["Affitta Case/Appartamenti.home_for_rent", "Affitta Stanze/Posti Letto.room_for_rent", "Compra Case/Appartamenti.home_for_sale"],
-            "en": ["Rent Houses/Apartments.home_for_rent", "Rent Rooms/Beds.room_for_rent", "Buy Houses/Apartments.home_for_sale"]
+            "it": ["Case/Appartamenti in affitto.home_for_rent", "Stanze/Posti Letto in affitto.room_for_rent", "Case/Appartamenti in vendita.home_for_sale"],
+            "en": ["Houses/Apartments for rent.home_for_rent", "Rooms/Beds for rent.room_for_rent", "Houses/Apartments for sale.home_for_sale"]
         }
     }
 }

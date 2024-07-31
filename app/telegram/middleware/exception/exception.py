@@ -2,7 +2,6 @@ import logging
 import traceback
 from aiogram import BaseMiddleware
 from aiogram.types import Update
-from aiogram.exceptions import TelegramAPIError
 from aiogram.fsm.context import FSMContext
 from app.telegram.handler.loader.base_loader import BaseLoader
 from app.telegram.middleware.exception.generic.error_handler import GenericErrorHandler
@@ -24,3 +23,4 @@ class ExceptionMiddleware(BaseMiddleware):
             return await handler(event, data)
         except Exception as e:
             await self.generic_error_handler.handle(e, event, state)
+            self.logger.error(traceback.format_exc())

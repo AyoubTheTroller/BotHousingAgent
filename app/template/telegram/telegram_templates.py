@@ -19,16 +19,6 @@ class TelegramTemplates:
                 template = DataLoader.load_json(self._templates_path+key+"/"+active_template+"/"+"template.json")
                 templates[key][active_template]=template
         return templates
-
-    def get_old_template(self, template_type, template_category, template_name, language) -> dict:
-        """
-        Extracts a dictionary with the specified language from a nested dictionary structure.
-        """
-        template = self._templates[template_type][template_category][template_name]
-        # Filter the final dictionary based on the language
-        if language is None:
-            language = self._language
-        return {key: value.get(language) for key, value in template.items() if language in value}
     
     async def get_template(self, language, template_type, template_category, *keys) -> str:
         """

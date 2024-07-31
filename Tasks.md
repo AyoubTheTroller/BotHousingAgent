@@ -34,3 +34,6 @@
 2) [ ] Add panic button handlers
    1) [ ] stop handler when searching listings to prevent user from spam if needed.
    2) [ ] handler for admins to stop application execution.
+
+## 2024/07/31
+1) [x] Add a button to let user going to the previous question in search params handler

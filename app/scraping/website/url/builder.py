@@ -27,7 +27,7 @@ class UrlBuilder:
                 path_parts.append(template)
                 continue
             if key in search_params_dict:
-                template = self.loader.get_template("paths",key,search_params_dict[key])
+                template = self.loader.get_template("paths",key)
                 path_parts.append(template)
 
         for key in self.query_param_keys:

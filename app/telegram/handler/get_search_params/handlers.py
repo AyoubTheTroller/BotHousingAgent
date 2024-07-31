@@ -59,7 +59,9 @@ class SearchParamsHandlers():
         await self.max_price(message, state)
 
     async def max_price(self, message: Message, state: FSMContext):
-        keyboard_markup = await self.loader.add_skip_buttons(state)
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"go_prev_step"),"go_prev_step")
+        keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
         await message.answer(await self.loader.get_message_template(state, "get_max_price"), reply_markup=keyboard_markup)
 
     async def handle_max_price(self, message: Message, state: FSMContext):
@@ -73,6 +75,8 @@ class SearchParamsHandlers():
     
     async def min_rooms(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["1","2","3","4","5"])
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"go_prev_step"),"go_prev_step",keyboard_markup)
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
         await message.answer(await self.loader.get_message_template(state, "get_min_rooms"), reply_markup=keyboard_markup)
 
@@ -83,6 +87,8 @@ class SearchParamsHandlers():
 
     async def max_rooms(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["1","2","3","4","5"])
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"go_prev_step"),"go_prev_step",keyboard_markup)
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
         await message.answer(await self.loader.get_message_template(state, "get_max_rooms"), reply_markup=keyboard_markup)
 
@@ -93,6 +99,8 @@ class SearchParamsHandlers():
 
     async def n_bathrooms(self, message: Message, state: FSMContext):
         keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["1","2","3","4"])
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"go_prev_step"),"go_prev_step",keyboard_markup)
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
         await message.answer(await self.loader.get_message_template(state, "get_n_bathrooms"), reply_markup=keyboard_markup)
 
@@ -102,7 +110,9 @@ class SearchParamsHandlers():
         await self.furnished(callback_query.message, state)
 
     async def furnished(self, message: Message, state: FSMContext):
-        keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
+        keyboard_markup = self.loader.create_inline_keyboard_buttons_with_callback(await self.loader.get_keyboard_button_template(state,"yes_no"))
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"go_prev_step"),"go_prev_step",keyboard_markup)
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
         await message.answer(await self.loader.get_message_template(state, "get_furnished"), reply_markup=keyboard_markup)
 
@@ -112,7 +122,9 @@ class SearchParamsHandlers():
         await self.balcony(callback_query.message, state)
 
     async def balcony(self, message: Message, state: FSMContext):
-        keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
+        keyboard_markup = self.loader.create_inline_keyboard_buttons_with_callback(await self.loader.get_keyboard_button_template(state,"yes_no"))
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"go_prev_step"),"go_prev_step",keyboard_markup)
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
         await message.answer(await self.loader.get_message_template(state, "get_balcony"), reply_markup=keyboard_markup)
 
@@ -122,7 +134,9 @@ class SearchParamsHandlers():
         await self.terrace(callback_query.message, state)
 
     async def terrace(self, message: Message, state: FSMContext):
-        keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
+        keyboard_markup = self.loader.create_inline_keyboard_buttons_with_callback(await self.loader.get_keyboard_button_template(state,"yes_no"))
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"go_prev_step"),"go_prev_step",keyboard_markup)
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
         await message.answer(await self.loader.get_message_template(state, "get_terrace"), reply_markup=keyboard_markup)
 
@@ -132,7 +146,9 @@ class SearchParamsHandlers():
         await self.pool(callback_query.message, state)
 
     async def pool(self, message: Message, state: FSMContext):
-        keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
+        keyboard_markup = self.loader.create_inline_keyboard_buttons_with_callback(await self.loader.get_keyboard_button_template(state,"yes_no"))
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"go_prev_step"),"go_prev_step",keyboard_markup)
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
         await message.answer(await self.loader.get_message_template(state, "get_pool"), reply_markup=keyboard_markup)
 
@@ -142,7 +158,9 @@ class SearchParamsHandlers():
         await self.cellar(callback_query.message, state)
 
     async def cellar(self, message: Message, state: FSMContext):
-        keyboard_markup = self.loader.create_inline_keyboard_buttons_markup_from_template(["yes","no"])
+        keyboard_markup = self.loader.create_inline_keyboard_buttons_with_callback(await self.loader.get_keyboard_button_template(state,"yes_no"))
+        keyboard_markup = await self.loader.append_button_to_markup(
+            await self.loader.get_keyboard_button_template(state,"go_prev_step"),"go_prev_step",keyboard_markup)
         keyboard_markup = await self.loader.add_skip_buttons(state, keyboard_markup)
         await message.answer(await self.loader.get_message_template(state, "get_cellar"), reply_markup=keyboard_markup)
 
@@ -150,6 +168,36 @@ class SearchParamsHandlers():
         await state.update_data(cellar=callback_query.data)
         await state.set_state(Form.prepare_url)
         await self.prepare_url(callback_query, state)
+    
+    async def handle_go_prev_step(self, callback_query: CallbackQuery, state: FSMContext):
+        current_state = await state.get_state()
+        if current_state == Form.max_price:
+            await state.set_state(Form.location)
+            await self.location(callback_query.message, state)
+        elif current_state == Form.min_rooms:
+            await state.set_state(Form.max_price)
+            await self.max_price(callback_query.message, state)
+        elif current_state == Form.max_rooms:
+            await state.set_state(Form.min_rooms)
+            await self.min_rooms(callback_query.message, state)
+        elif current_state == Form.n_bathrooms:
+            await state.set_state(Form.max_rooms)
+            await self.max_rooms(callback_query.message, state)
+        elif current_state == Form.furnished:
+            await state.set_state(Form.n_bathrooms)
+            await self.n_bathrooms(callback_query.message, state)
+        elif current_state == Form.balcony:
+            await state.set_state(Form.furnished)
+            await self.furnished(callback_query.message, state)
+        elif current_state == Form.terrace:
+            await state.set_state(Form.balcony)
+            await self.balcony(callback_query.message, state)
+        elif current_state == Form.pool:
+            await state.set_state(Form.terrace)
+            await self.terrace(callback_query.message, state)
+        elif current_state == Form.cellar:
+            await state.set_state(Form.pool)
+            await self.pool(callback_query, state)
     
     async def handle_skip_step(self, callback_query: CallbackQuery, state: FSMContext):
         current_state = await state.get_state()
@@ -188,11 +236,11 @@ class SearchParamsHandlers():
     def preprocess_input_data(self,data: dict) -> dict:
         boolean_fields = ['furnished', 'balcony_or_terrace', 'balcony', 'terrace', 'piscina', 'cellar', 'pool']
         for field in boolean_fields:
-            if field in data:
-                if data[field].lower() in ['si', 'yes', 'true']:
+            if field in data: ## We process it only if its true, if false then we remove it from params
+                if data[field].lower() in ['true']:
                     data[field] = True
-                elif data[field].lower() in ['no', 'false']:
-                    data[field] = False
+                elif data[field].lower() in ['false']:
+                    del data[field]
                 else:
                     data[field] = None  # or raise an error if you want strict validation
         return data
