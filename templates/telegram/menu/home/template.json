@@ -8,9 +8,13 @@
             "it":"Aiuto",
             "en":"Help"
         },
-        "search_house":{
+        "search_now":{
             "it":"Trova casa",
             "en":"Search House"
+        },
+        "set_search_filters":{
+            "it":"Imposta Nuovi Filtri",
+            "en":"Set New Filters"
         }
     },
     "message":{

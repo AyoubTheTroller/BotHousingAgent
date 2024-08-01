@@ -97,3 +97,6 @@
 ## 0.27.0
 - Added button for stopping listings posting, Tasks_NewBugsIntroducing_2024/07/30_2.1
 
+## 0.28.0
+- Added menu buttons and managed handlers for different languages, Tasks_NewBugsIntroducing_2024/08/01_2
+

@@ -5,7 +5,7 @@ from app.telegram.notification.event_emitter import EventEmitter
 from app.service.scraping.scraping_service import ScrapingService
 from app.telegram.notification.register import EventEmitterRegister
 from app.telegram.middleware.register import MiddlewareRegister
-from app.telegram.handler.get_search_params.register import SearchParamsRegister
+from app.telegram.handler.set_search_params.register import SearchParamsRegister
 from app.telegram.handler.start.register import StartRegister
 from app.telegram.handler.menu.register import MenuRegister
 from app.telegram.handler.account.register import AccountRegister

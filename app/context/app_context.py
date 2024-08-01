@@ -11,8 +11,8 @@ class SpawnApplicationContext:
         container = ApplicationContainer()
         container.wire(modules=[__name__])
         container.core.init_resources()
-        self.start()
+        self.spawn()
     
     @inject
-    def start(self, tg_app: TelegramApplication = Provide[ApplicationContainer.telegram.telegram_application]) -> None:
+    def spawn(self, tg_app: TelegramApplication = Provide[ApplicationContainer.telegram.telegram_application]) -> None:
         tg_app.run_app()

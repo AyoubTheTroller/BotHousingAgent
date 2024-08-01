@@ -1,5 +1,6 @@
 {
     "message":{
+        "commands":["set_search_filters","imposta_filtri_ricerca"],
         "start": {
             "it": "Benvenuto! Ti aiuterò a trovare una casa.\nQuando sei pronto premi il pulsante di seguito e ti chiederò alcune informazioni necessarie per la ricerca, ad esempio località, prezzo, numero stanze ecc.",
             "en": "Welcome! I'm here to help you find a home.\nClick the button below when you're ready, and I'll ask for details like location, price, and rooms."
@@ -165,6 +166,7 @@
         }
     },
     "button":{
+        "menu_buttons":["Imposta Nuovi Filtri", "Set New Filters"],
         "yes_no":{
             "it":["si.true","no.false","indifferente.false"],
             "en":["yes.true","no.false","same.false"]

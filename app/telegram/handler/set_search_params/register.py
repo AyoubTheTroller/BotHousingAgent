@@ -2,8 +2,8 @@ import logging
 from aiogram import Dispatcher, Router, F
 from aiogram.filters import Command
 from app.telegram.handler.loader.components_loader import ComponentsLoader
-from app.telegram.handler.get_search_params.handlers import SearchParamsHandlers
-from app.telegram.handler.get_search_params.handlers import Form
+from app.telegram.handler.set_search_params.handlers import SearchParamsHandlers
+from app.telegram.handler.set_search_params.handlers import Form
 from app.service.mongodb.mongo_service import MongoService
 from app.service.mongodb.dao.user.user_dao import UserDAO
 
@@ -12,8 +12,7 @@ class SearchParamsRegister():
     def __init__(self, dispatcher: Dispatcher, router_factory) -> None:
         self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}",)
         self.user_dao = self.set_user_dao(dispatcher["mongo_service"],"users")
-        self.conversation_loader = self.set_loader(dispatcher["template_service"], "conversation", "get_search_params")
-        self.menu_loader = self.set_loader(dispatcher["template_service"], "menu", "home")
+        self.conversation_loader = self.set_loader(dispatcher["template_service"], "conversation", "set_search_params")
         self.register_handlers(dispatcher, router_factory)
         self.logger.info("Registration Completed")
         
@@ -27,8 +26,12 @@ class SearchParamsRegister():
         """Register scenes that are needed to get search paramans from the user"""
         handlers = SearchParamsHandlers(self.conversation_loader, dispatcher["scraping_service"])
         handlers_router: Router = router_factory()
-        handlers_router.message.register(handlers.search_house, Command(commands=["search_house"]))
-        handlers_router.message.register(handlers.search_house, F.text == "search_house")
+        commands = self.conversation_loader.get_base_message_template("commands")
+        for command in commands:
+            handlers_router.message.register(handlers.search_house, Command(commands=[command]))
+        buttons = self.conversation_loader.get_base_button_template("menu_buttons")
+        for button in buttons:
+            handlers_router.message.register(handlers.search_house, F.text == button)
         handlers_router.callback_query.register(handlers.handle_start, F.data == "start")
         handlers_router.callback_query.register(handlers.handle_go_to_search, F.data == "go_to_search")
         handlers_router.callback_query.register(handlers.handle_skip_step, F.data == "skip_step")

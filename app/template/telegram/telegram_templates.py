@@ -20,7 +20,7 @@ class TelegramTemplates:
                 templates[key][active_template]=template
         return templates
     
-    async def get_template(self, language, template_type, template_category, *keys) -> str:
+    async def get_template_with_language(self, language, template_type, template_category, *keys) -> str:
         """
         Extracts the correct template from a given template dictionary using type, category, and nested keys.
         """
@@ -31,3 +31,12 @@ class TelegramTemplates:
         if language is None:
             language = self._language
         return template.get(language, {})
+    
+    def get_template(self, template_type, template_category, *keys) -> str:
+        """
+        Extracts the correct template from a given template dictionary using type, category, and nested keys.
+        """
+        template = self._templates.get(template_type, {}).get(template_category, {})
+        for key in keys:
+            template = template.get(key, {})
+        return template

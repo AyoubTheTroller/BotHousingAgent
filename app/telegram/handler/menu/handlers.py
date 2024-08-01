@@ -10,7 +10,7 @@ class MenuHandler:
     async def show_menu(self, message: Message, state: FSMContext):
         buttons = [await self.loader.get_keyboard_button_template(state, "start"),
                    await self.loader.get_keyboard_button_template(state, "help"),
-                   await self.loader.get_keyboard_button_template(state, "search_house")]
+                   await self.loader.get_keyboard_button_template(state, "set_search_filters")]
         markup = self.loader.create_keyboard_buttons_markup(buttons)
         await message.answer(await self.loader.get_message_template(state, "show_menu"), reply_markup=markup)
 

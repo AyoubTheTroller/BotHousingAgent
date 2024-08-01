@@ -1,12 +1,8 @@
 from datetime import datetime, timedelta
 from aiogram import BaseMiddleware
 from aiogram.fsm.context import FSMContext
-from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message
 from app.service.mongodb.dao.user.user_dao import UserDAO
-
-class Form(StatesGroup):
-    end = State()
 
 class SessionStateMiddleware(BaseMiddleware):
     def __init__(self, user_dao: UserDAO, session_time = 5):

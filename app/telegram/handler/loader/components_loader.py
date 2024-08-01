@@ -14,26 +14,34 @@ class ComponentsLoader():
         self.template_service = template_service
         self.interaction_type = interaction_type
         self.handler_type = handler_type
+        
+    def get_base_message_template(self, *keys,  **kwargs):
+        """Helper function to return the message from a template."""
+        return self.template_service.render_template(self.interaction_type, self.handler_type, "message", *keys, **kwargs)
+    
+    def get_base_button_template(self, *keys,  **kwargs):
+        """Helper function to return the message from a template."""
+        return self.template_service.render_template(self.interaction_type, self.handler_type, "button", *keys, **kwargs)
     
     async def get_message_template(self, state: FSMContext, *keys,  **kwargs):
         """Helper function to return the message from a template."""
         user_data = await state.get_data()
         language = user_data.get('language')
-        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "message", *keys, **kwargs)
+        return await self.template_service.render_template_with_language(language, self.interaction_type, self.handler_type, "message", *keys, **kwargs)
     
     async def get_message_template_with_lang(self, language, *keys, **kwargs):
         """Helper function to return the message from a template."""
-        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "message", *keys, **kwargs)
+        return await self.template_service.render_template_with_language(language, self.interaction_type, self.handler_type, "message", *keys, **kwargs)
     
     async def get_keyboard_button_template(self, state: FSMContext, *keys, **kwargs):
         """Helper function to return the array of keyboard templates"""
         user_data = await state.get_data()
         language = user_data.get('language')
-        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
+        return await self.template_service.render_template_with_language(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
     
     async def get_keyboard_button_template_with_lang(self, language, *keys, **kwargs):
         """Helper function to return the array of keyboard templates"""
-        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
+        return await self.template_service.render_template_with_language(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
 
     async def create_inline_keyboard_button_markup(self, button_text: str, callback_data) -> InlineKeyboardMarkup:
         """

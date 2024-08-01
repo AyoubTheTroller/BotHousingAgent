@@ -12,9 +12,9 @@ class NotificationLoader():
 
     async def get_message_template(self, language, *keys, **kwargs):
         """Helper function to return the message from a template."""
-        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "message", *keys, **kwargs)
+        return await self.template_service.render_template_with_language(language, self.interaction_type, self.handler_type, "message", *keys, **kwargs)
 
     async def get_keyboard_button_template(self, language, *keys, **kwargs):
         """Helper function to return the array of keyboard templates"""
-        return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
+        return await self.template_service.render_template_with_language(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
 
