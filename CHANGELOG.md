@@ -103,3 +103,6 @@
 ## 0.29.0
 - Reworked template loaders for telegram, now created dynamically at startup with a controller and can be accessed throught a dict using keys, Tasks_NewBugsIntroducing_2024/08/05_1
 
+## 0.30.0
+- Reworked error handling system, now inheritance is used through a centralized error_handler, Tasks_NewBugsIntroducing_2024/08/06_1
+
