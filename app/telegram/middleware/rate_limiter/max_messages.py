@@ -3,7 +3,7 @@ from collections import defaultdict, deque
 from aiogram import BaseMiddleware
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-from app.telegram.handler.loader.base_loader import BaseLoader
+from app.telegram.loader.base_loader import BaseLoader
 
 class RateLimitMiddleware(BaseMiddleware):
     def __init__(self, loader: BaseLoader, message_limit: int = 40, window_size: int = 60, cooldown: int = 60):

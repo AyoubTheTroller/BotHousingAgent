@@ -9,7 +9,10 @@ class SpawnApplicationContext:
 
     def _setup_containers(self):
         container = ApplicationContainer()
-        container.wire(modules=[__name__])
+        container.wire(modules=[
+            'app.context.app_context',
+            'app.service.search.search_service',
+        ])
         container.core.init_resources()
         self.spawn()
     

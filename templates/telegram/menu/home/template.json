@@ -1,4 +1,5 @@
 {
+    "type":"ComponentsLoader",
     "button":{
         "start":{
             "it":"Inizia",

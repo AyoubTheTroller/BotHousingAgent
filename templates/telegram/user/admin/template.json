@@ -1,4 +1,5 @@
 {
+    "type":"ComponentsLoader",
     "message":{
         "user_approved":{
             "it":"L'utente {{username}} è stato approvato",

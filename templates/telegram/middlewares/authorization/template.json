@@ -1,4 +1,5 @@
 {
+    "type":"BaseLoader",
     "message":{
         "not_authorized":{
             "it":"Non sei autorizzato ad usare questo bot. Iscriviti prima usando il comando /subscribe e attendi l'approvazione",

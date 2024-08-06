@@ -4,17 +4,15 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from app.telegram.tg_app import TelegramApplication
 from app.telegram.bot_controller import BotController
+from app.telegram.loader.loader_controller import LoaderController
 from app.telegram.notification.event_emitter import EventEmitter
+from app.container.service_container import ServiceContainer
 
 class TelegramContainer(containers.DeclarativeContainer):
 
     config = providers.Configuration()
 
-    mongo_service = providers.Dependency()
-
-    template_service = providers.Dependency()
-
-    scraping_service = providers.Dependency()
+    services: ServiceContainer = providers.DependenciesContainer()
 
     event_loop = providers.Dependency()
 
@@ -27,6 +25,11 @@ class TelegramContainer(containers.DeclarativeContainer):
         Bot,
         token=config.telegram.token,
         default=bot_default_properties
+    )
+
+    loader_controller = providers.Singleton(
+        LoaderController,
+        template_service=services.telegram_template_service
     )
 
     event_emitter = providers.Singleton(
@@ -44,12 +47,13 @@ class TelegramContainer(containers.DeclarativeContainer):
     bot_controller = providers.Singleton(
         BotController,
         bot=bot,
-        mongo_service=mongo_service,
-        template_service=template_service,
-        scraping_service=scraping_service,
+        loader_controller=loader_controller,
+        mongo_service=services.mongo_service,
+        scraping_service=services.scraping_service,
         event_emitter=event_emitter,
         dispatcher=router_dispatcher,
         router_factory=router_factory.provider,
+        search_service_factory=services.search_service_factory.provider
     )
 
     telegram_application = providers.Singleton(

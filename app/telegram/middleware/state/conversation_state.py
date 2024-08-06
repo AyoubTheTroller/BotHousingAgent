@@ -2,7 +2,7 @@ from aiogram import BaseMiddleware
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, CallbackQuery
-from app.telegram.handler.loader.base_loader import BaseLoader
+from app.telegram.loader.base_loader import BaseLoader
 
 class Form(StatesGroup):
     end = State()

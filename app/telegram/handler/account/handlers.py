@@ -1,9 +1,8 @@
-# handlers.py
 from datetime import datetime
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
-from app.telegram.handler.loader.base_loader import BaseLoader
+from app.telegram.loader.components_loader import ComponentsLoader
 from app.telegram.model.user import User
 from app.service.mongodb.dao.user.user_dao import UserDAO
 from app.telegram.notification.event_emitter import EventEmitter
@@ -13,7 +12,7 @@ class Form(StatesGroup):
     end = State()
 
 class AccountHandler:
-    def __init__(self, loader: BaseLoader, user_dao: UserDAO, event_emitter: EventEmitter):
+    def __init__(self, loader: ComponentsLoader, user_dao: UserDAO, event_emitter: EventEmitter):
         self.loader = loader
         self.user_dao = user_dao
         self.event_emitter = event_emitter

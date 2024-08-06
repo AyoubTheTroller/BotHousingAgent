@@ -1,7 +1,7 @@
 import logging
 from aiogram import Dispatcher
+from app.telegram.loader.loader_controller import LoaderController
 from app.service.mongodb.mongo_service import MongoService
-from app.telegram.handler.loader.base_loader import BaseLoader
 from app.service.mongodb.dao.user.user_dao import UserDAO
 from app.telegram.middleware.exception.exception import ExceptionMiddleware
 from app.telegram.middleware.rate_limiter.max_messages import RateLimitMiddleware
@@ -10,21 +10,22 @@ from app.telegram.middleware.state.session_state import SessionStateMiddleware
 from app.telegram.middleware.state.conversation_state import ConversationStateMiddleware
 
 class MiddlewareRegister:
-    def __init__(self, dispatcher):
+    def __init__(self, dispatcher, loader_controller: LoaderController):
         self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}",)
+        self.loader_controller = loader_controller
         self.user_dao = self.set_user_dao(dispatcher["mongo_service"], "users")
-        self.rate_limit_loader = self.set_loader("ratelimiter", dispatcher["template_service"])
-        self.authorization_loader = self.set_loader("authorization", dispatcher["template_service"])
-        self.exception_loader = self.set_loader("exception", dispatcher["template_service"])
-        self.state_loader = self.set_loader("state", dispatcher["template_service"])
+        self.rate_limit_loader = self.set_loader("ratelimiter")
+        self.authorization_loader = self.set_loader("authorization")
+        self.exception_loader = self.set_loader("exception")
+        self.state_loader = self.set_loader("state")
         self.register_middlewares(dispatcher)
         self.logger.info("Registration Completed")
 
     def set_user_dao(self, mongo_service: MongoService, collection) -> UserDAO:
         return UserDAO(mongo_service.get_telegram_database()[collection])
 
-    def set_loader(self, handler_type, template_service):
-        return BaseLoader(template_service,"middlewares",handler_type)
+    def set_loader(self, handler_type):
+        return self.loader_controller.get_loader("middlewares",handler_type)
 
     def register_middlewares(self, dispatcher: Dispatcher):
         """Register middlewares for messages and callback queries"""

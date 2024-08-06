@@ -40,3 +40,7 @@ class TelegramTemplates:
         for key in keys:
             template = template.get(key, {})
         return template
+    
+    @property
+    def templates(self):
+        return self._templates

@@ -1,37 +1,42 @@
 import logging
 from aiogram import Dispatcher, Router, F
 from aiogram.filters import Command
-from app.telegram.handler.loader.components_loader import ComponentsLoader
-from app.telegram.handler.set_search_params.handlers import SearchParamsHandlers
-from app.telegram.handler.set_search_params.handlers import Form
+from app.telegram.loader.loader_controller import LoaderController
+from app.telegram.handler.conversation.handlers import SearchParamsHandlers
+from app.telegram.handler.conversation.handlers import Form
 from app.service.mongodb.mongo_service import MongoService
 from app.service.mongodb.dao.user.user_dao import UserDAO
 
-class SearchParamsRegister():
+class ConversationRegister():
 
-    def __init__(self, dispatcher: Dispatcher, router_factory) -> None:
+    def __init__(self, dispatcher: Dispatcher, router_factory, loader_controller: LoaderController) -> None:
         self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}",)
+        self.loader_controller = loader_controller
         self.user_dao = self.set_user_dao(dispatcher["mongo_service"],"users")
-        self.conversation_loader = self.set_loader(dispatcher["template_service"], "conversation", "set_search_params")
+        self.conversation_loader = self.set_loader("set_search_params")
+        self.search_service = self.set_search_service(dispatcher["search_service_factory"], dispatcher)
         self.register_handlers(dispatcher, router_factory)
         self.logger.info("Registration Completed")
         
     def set_user_dao(self, mongo_service: MongoService, collection) -> UserDAO:
         return UserDAO(mongo_service.get_telegram_database()[collection])
 
-    def set_loader(self, template_service, interaction_type, handler_type):
-        return ComponentsLoader(template_service,interaction_type,handler_type)
+    def set_loader(self, handler_type):
+        return self.loader_controller.get_loader("conversation",handler_type)
+    
+    def set_search_service(self, search_service_factory, dispatcher):
+        return search_service_factory(dispatcher["scraping_service"],dispatcher["mongo_service"],dispatcher["event_emitter"])
 
     def register_handlers(self, dispatcher: Dispatcher, router_factory):
         """Register scenes that are needed to get search paramans from the user"""
-        handlers = SearchParamsHandlers(self.conversation_loader, dispatcher["scraping_service"])
+        handlers = SearchParamsHandlers(self.conversation_loader, self.search_service)
         handlers_router: Router = router_factory()
         commands = self.conversation_loader.get_base_message_template("commands")
         for command in commands:
-            handlers_router.message.register(handlers.search_house, Command(commands=[command]))
+            handlers_router.message.register(handlers.set_search_filters, Command(commands=[command]))
         buttons = self.conversation_loader.get_base_button_template("menu_buttons")
         for button in buttons:
-            handlers_router.message.register(handlers.search_house, F.text == button)
+            handlers_router.message.register(handlers.set_search_filters, F.text == button)
         handlers_router.callback_query.register(handlers.handle_start, F.data == "start")
         handlers_router.callback_query.register(handlers.handle_go_to_search, F.data == "go_to_search")
         handlers_router.callback_query.register(handlers.handle_skip_step, F.data == "skip_step")

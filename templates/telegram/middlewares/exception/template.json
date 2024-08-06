@@ -1,4 +1,5 @@
 {
+    "type":"BaseLoader",
     "message":{
         "telegram_error":{
             "generic":{

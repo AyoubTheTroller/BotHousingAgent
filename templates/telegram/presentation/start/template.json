@@ -1,4 +1,5 @@
 {
+    "type":"ComponentsLoader",
     "message": {
         "welcome": {
             "it": "Benvenuto! Sono qui per aiutarti a trovare la casa perfetta per te.",

@@ -1,7 +1,7 @@
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from app.service.mongodb.dao.user.user_dao import UserDAO
-from app.telegram.handler.loader.base_loader import BaseLoader
+from app.telegram.loader.base_loader import BaseLoader
 from app.telegram.notification.event_emitter import EventEmitter
 
 class AdminHandler:

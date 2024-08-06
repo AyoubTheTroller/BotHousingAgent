@@ -1,4 +1,5 @@
 {
+    "type":"BaseLoader",
     "message":{
         "new_user_subscription": {
             "it": "<b>Nuova Iscrizione!</b>\n\nUn nuovo utente si è iscritto al servizio.\n\n<b>Dettagli Utente:</b>\nUsername: {{user_username}}\n\n/approve_user @{{user_username}}",

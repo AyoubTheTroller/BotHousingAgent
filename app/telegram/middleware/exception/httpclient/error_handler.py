@@ -1,7 +1,7 @@
 from aiohttp.client_exceptions import ClientResponseError
 from aiogram.types import Update
 from app.telegram.middleware.exception.generic.error_handler import GenericErrorHandler
-from app.telegram.handler.loader.base_loader import BaseLoader
+from app.telegram.loader.base_loader import BaseLoader
 
 class HttpClientErrorHandler:
     def __init__(self, loader: BaseLoader, generic_handler: GenericErrorHandler):

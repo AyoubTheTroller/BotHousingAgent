@@ -100,3 +100,6 @@
 ## 0.28.0
 - Added menu buttons and managed handlers for different languages, Tasks_NewBugsIntroducing_2024/08/01_2
 
+## 0.29.0
+- Reworked template loaders for telegram, now created dynamically at startup with a controller and can be accessed throught a dict using keys, Tasks_NewBugsIntroducing_2024/08/05_1
+

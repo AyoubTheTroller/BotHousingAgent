@@ -1,4 +1,5 @@
 {
+    "type":"ComponentsLoader",
     "message":{
         "commands":["set_search_filters","imposta_filtri_ricerca"],
         "start": {

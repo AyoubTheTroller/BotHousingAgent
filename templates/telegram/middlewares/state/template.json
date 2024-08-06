@@ -1,4 +1,5 @@
 {
+    "type":"BaseLoader",
     "message":{
         "start_over":{
             "it":"Questa conversazione è finita. Ti invitiamo ad iniziarne una nuova usando un comando.",

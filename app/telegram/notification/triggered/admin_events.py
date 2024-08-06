@@ -1,9 +1,9 @@
 from aiogram import Bot
-from app.telegram.notification.loader import NotificationLoader
+from app.telegram.loader.base_loader import BaseLoader
 from app.service.mongodb.dao.user.user_dao import UserDAO
 
 class AdminTriggeredNotificationEvent:
-    def __init__(self, loader: NotificationLoader, admin_dao: UserDAO, bot: Bot):
+    def __init__(self, loader: BaseLoader, admin_dao: UserDAO, bot: Bot):
         self.loader = loader
         self.admin_dao = admin_dao
         self.bot = bot

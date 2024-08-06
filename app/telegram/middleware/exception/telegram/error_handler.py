@@ -1,7 +1,7 @@
 from aiogram.exceptions import TelegramAPIError
 from aiogram.types import Update
 from app.telegram.middleware.exception.generic.error_handler import GenericErrorHandler
-from app.telegram.handler.loader.base_loader import BaseLoader
+from app.telegram.loader.base_loader import BaseLoader
 
 class TelegramErrorHandler:
     def __init__(self, loader: BaseLoader, generic_handler: GenericErrorHandler):

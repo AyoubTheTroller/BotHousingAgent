@@ -1,6 +1,6 @@
 import logging
 from aiogram.types import Update
-from app.telegram.handler.loader.base_loader import BaseLoader
+from app.telegram.loader.base_loader import BaseLoader
 
 class GenericErrorHandler:
     def __init__(self, loader: BaseLoader):
@@ -21,3 +21,5 @@ class GenericErrorHandler:
         self.logger.error(error_message)
         if event.message:
             await event.message.answer(await self.loader.get_message_template(state, "generic_error", "generic"))
+        elif event.callback_query:
+            await event.callback_query.answer(await self.loader.get_message_template(state, "generic_error", "generic"))

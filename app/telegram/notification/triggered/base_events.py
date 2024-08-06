@@ -1,9 +1,9 @@
 from aiogram import Bot
-from app.telegram.notification.loader import NotificationLoader
+from app.telegram.loader.base_loader import BaseLoader
 from app.service.mongodb.dao.user.user_dao import UserDAO
 
-class TriggeredNotificationEvent:
-    def __init__(self, loader: NotificationLoader, user_dao: UserDAO, bot: Bot):
+class BaseTriggeredNotificationEvent:
+    def __init__(self, loader: BaseLoader, user_dao: UserDAO, bot: Bot):
         self.loader = loader
         self.user_dao = user_dao
         self.bot = bot

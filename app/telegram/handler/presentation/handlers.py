@@ -1,6 +1,6 @@
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-from app.telegram.handler.loader.components_loader import ComponentsLoader
+from app.telegram.loader.components_loader import ComponentsLoader
 
 class StartHandler:
     def __init__(self, loader: ComponentsLoader):

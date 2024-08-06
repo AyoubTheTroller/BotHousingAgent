@@ -3,6 +3,7 @@ from app.service.mongodb.mongo_service import MongoService
 from app.service.template.telegram.template_service import TelegramTemplateService
 from app.service.template.scraping.template_service import ScrapingTemplateService
 from app.service.scraping.scraping_service import ScrapingService
+from app.service.search.search_service import SearchService
 
 class ServiceContainer(containers.DeclarativeContainer):
 
@@ -33,4 +34,8 @@ class ServiceContainer(containers.DeclarativeContainer):
         ScrapingService,
         scraping_controller=scraping.scraping_controller,
         scraping_template_service=scraping_template_service
+    )
+
+    search_service_factory = providers.Factory(
+        SearchService
     )

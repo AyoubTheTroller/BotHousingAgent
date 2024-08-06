@@ -1,7 +1,7 @@
 from aiogram.types import Message
 from aiogram.types import ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
-from app.telegram.handler.loader.components_loader import ComponentsLoader
+from app.telegram.loader.components_loader import ComponentsLoader
 
 class MenuHandler:
     def __init__(self, loader: ComponentsLoader):

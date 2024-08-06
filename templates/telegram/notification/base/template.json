@@ -1,4 +1,5 @@
 {
+    "type":"BaseLoader",
     "message":{
         "user_approved":{
             "it":"Sei stato approvato da {{admin_username}}; Ora puoi iniziare ad usare il bot.",

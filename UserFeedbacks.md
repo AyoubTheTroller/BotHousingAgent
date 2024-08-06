@@ -17,3 +17,7 @@
 
 - For him it would be better to stick with only one way to get user data, for example if we get them with text then every question should ask user to type, otherwise if we use buttons then everything should be buttons
 - For example for the location would be nice to have a map to input it.
+
+### Waffo
+
+- For only rooms rental would be nice to give the possibility to find rooms specs like if the room is shared with someone else

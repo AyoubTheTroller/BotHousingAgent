@@ -1,4 +1,5 @@
 {
+    "type":"SearchLoader",
     "message":{
         "listing_title": {
             "it": "<b>Titolo:</b> {{title}}\n",

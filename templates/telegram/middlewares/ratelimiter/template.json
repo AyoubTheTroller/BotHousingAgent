@@ -1,4 +1,5 @@
 {
+    "type":"BaseLoader",
     "message":{
         "max_messages":{
             "it":"Hai superato il numero massimo di comandi permessi. Ti invitiamo a riprovare piu tardi #Chillatela",

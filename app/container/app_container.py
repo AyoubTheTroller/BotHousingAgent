@@ -36,11 +36,9 @@ class ApplicationContainer(containers.DeclarativeContainer):
         scraping=scraping
     )
 
-    telegram = providers.Container(
+    telegram: TelegramContainer = providers.Container(
         TelegramContainer,
         config=core.app_config,
-        mongo_service=services.mongo_service,
-        template_service=services.telegram_template_service,
-        scraping_service = services.scraping_service,
+        services=services,
         event_loop=core.event_loop
     )
