@@ -4,28 +4,26 @@ from aiogram.filters import Command
 from app.telegram.loader.loader_controller import LoaderController
 from app.telegram.handler.conversation.handlers import SearchParamsHandlers
 from app.telegram.handler.conversation.handlers import Form
-from app.service.mongodb.mongo_service import MongoService
-from app.service.mongodb.dao.user.user_dao import UserDAO
+from app.service.mongodb.dao_controller_service import DaoControllerService
 
 class ConversationRegister():
 
-    def __init__(self, dispatcher: Dispatcher, router_factory, loader_controller: LoaderController) -> None:
+    def __init__(self, dispatcher: Dispatcher) -> None:
         self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}",)
-        self.loader_controller = loader_controller
-        self.user_dao = self.set_user_dao(dispatcher["mongo_service"],"users")
-        self.conversation_loader = self.set_loader("set_search_params")
+        self.user_dao = self.set_dao(dispatcher["dao_controller_service"],"users")
+        self.conversation_loader = self.set_loader(dispatcher["loader_controller"],"set_search_params")
         self.search_service = self.set_search_service(dispatcher["search_service_factory"], dispatcher)
-        self.register_handlers(dispatcher, router_factory)
+        self.register_handlers(dispatcher, dispatcher["router_factory"])
         self.logger.info("Registration Completed")
-        
-    def set_user_dao(self, mongo_service: MongoService, collection) -> UserDAO:
-        return UserDAO(mongo_service.get_telegram_database()[collection])
 
-    def set_loader(self, handler_type):
-        return self.loader_controller.get_loader("conversation",handler_type)
+    def set_dao(self, dao_controller_service: DaoControllerService, collection):
+        return dao_controller_service.get_dao("telegram",collection)
+
+    def set_loader(self, loader_controller: LoaderController, handler_type):
+        return loader_controller.get_loader("conversation",handler_type)
     
     def set_search_service(self, search_service_factory, dispatcher):
-        return search_service_factory(dispatcher["scraping_service"],dispatcher["mongo_service"],dispatcher["event_emitter"])
+        return search_service_factory(dispatcher["scraping_service"],None,dispatcher["event_emitter"])
 
     def register_handlers(self, dispatcher: Dispatcher, router_factory):
         """Register scenes that are needed to get search paramans from the user"""

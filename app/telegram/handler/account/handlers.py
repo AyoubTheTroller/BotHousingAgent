@@ -29,7 +29,7 @@ class AccountHandler:
                 await message.answer(await self.loader.get_message_template(state, "awaiting_approval", username=message.from_user.username))
         else:
             user_data = {
-                "user_id": user_id,
+                "id": user_id,
                 "username": message.from_user.username,
                 "first_name": message.from_user.first_name,
                 "last_name": message.from_user.last_name,

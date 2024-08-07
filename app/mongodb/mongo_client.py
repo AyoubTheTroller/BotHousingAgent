@@ -35,3 +35,10 @@ class MongoClient():
 
     def get_database(self, db_alias: str):
         return self._databases[db_alias]["collections"]
+    
+    def get_all_collections(self):
+        """Retrieves all collections from all databases."""
+        all_collections = {}
+        for db_alias, db_info in self._databases.items():
+            all_collections[db_alias] = list(db_info["collections"].keys())
+        return all_collections

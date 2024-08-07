@@ -48,7 +48,7 @@ class TelegramContainer(containers.DeclarativeContainer):
         BotController,
         bot=bot,
         loader_controller=loader_controller,
-        mongo_service=services.mongo_service,
+        dao_controller_service=services.dao_controller_service,
         scraping_service=services.scraping_service,
         event_emitter=event_emitter,
         dispatcher=router_dispatcher,

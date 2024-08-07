@@ -44,7 +44,7 @@
 
 ## 2024/08/05
 1) [x] Rework telegram template loaders in order to be created dynamically at startup and not allocated statcally in their handlers register
-2) [ ] Rework MongoDb Daos to load them dynamically at startup 
+2) [x] Rework MongoDb Daos to load them dynamically at startup 
 
 ## 2024/08/06
-1) [ ] Rework ErrorHandlers to make use of inheritance
+1) [x] Rework ErrorHandlers to make use of inheritance

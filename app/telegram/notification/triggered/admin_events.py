@@ -11,4 +11,4 @@ class AdminTriggeredNotificationEvent:
     async def new_user_subscription(self, event_data: dict) -> None:
         admin = await self.admin_dao.get_user_by_username(event_data['admin_username'])
         message = await self.loader.get_message_template(admin.language, "new_user_subscription", user_username=event_data['user_username'])
-        await self.bot.send_message(chat_id=admin.user_id, text=message)
+        await self.bot.send_message(chat_id=admin.id, text=message)

@@ -1,51 +1,39 @@
 from datetime import datetime
-from pymongo.collection import Collection
+from typing import Optional
 from app.telegram.model.user import User
+from app.service.mongodb.dao.base_dao import BaseDAO
 
-class UserDAO:
-    def __init__(self, collection: Collection):
-        self._collection = collection
+class UserDAO(BaseDAO[User]):
 
-    async def get_user_by_id(self, user_id: int) -> User:
-        user_data = await self._collection.find_one({"user_id": user_id})
-        if user_data:
-            return User(**user_data)
-        return None
+    async def get_user_by_id(self, user_id: int) -> Optional[User]:
+        return await self.get_by_id(user_id)
 
-    async def get_user_by_username(self, username: str) -> User:
+    async def get_user_by_username(self, username: str) -> Optional[User]:
         user_data = await self._collection.find_one({"username": username})
         if user_data:
-            return User(**user_data)
+            return self._convert_to_model(user_data)
         return None
     
-    async def get_user_language_by_id(self, user_id: int) -> str:
-        user_data = await self._collection.find_one({"user_id": user_id})
-        if user_data:
-            return User(**user_data).language
+    async def get_user_language_by_id(self, user_id: int) -> Optional[str]:
+        user = await self.get_by_id(user_id)
+        if user:
+            return user.language
         return None
 
     async def add_user(self, user: User) -> None:
-        await self._collection.update_one(
-            {"user_id": user.user_id},
-            {"$set": user.model_dump()},
-            upsert=True
-        )
+        await self.add(user)
 
-    async def update_user_language(self, user_id: int, language) -> None:
-        await self._collection.update_one(
-            {"user_id": user_id},
-            {"$set": {"language": language}}
-        )
-
+    async def update_user_language(self, user_id: int, language: str) -> None:
+        await self.update(user_id, {"language": language})
 
     async def update_user_activity(self, user_id: int) -> None:
-        await self._collection.update_one(
-            {"user_id": user_id},
-            {"$set": {"last_active": datetime.now().isoformat()}}
-        )
+        await self.update(user_id, {"last_active": datetime.now().isoformat()})
 
     async def update_user_authorization(self, user_id: int, authorized: bool) -> None:
-        await self._collection.update_one(
-            {"user_id": user_id},
-            {"$set": {"authorized": authorized}}
-        )
+        await self.update(user_id, {"authorized": authorized})
+
+    def _convert_to_model(self, data: dict) -> User:
+        return User(**data)
+
+    def _convert_to_dict(self, model: User) -> dict:
+        return model.model_dump()

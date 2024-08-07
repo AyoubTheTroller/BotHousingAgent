@@ -9,3 +9,9 @@ class MongoService():
     
     def get_telegram_database(self):
         return self._mongo_client.get_database("telegram")
+    
+    def get_database(self, db_key):
+        return self._mongo_client.get_database(db_key)
+    
+    def get_all_collections(self):
+        return self._mongo_client.get_all_collections()

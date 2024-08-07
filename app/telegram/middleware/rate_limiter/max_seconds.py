@@ -3,7 +3,7 @@ from collections import defaultdict
 from aiogram import BaseMiddleware
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-from app.telegram.handler.loader.base_loader import BaseLoader
+from app.telegram.loader.base_loader import BaseLoader
 
 class RateLimitMiddleware(BaseMiddleware):
     def __init__(self, loader: BaseLoader, rate_limit: int = 5):

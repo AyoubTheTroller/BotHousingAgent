@@ -4,6 +4,7 @@ from app.service.template.telegram.template_service import TelegramTemplateServi
 from app.service.template.scraping.template_service import ScrapingTemplateService
 from app.service.scraping.scraping_service import ScrapingService
 from app.service.search.search_service import SearchService
+from app.service.mongodb.dao_controller_service import DaoControllerService
 
 class ServiceContainer(containers.DeclarativeContainer):
 
@@ -18,6 +19,11 @@ class ServiceContainer(containers.DeclarativeContainer):
     mongo_service = providers.Factory(
         MongoService,
         mongo_client,
+    )
+
+    dao_controller_service = providers.Singleton(
+        DaoControllerService,
+        mongo_client
     )
 
     telegram_template_service = providers.Factory(

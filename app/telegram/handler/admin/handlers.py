@@ -23,12 +23,12 @@ class AdminHandler:
             user = await self.regular_user_dao.get_user_by_username(username)
             if user:
                 if not user.authorized:
-                    await self.regular_user_dao.update_user_authorization(user.user_id, True)
+                    await self.regular_user_dao.update_user_authorization(user.id, True)
                     await message.answer(await self.loader.get_message_template(state, "user_approved", username=username))
                     await self.event_emitter.emit(
                         event_type="user_approved",
                         event_data={
-                            "user_id": user.user_id,
+                            "user_id": user.id,
                             "admin_username": existing_admin_user.username
                         }
                     )

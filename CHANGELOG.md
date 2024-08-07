@@ -106,3 +106,6 @@
 ## 0.30.0
 - Reworked error handling system, now inheritance is used through a centralized error_handler, Tasks_NewBugsIntroducing_2024/08/06_1
 
+## 0.31.0
+- Added DaoControllerService, now all daos are loaded dynamically at startup and are injected when needed. Tasks_NewBugsIntroducing_2024/08/05_2
+
