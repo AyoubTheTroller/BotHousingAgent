@@ -43,5 +43,6 @@ class ServiceContainer(containers.DeclarativeContainer):
     )
 
     search_service_factory = providers.Factory(
-        SearchService
+        SearchService,
+        scraping_service=scraping_service
     )

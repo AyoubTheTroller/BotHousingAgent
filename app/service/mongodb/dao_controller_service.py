@@ -4,11 +4,13 @@ from app.service.mongodb.mongo_service import MongoService
 
 dao_modules = {
     "UserDAO": "app.service.mongodb.dao.user.user_dao",
+    "SearchParamsDAO":"app.service.mongodb.dao.search_params.search_params_dao"
 }
 
 dao_reference = {
     "users":"UserDAO",
     "admins":"UserDAO",
+    "search_params":"SearchParamsDAO"
 }
 
 class DaoControllerService(MongoService):

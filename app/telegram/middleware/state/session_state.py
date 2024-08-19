@@ -23,6 +23,6 @@ class SessionStateMiddleware(BaseMiddleware):
         user = await self.user_dao.get_user_by_id(user_id)
         if user:
             data['language'] = user.language
-            await state.update_data(language=user.language, logged=current_time.isoformat())
+            await state.update_data(language=user.language, logged=current_time.isoformat(), user=user, user_id = user_id)
         
         return await handler(event, data)

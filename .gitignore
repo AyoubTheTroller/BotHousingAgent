@@ -24,3 +24,7 @@ bot_housing_agent.egg-info
 # Config properties
 properties/yaml/config-dev.yml
 properties/yaml/config-prod.yml
+
+# Test global config properties
+test/config_var.py
+app/config_var.py

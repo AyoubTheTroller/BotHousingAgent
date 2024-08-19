@@ -3,7 +3,7 @@
     "message":{
         "user_approved":{
             "it":"Sei stato approvato da {{admin_username}}; Ora puoi iniziare ad usare il bot.",
-            "en":"You have been approved by {{admin_user}}; Now you can start using the bot"
+            "en":"You have been approved by {{admin_username}}; Now you can start using the bot"
         }
     }
 }

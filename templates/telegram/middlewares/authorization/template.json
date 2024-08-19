@@ -2,8 +2,8 @@
     "type":"BaseLoader",
     "message":{
         "not_authorized":{
-            "it":"Non sei autorizzato ad usare questo bot. Iscriviti prima usando il comando /subscribe e attendi l'approvazione",
-            "en":"You are not authorized to use this bot. Subscribe first using /subscribe command and wait for approval"
+            "it":"🤖💬\n\nNon sei autorizzato ad usare questo bot. Iscriviti prima usando il comando /subscribe e attendi l'approvazione",
+            "en":"🤖💬\n\nYou are not authorized to use this bot. Subscribe first using /subscribe command and wait for approval"
         }
     }
 }

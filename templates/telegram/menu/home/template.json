@@ -14,8 +14,8 @@
             "en":"Search House"
         },
         "set_search_filters":{
-            "it":"Imposta Nuovi Filtri",
-            "en":"Set New Filters"
+            "it":"Aggiungi Nuovi Filtri",
+            "en":"Add New Filters"
         }
     },
     "message":{

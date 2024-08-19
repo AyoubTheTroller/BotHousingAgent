@@ -18,6 +18,7 @@ class AuthorizationMiddleware(BaseMiddleware):
         state: FSMContext = data.get('state')
 
         user = await self.user_dao.get_user_by_id(user_id)
+        await self.user_dao.update_user_activity(user_id)
         if user and user.authorized:
             return await handler(event, data)
         else:

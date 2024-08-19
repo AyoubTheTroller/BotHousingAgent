@@ -16,4 +16,4 @@ class HttpClientErrorHandler(ErrorHandler):
 
     async def client_response_error_message(self, error: ClientResponseError, state, **kwargs):
         keys = ["http_client_error","client_response","telegram"]
-        return await self.loader.get_message_template(state,*keys,error.status, **kwargs)
+        return await self.loader.get_message_template(state,*keys,str(error.status), **kwargs)

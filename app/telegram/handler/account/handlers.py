@@ -6,6 +6,7 @@ from app.telegram.loader.components_loader import ComponentsLoader
 from app.telegram.model.user import User
 from app.service.mongodb.dao.user.user_dao import UserDAO
 from app.telegram.notification.event_emitter import EventEmitter
+from app import config_var
 
 class Form(StatesGroup):
     language = State()
@@ -23,10 +24,11 @@ class AccountHandler:
         existing_user = await self.user_dao.get_user_by_id(user_id)
 
         if existing_user:
+            priority_username = message.from_user.username or message.from_user.first_name or message.from_user.last_name
             if existing_user.authorized:
-                await message.answer(await self.loader.get_message_template(state, "already_subscribed", username=message.from_user.username))
+                await message.answer(await self.loader.get_message_template(state, "already_subscribed", username=priority_username))
             else:
-                await message.answer(await self.loader.get_message_template(state, "awaiting_approval", username=message.from_user.username))
+                await message.answer(await self.loader.get_message_template(state, "awaiting_approval", username=priority_username))
         else:
             user_data = {
                 "id": user_id,
@@ -38,15 +40,19 @@ class AccountHandler:
                 "last_active": datetime.now(),
                 "language":"it"
             }
+            event_data={
+                "admin_username": config_var.sys_admin_username
+            }
             user = User(**user_data)
             await self.user_dao.add_user(user)
-            await message.answer(await self.loader.get_message_template(state, "awaiting_approval", username=message.from_user.username))
+            event_data["id"] = message.from_user.id
+            event_data["username"] = message.from_user.username
+            event_data["first_name"] = message.from_user.first_name
+            event_data["last_name"] = message.from_user.last_name
+            await message.answer(await self.loader.get_message_template(state, "awaiting_approval", username=priority_username))
             await self.event_emitter.emit(
                 event_type="new_user_subscription",
-                event_data={
-                    "admin_username": "AyoubTheTroller",
-                    "user_username":message.from_user.username
-                }
+                event_data=event_data
             )
 
     async def set_language(self, message: Message, state: FSMContext):

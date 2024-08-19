@@ -1,0 +1,115 @@
+{
+    "type":"ConversationLoader",
+    "message":{
+        "filters_name":{
+            "it":"🏷️ Filtri: <b>{{filters_name}}</b>\n\n",
+            "en":"🏷️ Filters: <b>{{filters_name}}</b>\n\n"
+        },
+        "home_for_rent":{
+            "it":"Case/Appartamenti in affitto 🏠🔑",
+            "en":"Houses/Apartments for rent 🏠🔑"
+        },
+        "room_for_rent":{
+            "it":"Stanze/Posti Letto in affitto 🛏️🔑",
+            "en":"Rooms/Beds for rent 🛏️🔑"
+        },
+        "home_for_sale":{
+            "it":"Case/Appartamenti in vendita 🏡💵",
+            "en":"Houses/Apartments for sale 🏡💵"
+        },
+        "search_type": {
+            "it": "🔍 Tipo di ricerca: <strong><i>{{search_type}}</i></strong>\n",
+            "en": "🔍 Search type: <strong><i>{{search_type}}</i></strong>\n"
+        },
+        "location": {
+            "it": "📍 Luogo di ricerca: <strong><i>{{location}}</i></strong>\n",
+            "en": "📍 Search location: <strong><i>{{location}}</i></strong>\n"
+        },
+        "max_price": {
+            "it": "💰 Prezzo massimo: <strong><i>{{max_price}}</i></strong>\n",
+            "en": "💰 Max price: <strong><i>{{max_price}}</i></strong>\n"
+        },
+        "min_rooms": {
+            "it": "🚪 Numero minimo di stanze: <strong><i>{{min_rooms}}</i></strong>\n",
+            "en": "🚪 Minimum rooms number: <strong><i>{{min_rooms}}</i></strong>\n"
+        },
+        "max_rooms": {
+            "it": "🚪 Numero massimo di stanze: <strong><i>{{max_rooms}}</i></strong>\n",
+            "en": "🚪 Maximum rooms number: <strong><i>{{max_rooms}}</i></strong>\n"
+        },
+        "bathrooms": {
+            "it": "🛁 Numero minimo di bagni: <strong><i>{{bathrooms}}</i></strong>\n",
+            "en": "🛁 Minimum bathroom number: <strong><i>{{bathrooms}}</i></strong>\n"
+        },
+        "furnished": {
+            "it": "🛋️ Arredato: <strong><i>{{furnished}}</i></strong>\n",
+            "en": "🛋️ Furnished: <strong><i>{{furnished}}</i></strong>\n"
+        },
+        "balcony": {
+            "it": "🏞️ Balcone: <strong><i>{{balcony}}</i></strong>\n",
+            "en": "🏞️ Balcony: <strong><i>{{balcony}}</i></strong>\n"
+        },
+        "terrace": {
+            "it": "🌅 Terrazzo: <strong><i>{{terrace}}</i></strong>\n",
+            "en": "🌅 Terrace: <strong><i>{{terrace}}</i></strong>\n"
+        },
+        "pool": {
+            "it": "🏊 Piscina: <strong><i>{{pool}}</i></strong>\n",
+            "en": "🏊 Pool: <strong><i>{{pool}}</i></strong>\n"
+        },
+        "cellar": {
+            "it": "🍷 Cantina: <strong><i>{{cellar}}</i></strong>\n",
+            "en": "🍷 Cellar: <strong><i>{{cellar}}</i></strong>\n"
+        },        
+        "true":{
+            "it":"👍 Si",
+            "en":"👍 Yes"
+        },
+        "false":{
+            "it":"👎 No",
+            "en":"👎 No"
+        },
+        "saved_filters":{
+            "it": "🤖💬\n\n<b>I tuoi filtri di ricerca salvati</b>\n\n⬇️⬇️ ⬇️⬇️ ⬇️⬇️ ⬇️⬇️ ⬇️⬇️",
+            "en": "🤖💬\n\n<b>Your saved search filters</b>\n\n⬇️⬇️ ⬇️⬇️ ⬇️⬇️ ⬇️⬇️ ⬇️⬇️"
+        },
+        "delete_confirmation":{
+            "it":"🤖💬\n\nSei sicuro di rimuovere i seguenti filtri?\n 🏷️ <b>{{filters_name}}</b>",
+            "en":"🤖💬\n\nAre you sure to remove below filters?\n 🏷️ <b>{{filters_name}}</b>"
+        },
+        "successfull_removal":{
+            "it":"🤖💬\n\nFiltri 🏷️ <b>{{filters_name}}</b> cancellati con successo ✅\n\n",
+            "en":"🤖💬\n\nFilters 🏷️ <b>{{filters_name}}</b> cancelled succesfully ✅"
+        },
+        "cancelled_removal":{
+            "it":"🤖💬\n\nRimozione annullata ❌",
+            "en":"🤖💬\n\nRemoval cancelled ❌"
+        }
+    },
+    "button":{
+        "start_search":{
+            "it":"🔍 Inizia ricerca 🏠",
+            "en":"🔍 Start Search 🏠"
+        },
+        "delete_filters":{
+            "it":"🗑️ Rimuovi filtri 🏷️",
+            "en":"🗑️ Remove filters 🏷️"
+        },
+        "true":{
+            "it":"✅ Si",
+            "en":"✅ Yes"
+        },
+        "false":{
+            "it":"❌ No",
+            "en":"❌ No"
+        },
+        "yes":{
+            "it":"✅ - Si",
+            "en":"✅ - Yes"
+        },
+        "no":{
+            "it":"❌ - No",
+            "en":"❌ - No"
+        }
+    }
+}

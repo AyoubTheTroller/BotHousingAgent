@@ -1,0 +1,173 @@
+{
+    "type":"ConversationLoader",
+    "message":{
+        "commands":["add_new_search_filters","aggiungi_nuovi_filtri_ricerca"],
+        "start": {
+            "it": "🤖💬\n\nBenvenuto! Ti aiuterò a trovare una casa.\nQuando sei pronto premi il pulsante di seguito e ti chiederò alcune informazioni necessarie per la ricerca, ad esempio località, prezzo, numero stanze ecc.",
+            "en": "🤖💬\n\nWelcome! I'm here to help you find a home.\nClick the button below when you're ready, and I'll ask for details like location, price, and rooms."
+        },
+        "get_search_type":{
+            "it":"🤖💬\n\n🔍 Seleziona il tipo di ricerca",
+            "en":"🤖💬\n\n🔍 Select the type of search"
+        },
+        "get_city":{
+            "it":"🤖💬\n\n📍 Inserisci il luogo",
+            "en":"🤖💬\n\n📍 Enter the location"
+        },
+        "get_max_price": {
+            "it": "🤖💬\n\n💵 Al massimo quanto vuoi spendere (in euro)? (Esempio: 600)",
+            "en": "🤖💬\n\n💵 What's your maximum budget (in euros)? (Example: 600)"
+        },
+        "get_min_rooms":{
+            "it":"🤖💬\n\n🚪Numero minimo di stanze?",
+            "en":"🤖💬\n\n🚪Minum rooms number?"
+        },
+        "get_max_rooms":{
+            "it":"🤖💬\n\n🚪Numero massimo di stanze?",
+            "en":"🤖💬\n\n🚪Maximum rooms number?"
+        },
+        "get_n_bathrooms":{
+            "it":"🤖💬\n\n🛁 Numero minimo di bagni?",
+            "en":"🤖💬\n\n🛁 Minimum bathroom number?"
+        },
+        "get_furnished":{
+            "it":"🤖💬\n\n🛋️ La proprietà deve essere arredata? (si/no)",
+            "en":"🤖💬\n\n🛋️ Is the property furnished? (yes/no)"
+        },
+        "get_balcony":{
+            "it":"🤖💬\n\n🏞️ Hai bisogno di un balcone?",
+            "en":"🤖💬\n\n🏞️ Do you need a balcony?"
+        },
+        "get_terrace":{
+            "it":"🤖💬\n\n🌅 ai bisogno di un terrazzo?",
+            "en":"🤖💬\n\n🌅 Do you need a terrace?"
+        },
+        "get_pool":{
+            "it":"🤖💬\n\n🏊 Hai bisogno di una piscina?",
+            "en":"🤖💬\n\n🏊 Do you need a pool?"
+        },
+        "get_cellar":{
+            "it":"🤖💬\n\n🍷 Hai bisogno di una cantina?",
+            "en":"🤖💬\n\n🍷 Do you need a cellar?"
+        },
+        "invalid_price": {
+            "it": "🤖💬\n\n❌ Il prezzo deve essere un numero intero positivo. (Esempio: 500)",
+            "en": "🤖💬\n\n❌ Price must be a positive integer. (Example: 500)"
+        },
+        "home_for_rent":{
+            "it":"Case/Appartamenti in affitto 🏠🔑",
+            "en":"Houses/Apartments for rent 🏠🔑"
+        },
+        "room_for_rent":{
+            "it":"Stanze/Posti Letto in affitto 🛏️🔑",
+            "en":"Rooms/Beds for rent 🛏️🔑"
+        },
+        "home_for_sale":{
+            "it":"Case/Appartamenti in vendita 🏡💵",
+            "en":"Houses/Apartments for sale 🏡💵"
+        },
+        "search_type": {
+            "it": "🔍 Tipo di ricerca: <strong><i>{{search_type}}</i></strong>\n",
+            "en": "🔍 Search type: <strong><i>{{search_type}}</i></strong>\n"
+        },
+        "location": {
+            "it": "📍 Luogo di ricerca: <strong><i>{{location}}</i></strong>\n",
+            "en": "📍 Search location: <strong><i>{{location}}</i></strong>\n"
+        },
+        "max_price": {
+            "it": "💰 Prezzo massimo: <strong><i>{{max_price}}</i></strong>\n",
+            "en": "💰 Max price: <strong><i>{{max_price}}</i></strong>\n"
+        },
+        "min_rooms": {
+            "it": "🚪 Numero minimo di stanze: <strong><i>{{min_rooms}}</i></strong>\n",
+            "en": "🚪 Minimum rooms number: <strong><i>{{min_rooms}}</i></strong>\n"
+        },
+        "max_rooms": {
+            "it": "🚪 Numero massimo di stanze: <strong><i>{{max_rooms}}</i></strong>\n",
+            "en": "🚪 Maximum rooms number: <strong><i>{{max_rooms}}</i></strong>\n"
+        },
+        "bathrooms": {
+            "it": "🛁 Numero minimo di bagni: <strong><i>{{bathrooms}}</i></strong>\n",
+            "en": "🛁 Minimum bathroom number: <strong><i>{{bathrooms}}</i></strong>\n"
+        },
+        "furnished": {
+            "it": "🛋️ Arredato: <strong><i>{{furnished}}</i></strong>\n",
+            "en": "🛋️ Furnished: <strong><i>{{furnished}}</i></strong>\n"
+        },
+        "balcony": {
+            "it": "🏞️ Balcone: <strong><i>{{balcony}}</i></strong>\n",
+            "en": "🏞️ Balcony: <strong><i>{{balcony}}</i></strong>\n"
+        },
+        "terrace": {
+            "it": "🌅 Terrazzo: <strong><i>{{terrace}}</i></strong>\n",
+            "en": "🌅 Terrace: <strong><i>{{terrace}}</i></strong>\n"
+        },
+        "pool": {
+            "it": "🏊 Piscina: <strong><i>{{pool}}</i></strong>\n",
+            "en": "🏊 Pool: <strong><i>{{pool}}</i></strong>\n"
+        },
+        "cellar": {
+            "it": "🍷 Cantina: <strong><i>{{cellar}}</i></strong>\n",
+            "en": "🍷 Cellar: <strong><i>{{cellar}}</i></strong>\n"
+        },        
+        "true":{
+            "it":"👍 Si",
+            "en":"👍 Yes"
+        },
+        "false":{
+            "it":"👎 No",
+            "en":"👎 No"
+        },
+        "filters":{
+            "it":"🏷️ <b>Filtri per la ricerca</b> 🏷️\n\n",
+            "en":"🏷️ <b>Search filters</b> 🏷️\n\n"
+        },
+        "confirm":{
+            "it": "🤖💬\n\nSe i filtri di ricerca sono corretti, premi <b>'Salva'</b> per salvarli oppure premi <b>'Inizia Ricerca'</b> per procedere senza salvare. Altrimenti, torna indietro per apportare modifiche.",
+            "en": "🤖💬\n\nIf the search filters are correct, press <b>'Save'</b> to save them or press <b>'Start Search'</b> to proceed without saving. Otherwise, go back to make changes."
+        },
+        "filter_name":{
+            "it":"🤖💬\n\nScegli un nome personalizzato per i filtri.\nPer esempio: <b>{{filter_name}}</b>",
+            "en":"🤖💬\n\nChoose a custom name for the filters.\nFor example: <b>{{filter_name}}</b>"
+        },
+        "filter_saved":{
+            "it":"🤖💬\n\nPerfetto, il filtro <strong><i>{{filter}}</i></strong> è stato salvato correttamente, quando pronto premi <b>'Inizia Ricerca'</b>",
+            "en":"🤖💬\n\nPerfect, the filter <strong><i>{{filter}}</i></strong> was saved correctly, when ready click <b>'Start Search'</b>"
+        }
+    },
+    "button":{
+        "menu_buttons":["Imposta Nuovi Filtri", "Set New Filters"],
+        "yes_no":{
+            "it":["👍 si.true","👎 no.false","🤷 indifferente.false"],
+            "en":["👍 yes.true","👎 no.false","🤷 same.false"]
+        },
+        "go_to_form":{
+            "it":"📝 Vai al modulo",
+            "en":"📝 Go to form"
+        },
+        "skip_step":{
+            "it":"⏩ Salta questo passaggio",
+            "en":"⏩ Skip this step"
+        },
+        "review_params":{
+            "it":"✔️ Filtri necessari aggiunti, Procedi!",
+            "en":"✔️ Necessary Filters Added, Proceed!"
+        },
+        "go_prev_step":{
+            "it":"⏪ Torna alla domanda precedente",
+            "en":"⏪ Go back to previous question"
+        },
+        "get_search_type": {
+            "it": ["Case/Appartamenti in affitto 🏠🔑.home_for_rent", "Stanze/Posti Letto in affitto 🛏️🔑.room_for_rent", "Case/Appartamenti in vendita 🏡💵.home_for_sale"],
+            "en": ["Houses/Apartments for rent 🏠🔑.home_for_rent", "Rooms/Beds for rent 🛏️🔑.room_for_rent", "Houses/Apartments for sale 🏡💵.home_for_sale"]
+        },
+        "save_search_params":{
+            "it":"💾 Salva filtri di ricerca 🏷️",
+            "en":"💾 Save search filters 🏷️"
+        },
+        "start_search":{
+            "it":"🔍 Inizia ricerca 🏠",
+            "en":"🔍 Start Search 🏠"
+        }
+    }
+}

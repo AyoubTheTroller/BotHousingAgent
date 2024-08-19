@@ -109,3 +109,6 @@
 ## 0.31.0
 - Added DaoControllerService, now all daos are loaded dynamically at startup and are injected when needed. Tasks_NewBugsIntroducing_2024/08/05_2
 
+## 0.32.0
+- Added handlers to store and use user search parameters for the search, added new exception handler for dao operations, even_emitter now saves telegram message and query handlers, Tasks_NewBugsIntroducing_2024/08/01_1
+

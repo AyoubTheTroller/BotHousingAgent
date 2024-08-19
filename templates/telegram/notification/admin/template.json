@@ -2,8 +2,12 @@
     "type":"BaseLoader",
     "message":{
         "new_user_subscription": {
-            "it": "<b>Nuova Iscrizione!</b>\n\nUn nuovo utente si è iscritto al servizio.\n\n<b>Dettagli Utente:</b>\nUsername: {{user_username}}\n\n/approve_user @{{user_username}}",
-            "en": "<b>New Subscription!</b>\n\nA new user has subscribed to the service.\n\n<b>User Details:</b>\nUsername: {{user_username}}\n\n/approve_user @{{user_username}}"
+            "it": "🤖💬\n\n<b>Nuova Iscrizione!</b>\n\nUn nuovo utente si è iscritto al servizio.\n\n<b>Dettagli Utente:</b>\nUsername: {{username}}\nNome: {{first_name}}\nCognome: {{last_name}}\n\n/approve_user @{{id_or_username}}",
+            "en": "🤖💬\n\n<b>New Subscription!</b>\n\nA new user has subscribed to the service.\n\n<b>User Details:</b>\nUsername: {{username}}\nFirst name: {{first_name}}\nLast name: {{last_name}}\n\n/approve_user @{{id_or_username}}"
+        },
+        "not_set":{
+            "it":"Non impostato",
+            "en":"Not set"
         }
     }
 }

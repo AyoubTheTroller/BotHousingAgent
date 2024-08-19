@@ -19,12 +19,15 @@ class AdminHandler:
         user_id = message.from_user.id
         existing_admin_user = await self.admin_user_dao.get_user_by_id(user_id)
         if existing_admin_user.authorized:
-            username = message.text.split()[1].lstrip('@')
-            user = await self.regular_user_dao.get_user_by_username(username)
+            id_or_username = message.text.split()[1].lstrip('@')
+            if id_or_username.isdigit():
+                user = await self.regular_user_dao.get_user_by_id(int(id_or_username))
+            else:
+                user = await self.regular_user_dao.get_user_by_username(id_or_username)
             if user:
                 if not user.authorized:
                     await self.regular_user_dao.update_user_authorization(user.id, True)
-                    await message.answer(await self.loader.get_message_template(state, "user_approved", username=username))
+                    await message.answer(await self.loader.get_message_template(state, "user_approved", username=id_or_username))
                     await self.event_emitter.emit(
                         event_type="user_approved",
                         event_data={
@@ -33,8 +36,8 @@ class AdminHandler:
                         }
                     )
                 elif user.authorized:
-                    await message.answer(await self.loader.get_message_template(state, "user_already_approved", username=username))
+                    await message.answer(await self.loader.get_message_template(state, "user_already_approved", username=id_or_username))
             else:
-                await message.answer(await self.loader.get_message_template(state, "user_not_found", username=username))
+                await message.answer(await self.loader.get_message_template(state, "user_not_found", username=id_or_username))
         else:
             await message.answer(await self.loader.get_message_template(state, "not_authorized"))

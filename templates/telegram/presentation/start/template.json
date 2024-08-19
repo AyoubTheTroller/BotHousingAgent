@@ -2,16 +2,16 @@
     "type":"ComponentsLoader",
     "message": {
         "welcome": {
-            "it": "Benvenuto! Sono qui per aiutarti a trovare la casa perfetta per te.",
-            "en": "Welcome! I'm here to help you find the perfect home."
+            "it": "🤖💬\n\nBenvenuto! Sono qui per aiutarti a trovare la casa perfetta per te.",
+            "en": "🤖💬\n\nWelcome! I'm here to help you find the perfect home."
         },
         "instructions": {
-            "it": "Utilizza i pulsanti qui sotto per navigare tra le varie opzioni o digita un comando.",
-            "en": "Use the buttons below to navigate through the options or type a command."
+            "it": "Utilizza i pulsanti qui sotto per navigare tra le varie opzioni o digita un comando.\n👇",
+            "en": "Use the buttons below to navigate through the options or type a command.\n👇"
         },
         "commands": {
-            "it": "Comandi disponibili:\n/start - Introduzione al Bot\n/subscribe - Iscrivi per avere accesso al bot\n/set_language - Imposta lingua preferita (it/en)\n/search_house - Inizia una nuova ricerca di casa\n/show_menu - Mostra menu con bottoni interattivi - (Beta feature)\n/hide_menu - Nasconde menu con bottoni interattivi",
-            "en": "Available commands:\n/start - Bot introduction\n/subscribe - Subscribe to get bot access\n/set_language - Set preferred language (it/en)\n/search_house - Start a new home search\n/show_menu - Shows a menu with interactive buttons - (Beta feature)\n/hide_menu - Hides interactive buttons menu"
+            "it": "/start - 🤖👋 Introduzione al Bot\n/subscribe - 📝 Iscriviti per avere accesso al bot\n/start_home_search - 🔍 Inizia una nuova ricerca di casa 🏠\n/add_new_search_filters - ➕ Aggiungi nuovi filtri di ricerca 🏷️\n/show_search_filters - 💾 Mostra i tuoi filtri di ricerca 🎛️\n/stop_search - 🛑 Interrompi la ricerca di case\n/set_language - 🌐 Imposta la lingua preferita (it/en)",
+            "en": "Available commands:\n/start - 🤖👋 Bot introduction\n/subscribe - 📝 Subscribe to get bot access\n/start_home_search - 🔍 Start a new home search 🏠\n/add_new_search_filters - ➕ Add new search filters 🏷️\n/show_search_filters - 💾 Shows your search filters 🎛️\n/stop_search - 🛑 Stops home search\n/set_language - 🌐 Set preferred language (it/en)"
         }
     }
 }

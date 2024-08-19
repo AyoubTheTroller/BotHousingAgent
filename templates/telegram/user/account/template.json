@@ -2,30 +2,30 @@
     "type":"ComponentsLoader",
     "message":{
         "welcome":{
-            "it":"Benvenuto, {{username}}! L'iscrizione è stata completata con successo.",
-            "en":"Welcome, {{username}}! You have been successfully subscribed."
+            "it":"🤖💬\n\nBenvenuto, {{username}}! L'iscrizione è stata completata con successo.",
+            "en":"🤖💬\n\nWelcome, {{username}}! You have been successfully subscribed."
         },
         "already_subscribed":{
-            "it":"Ciao, {{username}}! Sei già iscritto.",
-            "en":"Hello, {{username}}! You are already subscribed."
+            "it":"🤖💬\n\nCiao, {{username}}! Sei già iscritto.",
+            "en":"🤖💬\n\nHello, {{username}}! You are already subscribed."
         },
         "awaiting_approval":{
-            "it":"Ciao, {{username}}! La tua richiesta di iscrizione è stata ricevuta. Ti preghiamo di attendere l'approvazione.",
-            "en":"Hello, {{username}}! Your subscription request has been received. Please wait for admin approval."
+            "it":"🤖💬\n\n Ciao, {{username}}! La tua richiesta di iscrizione è stata ricevuta. Ti preghiamo di attendere l'approvazione.",
+            "en":"🤖💬\n\nHello, {{username}}! Your subscription request has been received. Please wait for admin approval."
         },
         "set_language":{
-            "it":"Scegli una lingua preferita",
-            "en":"Choose a preferred language"
+            "it":"🤖💬\n\n🌐 Scegli una lingua preferita",
+            "en":"🤖💬\n\n🌐 Choose a preferred language"
         },
         "language_updated":{
-            "it":"Lingua preferita impostata",
-            "en":"Preferred language set"
+            "it":"🤖💬\n\nLingua preferita impostata. ✅",
+            "en":"🤖💬\n\nPreferred language set. ✅"
         }
     },
     "button":{
         "languages":{
-            "it":["Italiano-it","Inglese-en"],
-            "en":["Italian-it","English-en"]
+            "it":["🇮🇹 Italiano-it","🇬🇧 Inglese-en"],
+            "en":["🇮🇹 Italian-it","🇬🇧 English-en"]
         }
     }
 }

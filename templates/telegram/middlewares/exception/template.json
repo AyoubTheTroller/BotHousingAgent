@@ -30,6 +30,28 @@
                     }
                 }
             }
+        },
+        "dao_error":{
+            "generic":{
+                "it":"Si è verificato un errore durante il salvataggio, Per favore riprova più tardi.",
+                "en":"An unexpected error occurred while saving. Please try again later."
+            },
+            "user_update_error":{
+                "duplicated_filter_name": {
+                    "it": "Hai già utilizzato questo nome per un altro filtro. Per favore, scegline un altro.",
+                    "en": "You've already used this name for another filter. Please choose a different one."
+                }
+            },
+            "user_data_not_found_error":{
+                "search_param_not_found": {
+                    "it": "I filtri di ricerca con il nome fornito non sono stati trovati.",
+                    "en": "The search filters with the provided name were not found."
+                },
+                "no_search_params_saved": {
+                    "it": "Nessun filtro di ricerca salvato, aggiungine uno usando il comando /add_new_search_filters",
+                    "en": "No search filters saved. Add one using the command /add_new_search_filters"
+                }
+            }
         }
     }
 }

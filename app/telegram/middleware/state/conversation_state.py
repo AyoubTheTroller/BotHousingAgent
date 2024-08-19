@@ -9,26 +9,29 @@ class Form(StatesGroup):
 
 
 class ConversationStateMiddleware(BaseMiddleware):
-    def __init__(self, loader: BaseLoader, session_time = 5):
+    def __init__(self, loader: BaseLoader, session_time=5):
         self.loader = loader
         self.session_time = session_time
+        self.text_commands = self.loader.get_base_message_template("text_commands")
+        self.preserve_state_commands = {"/stop_search"}
 
     async def __call__(self, handler, event, data: dict):
         state: FSMContext = data.get('state')
 
         if isinstance(event, Message) and event.text.startswith("/"):
-            # If it's a command, clear the state to start a new conversation
-            await state.clear()
+            if event.text not in self.preserve_state_commands:
+                await state.clear()
             return await handler(event, data)
 
         if isinstance(event, (Message, CallbackQuery)):
             current_state = await state.get_state()
-            if current_state == Form.end:
+            if current_state == Form.end or current_state is None:
                 if isinstance(event, Message):
-                    await event.answer(await self.loader.get_message_template(state, "start_over"))
+                    if event.text not in self.text_commands:
+                        await event.answer(await self.loader.get_message_template(state, "start_over"))
+                        return
                 elif isinstance(event, CallbackQuery):
                     await event.answer(await self.loader.get_message_template(state, "start_over"))
-                return
-        
+                    return
+
         return await handler(event, data)
-    

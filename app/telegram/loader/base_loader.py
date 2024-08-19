@@ -11,7 +11,7 @@ class BaseLoader():
         self.interaction_type = interaction_type
         self.handler_type = handler_type
 
-    async def _get_language(self, state: FSMContext):
+    async def get_language(self, state: FSMContext):
         if state:
             user_data = await state.get_data()
             return user_data.get('language')
@@ -28,12 +28,12 @@ class BaseLoader():
 
     async def get_message_template(self, state: FSMContext, *keys,  **kwargs):
         """Helper function to return the message from a template."""
-        language = await self._get_language(state)
+        language = await self.get_language(state)
         return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "message", *keys, **kwargs)
     
     async def get_keyboard_button_template(self, state: FSMContext, *keys, **kwargs):
         """Helper function to return the array of keyboard templates"""
-        language = await self._get_language(state)
+        language = await self.get_language(state)
         return await self.template_service.render_template(language, self.interaction_type, self.handler_type, "button", *keys, **kwargs)
 
     async def get_message_template_by_lang(self, language:str, *keys,  **kwargs):

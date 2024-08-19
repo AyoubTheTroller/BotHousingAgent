@@ -1,0 +1,95 @@
+{
+    "type":"SearchLoader",
+    "message":{
+        "url_link": {
+            "it": "🤖💬\n\nSe vuoi consultare gli annunci in autonomia puoi utilizzare il link di seguito per la ricerca\n\n{{url}}\n",
+            "en": "🤖💬\n\nIf you'd like to browse listings on your own, use the link below:\n\n{{url}}\n"
+        },
+        "searching":{
+            "it":"🤖💬\n\n📡 Ricerca iniziata",
+            "en":"🤖💬\n\n📡 Search started"  
+        },
+        "no_listings_found": {
+            "it": "🤖💬\n\nSpiacente, non sono stati trovati annunci che corrispondono alle tue preferenze. Ti invitiamo a riprovare con altri criteri di ricerca.",
+            "en": "🤖💬\n\nSorry, no listings were found that match your preferences. Please try again with different search criteria or contact."
+        },
+        "search_completed":{
+            "it":"🤖💬\n\nRicerca completata ✅",
+            "en":"🤖💬\n\nSearch completed ✅"
+        },
+        "search_stopped":{
+            "it":"Ricerca fermata 🛑",
+            "en":"Search stopped 🛑"
+        },
+        "listing_title": {
+            "it": "🏷️ <b>Titolo:</b> {{title}}\n",
+            "en": "🏷️ <b>Title:</b> {{title}}\n"
+        },
+        "listing_price_formatted": {
+            "it": "💰 <b>Prezzo:</b> {{price_formatted}}\n",
+            "en": "💰 <b>Price:</b> {{price_formatted}}\n"
+        },
+        "listing_url": {
+            "it": "🔗 <b>Link:</b> <a href=\"{{url}}\">Dettagli</a>\n",
+            "en": "🔗 <b>Link:</b> <a href=\"{{url}}\">Details</a>\n"
+        },
+        "listing_city_name": {
+            "it": "🏙️ <b>Città:</b> {{city_name}}\n",
+            "en": "🏙️ <b>City:</b> {{city_name}}\n"
+        },
+        "listing_city_zone": {
+            "it": "📍 <b>Zona:</b> {{city_zone}}\n",
+            "en": "📍 <b>Zone:</b> {{city_zone}}\n"
+        },
+        "listing_bathrooms": {
+            "it": "🚿 <b>Bagni:</b> {{bathrooms}}\n",
+            "en": "🚿 <b>Bathrooms:</b> {{bathrooms}}\n"
+        },
+        "listing_rooms": {
+            "it": "🚪 <b>Camere:</b> {{rooms}}\n",
+            "en": "🚪 <b>Rooms:</b> {{rooms}}\n"
+        },
+        "listing_bedrooms": {
+            "it": "🛏️ <b>Camere da letto:</b> {{bedrooms}}\n",
+            "en": "🛏️ <b>Bedrooms:</b> {{bedrooms}}\n"
+        },
+        "listing_surface": {
+            "it": "📐 <b>Superficie:</b> {{surface}}\n",
+            "en": "📐 <b>Surface:</b> {{surface}}\n"
+        },
+        "listing_agency_name": {
+            "it": "🏢 <b>Agenzia:</b> {{agency_name}}\n",
+            "en": "🏢 <b>Agency:</b> {{agency_name}}\n"
+        },
+        "listing_agency_phone": {
+            "it": "📞 <b>Telefono Agenzia:</b> <strong><i>+39 {{agency_phone}}</i></strong>\n",
+            "en": "📞 <b>Agency Phone:</b> <strong><i>+39 {{agency_phone}}</i></strong>\n"
+        },
+        "listing_agent_name": {
+            "it": "👤 <b>Agente immobiliare:</b> {{agent_name}}\n",
+            "en": "👤 <b>Agent:</b> {{agent_name}}\n"
+        },
+        "listing_agent_phone": {
+            "it": "📞 <b>Telefono agente:</b> <strong><i>+39 {{agent_phone}}</i></strong>\n",
+            "en": "📞 <b>Agent Phone:</b> <strong><i>+39 {{agent_phone}}</i></strong>\n"
+        }  
+    },
+    "button":{
+        "view_details":{
+            "it":"➕ Maggiori informazioni",
+            "en":"➕ View Details"
+        },
+        "view_private_phone":{
+            "it":"📱 Mostra numero privato",
+            "en":"📱 View private number"
+        },
+        "start_search":{
+            "it":"Inizia ricerca automatica",
+            "en":"Start automated search"
+        },
+        "stop_search":{
+            "it":"🛑 Ferma ricerca automatica",
+            "en":"🛑 Stop automated search"
+        }   
+    }
+}

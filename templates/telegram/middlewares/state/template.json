@@ -1,6 +1,7 @@
 {
     "type":"BaseLoader",
     "message":{
+        "text_commands":["Add New Filters","Aggiunti Nuovi Filtri","Search House","Trova casa"],
         "start_over":{
             "it":"Questa conversazione è finita. Ti invitiamo ad iniziarne una nuova usando un comando.",
             "en":"This conversation has ended. Please start a new one by using a command."

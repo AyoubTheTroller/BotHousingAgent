@@ -1,0 +1,21 @@
+from aiogram.fsm.state import State, StatesGroup
+
+class Form(StatesGroup):
+    go_to_form = State()
+    search_type = State()
+    location = State()
+    max_price = State()
+    min_rooms = State()
+    max_rooms = State()
+    n_bathrooms = State()
+    appartment_type = State()
+    furnished = State()
+    balcony = State()
+    terrace = State()
+    pool = State()
+    cellar = State()
+    review_search_params = State()
+    custom_name = State()
+    save_search_params = State()
+    searching = State()
+    end = State()

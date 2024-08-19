@@ -4,7 +4,8 @@ from app.service.template.telegram.template_service import TelegramTemplateServi
 loaders_module = {
     "BaseLoader": "app.telegram.loader.base_loader",
     "ComponentsLoader":"app.telegram.loader.components_loader",
-    "SearchLoader":"app.telegram.loader.search_loader"
+    "SearchLoader":"app.telegram.loader.search_loader",
+    "ConversationLoader":"app.telegram.loader.conversation_loader"
 }
 
 class LoaderController():

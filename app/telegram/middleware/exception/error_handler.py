@@ -22,9 +22,9 @@ class ErrorHandler:
 
     async def send_error_message(self, event, response_message: str):
         if isinstance(event, CallbackQuery):
-            await self.handle_message_event(event, response_message)
-        elif isinstance(event, Message):
             await self.handle_callback_query_event(event, response_message)
+        elif isinstance(event, Message):
+            await self.handle_message_event(event, response_message)
         elif isinstance(event, Update):
             if event.message:
                 await self.handle_message_event(event.message, response_message)
@@ -37,4 +37,4 @@ class ErrorHandler:
         await message.answer(response_message)
 
     async def handle_callback_query_event(self, callback_query: CallbackQuery, response_message):
-        await callback_query.answer(response_message)
+        await callback_query.message.answer(response_message)

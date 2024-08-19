@@ -16,7 +16,7 @@ class SearchLoader(ComponentsLoader):
     async def load_listing_with_keyboard(self, listing: Listing, language: str) -> InlineKeyboardMarkup:
         keyboard_markup = InlineKeyboardMarkup(inline_keyboard=[])
         keyboard_markup.inline_keyboard.append([InlineKeyboardButton(
-            text=await super().get_keyboard_button_template_by_lang(language, "view_details"), url=listing.url)])
+            text=await self.get_keyboard_button_template_by_lang(language, "view_details"), url=listing.url)])
         if listing.agency_phones:
             for phone in listing.agency_phones:
                 if phone is not None:
@@ -27,7 +27,7 @@ class SearchLoader(ComponentsLoader):
                     keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=f"+39 {phone}", callback_data=f"contact_{phone}")])
         elif listing.private_phone:
             keyboard_markup.inline_keyboard.append([InlineKeyboardButton(
-                          text=await super().get_keyboard_button_template_by_lang(language, "view_private_phone"), url=listing.private_phone)])
+                          text=await self.get_keyboard_button_template_by_lang(language, "view_private_phone"), url=listing.private_phone)])
         return keyboard_markup
     
     async def load_listing_message(self, listing: Listing, language: str) -> str:
@@ -48,17 +48,17 @@ class SearchLoader(ComponentsLoader):
         for key, value in fields.items():
             if value is not None:
                 template_key = f"listing_{key}"
-                message_part = await super().get_message_template_by_lang(language, template_key, **{key: value})
+                message_part = await self.get_message_template_by_lang(language, template_key, **{key: value})
                 message_parts.append(message_part)
 
         # Handling phone numbers
         if listing.agency_phones:
             for phone in listing.agency_phones:
                 if phone is not None:
-                    message_parts.append(await super().get_message_template_by_lang(language, "listing_agency_phone", agency_phone=phone))
-        elif listing.agency_phones:
-            for phone in listing.agency_phones:
+                    message_parts.append(await self.get_message_template_by_lang(language, "listing_agency_phone", agency_phone=phone))
+        elif listing.agent_phones:
+            for phone in listing.agent_phones:
                 if phone is not None:
-                    message_parts.append(await super().get_message_template_by_lang(language, "listing_agent_phone", private_phone=phone))
+                    message_parts.append(await self.get_message_template_by_lang(language, "listing_agent_phone", private_phone=phone))
 
         return ''.join(filter(None, message_parts))

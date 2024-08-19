@@ -39,7 +39,7 @@
 1) [x] Add a button to let user going to the previous question in search params handler
 
 ## 2024/08/01
-1) [ ] Add functionality to store and use in future searches user search preferences.
+1) [x] Add functionality to store and use in future searches user search preferences.
 2) [x] Add menu buttons and commands for different languages
 
 ## 2024/08/05
@@ -48,3 +48,6 @@
 
 ## 2024/08/06
 1) [x] Rework ErrorHandlers to make use of inheritance
+
+## 2024/08/19
+1) [ ] Save listings found to add scheduled search for new listings only

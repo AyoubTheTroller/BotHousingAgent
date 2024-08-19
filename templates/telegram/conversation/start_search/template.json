@@ -1,0 +1,27 @@
+{
+    "type":"ConversationLoader",
+    "message":{
+        "search_filters":{
+            "it": "🤖💬\n\nPer iniziare una ricerca, puoi usare nuovi filtri di ricerca altrimenti puoi scegliere filtri salvati in precedenza",
+            "en": "🤖💬\n\nTo start your search, you can use new search filters otherwise you can choose from filters saved before."
+        },
+        "stopping_search":{
+            "it":"🤖💬\n\n⏳ Fermando ricerca",
+            "en":"🤖💬\n\n⏳ Stopping search"
+        },
+        "no_active_search":{
+            "it":"🤖💬\n\nNessuna ricerca attiva da fermare. Inizia una ricerca prima.",
+            "en":"🤖💬\n\nNo active search to stop. Please start a search first."
+        }
+    },
+    "button":{
+        "use_new_filters":{
+            "it":"➕ Usa nuovi filtri di ricerca 🏷️",
+            "en":"➕ Use new search filters 🏷️"
+        },
+        "show_saved_filters":{
+            "it":"💾 Mostra filtri salvati 🏷️",
+            "en":"💾 Show saved filters 🏷️"
+        }
+    }
+}

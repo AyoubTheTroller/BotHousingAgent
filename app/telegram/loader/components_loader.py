@@ -1,10 +1,12 @@
 from typing import List, Tuple
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
-from aiogram.fsm.context import FSMContext
 from app.telegram.loader.base_loader import BaseLoader
 
 class ComponentsLoader(BaseLoader):
+
+    async def create_empty_inline_keyboard_markup(self) -> InlineKeyboardMarkup:
+        return InlineKeyboardMarkup(inline_keyboard=[])
 
     async def create_inline_keyboard_button_markup(self, button_text: str, callback_data) -> InlineKeyboardMarkup:
         """
@@ -66,13 +68,4 @@ class ComponentsLoader(BaseLoader):
         if keyboard_markup is None:
             keyboard_markup = InlineKeyboardMarkup(inline_keyboard=[])
         keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=text, callback_data=callback_data)])
-        return keyboard_markup
-
-    async def add_skip_buttons(self, state: FSMContext, keyboard_markup = None) -> InlineKeyboardMarkup:
-        skip_step = await super().get_keyboard_button_template(state, "skip_step")
-        go_to_search = await super().get_keyboard_button_template(state, "go_to_search")
-        if keyboard_markup is None:
-            keyboard_markup = InlineKeyboardMarkup(inline_keyboard=[])
-        keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=skip_step, callback_data="skip_step")])
-        keyboard_markup.inline_keyboard.append([InlineKeyboardButton(text=go_to_search, callback_data="go_to_search")])
         return keyboard_markup
