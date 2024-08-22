@@ -112,3 +112,6 @@
 ## 0.32.0
 - Added handlers to store and use user search parameters for the search, added new exception handler for dao operations, even_emitter now saves telegram message and query handlers, Tasks_NewBugsIntroducing_2024/08/01_1
 
+## 0.33.0
+- Fixed show search filters to handle case where no search filters are saved, Tasks_2024/08/22_1
+

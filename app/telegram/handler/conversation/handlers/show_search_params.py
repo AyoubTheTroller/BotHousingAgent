@@ -23,13 +23,16 @@ class ShowSearchParamsHandlers:
 
     async def show_saved_filters(self, message: Message, state: FSMContext):
         await state.set_state(Form.show_saved_filters)
-        await message.answer(text=await self.loader.get_message_template(state,"saved_filters"))
         saved_search_params = await self.search_service.get_user_search_params(state)
-        for filters_name, search_params in saved_search_params.items():
-            text, keyboard = await self.loader.create_saved_search_params_card(language=await self.search_service.get_from_state(state,"language"),
-                                                                         search_params_name=filters_name,
-                                                                         search_params=search_params)
-            await message.answer(text=text, reply_markup=keyboard)
+        if saved_search_params != {}:
+            await message.answer(text=await self.loader.get_message_template(state,"saved_filters"))
+            for filters_name, search_params in saved_search_params.items():
+                text, keyboard = await self.loader.create_saved_search_params_card(language=await self.search_service.get_from_state(state,"language"),
+                                                                            search_params_name=filters_name,
+                                                                            search_params=search_params)
+                await message.answer(text=text, reply_markup=keyboard)
+        else:
+            await message.answer(text=await self.loader.get_message_template(state,"no_saved_filters"))
 
     async def remove_search_params(self, callback_query: CallbackQuery, state: FSMContext):
         await state.set_state(Form.remove_filters)

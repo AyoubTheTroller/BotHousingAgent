@@ -73,6 +73,10 @@
             "it": "🤖💬\n\n<b>I tuoi filtri di ricerca salvati</b>\n\n⬇️⬇️ ⬇️⬇️ ⬇️⬇️ ⬇️⬇️ ⬇️⬇️",
             "en": "🤖💬\n\n<b>Your saved search filters</b>\n\n⬇️⬇️ ⬇️⬇️ ⬇️⬇️ ⬇️⬇️ ⬇️⬇️"
         },
+        "no_saved_filters":{
+            "it":"🤖💬\n\nNon hai filtri di ricerca salvati",
+            "en":"🤖💬\n\nYou have no saved search filters"
+        },
         "delete_confirmation":{
             "it":"🤖💬\n\nSei sicuro di rimuovere i seguenti filtri?\n 🏷️ <b>{{filters_name}}</b>",
             "en":"🤖💬\n\nAre you sure to remove below filters?\n 🏷️ <b>{{filters_name}}</b>"

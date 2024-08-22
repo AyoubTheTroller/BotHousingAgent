@@ -9,9 +9,11 @@
 
 1) [x] Manage 404 response in http client request
    Problem arised when searching with an unexistent location
-2) [ ] Manage Users with no username
+2) [x] Manage Users with no username
    Problem when user has no telegram username we need another way to approve him
 
+## 2024/07/22
+1) [x] Fix show filters handlers to correctly notifiy user if no search filters are saved
 
 # NewBugsIntroducing
 
@@ -51,3 +53,7 @@
 
 ## 2024/08/19
 1) [ ] Save listings found to add scheduled search for new listings only
+
+
+## 2024/07/22
+1) [ ] add logging mechanism to track all users events
