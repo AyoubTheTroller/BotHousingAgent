@@ -6,16 +6,16 @@
             "en":"🏷️ Filters: <b>{{filters_name}}</b>\n\n"
         },
         "home_for_rent":{
-            "it":"Case/Appartamenti in affitto 🏠🔑",
-            "en":"Houses/Apartments for rent 🏠🔑"
+            "it":"Case/Appartamenti in affitto",
+            "en":"Houses/Apartments for rent"
         },
         "room_for_rent":{
-            "it":"Stanze/Posti Letto in affitto 🛏️🔑",
-            "en":"Rooms/Beds for rent 🛏️🔑"
+            "it":"Stanze/Posti Letto in affitto",
+            "en":"Rooms/Beds for rent"
         },
         "home_for_sale":{
-            "it":"Case/Appartamenti in vendita 🏡💵",
-            "en":"Houses/Apartments for sale 🏡💵"
+            "it":"Case/Appartamenti in vendita",
+            "en":"Houses/Apartments for sale"
         },
         "search_type": {
             "it": "🔍 Tipo di ricerca: <strong><i>{{search_type}}</i></strong>\n",

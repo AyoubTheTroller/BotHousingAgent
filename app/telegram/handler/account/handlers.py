@@ -22,9 +22,9 @@ class AccountHandler:
     async def subscribe(self, message: Message, state: FSMContext):
         user_id = message.from_user.id
         existing_user = await self.user_dao.get_user_by_id(user_id)
+        priority_username = message.from_user.username or message.from_user.first_name or message.from_user.last_name
 
         if existing_user:
-            priority_username = message.from_user.username or message.from_user.first_name or message.from_user.last_name
             if existing_user.authorized:
                 await message.answer(await self.loader.get_message_template(state, "already_subscribed", username=priority_username))
             else:
